@@ -2035,6 +2035,7 @@
     <li><a href="/process/">Process</a></li>
     <li><a href="/pricing/">Pricing</a></li>
     <li><a href="/gallery/">Gallery</a></li>
+    <li><a href="/adu/">ADUs</a></li>
     <li class="has-dropdown">
       <a href="#" aria-haspopup="true" aria-expanded="false">Service Areas</a>
       <div class="nav-dropdown" role="menu">
@@ -2064,6 +2065,7 @@
   <a href="/process/">Our Process</a>
   <a href="/pricing/">Pricing</a>
   <a href="/gallery/">Gallery</a>
+  <a href="/adu/">ADUs</a>
   <div class="mobile-section-label">Service Areas</div>
   <a href="/marshfield/" class="mobile-town-link">Marshfield</a>
   <a href="/scituate/" class="mobile-town-link">Scituate</a>
@@ -2073,7 +2075,7 @@
   <a href="/pembroke/" class="mobile-town-link">Pembroke</a>
   <a href="/norwell/" class="mobile-town-link">Norwell</a>
   <a href="/hingham/" class="mobile-town-link">Hingham</a>
-  <a href="#consult" class="mobile-cta">Begin Your Build →</a>
+    <a href="#consult" class="mobile-cta">Begin Your Build →</a>
 </nav>
 
 <!-- ══════════════════════════════════════════
@@ -2358,6 +2360,185 @@
     </div>
   </div>
 </div>
+
+<!-- ══════════════════════════════════════════
+     ADU CALLOUT — SECONDARY SERVICE
+══════════════════════════════════════════ -->
+<section class="adu-callout" aria-label="Custom Modular ADUs">
+  <style>
+    .adu-callout {
+      background: var(--coal-mid, #1C1C1A);
+      border-top: 1px solid rgba(255,255,255,0.07);
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+      padding: 88px 56px;
+    }
+    .adu-callout-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      gap: 72px;
+      align-items: center;
+    }
+    .adu-callout-left .overline {
+      color: var(--blue, #4A90C4);
+      font-family: 'Outfit', sans-serif;
+      font-size: 11px;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      font-weight: 400;
+    }
+    .adu-callout-heading {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(40px, 5vw, 64px);
+      color: #fff;
+      line-height: 0.98;
+      letter-spacing: 0.02em;
+      margin: 18px 0 24px;
+    }
+    .adu-callout-heading .em { color: var(--blue, #4A90C4); }
+    .adu-callout-body {
+      font-family: 'Outfit', sans-serif;
+      font-size: 15px;
+      line-height: 1.75;
+      font-weight: 300;
+      color: rgba(255,255,255,0.55);
+      margin-bottom: 28px;
+      max-width: 520px;
+    }
+    .adu-callout-stats {
+      display: flex;
+      gap: 40px;
+      margin-bottom: 36px;
+    }
+    .adu-callout-stat-num {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 36px;
+      color: #fff;
+      letter-spacing: 0.02em;
+      line-height: 1;
+    }
+    .adu-callout-stat-num span { color: var(--blue, #4A90C4); }
+    .adu-callout-stat-label {
+      font-family: 'Outfit', sans-serif;
+      font-size: 10px;
+      font-weight: 300;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.36);
+      margin-top: 8px;
+      line-height: 1.4;
+    }
+    .adu-callout-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      font-family: 'Outfit', sans-serif;
+      font-size: 12px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #fff;
+      text-decoration: none;
+      padding: 16px 32px;
+      background: var(--blue, #4A90C4);
+      transition: background 0.25s ease, transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .adu-callout-cta:hover {
+      background: #3a7EBF;
+      transform: translateY(-2px);
+    }
+    .adu-callout-cta-arrow { transition: transform 0.25s ease; }
+    .adu-callout-cta:hover .adu-callout-cta-arrow { transform: translateX(4px); }
+    .adu-callout-right {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+    .adu-use-card {
+      padding: 28px 22px;
+      background: rgba(255,255,255,0.025);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-left: 2px solid var(--blue, #4A90C4);
+    }
+    .adu-use-num {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 16px;
+      letter-spacing: 0.18em;
+      color: var(--blue, #4A90C4);
+      margin-bottom: 12px;
+    }
+    .adu-use-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 19px;
+      letter-spacing: 0.04em;
+      color: #fff;
+      margin-bottom: 8px;
+    }
+    .adu-use-desc {
+      font-family: 'Outfit', sans-serif;
+      font-size: 12px;
+      font-weight: 300;
+      line-height: 1.6;
+      color: rgba(255,255,255,0.46);
+    }
+    @media (max-width: 900px) {
+      .adu-callout { padding: 64px 24px; }
+      .adu-callout-inner { grid-template-columns: 1fr; gap: 48px; }
+      .adu-callout-right { grid-template-columns: 1fr 1fr; }
+      .adu-callout-stats { gap: 24px; flex-wrap: wrap; }
+    }
+    @media (max-width: 600px) {
+      .adu-callout-right { grid-template-columns: 1fr; }
+    }
+  </style>
+  <div class="adu-callout-inner">
+    <div class="adu-callout-left">
+      <span class="overline">Also from Biviano · 900 sq ft &amp; under</span>
+      <h2 class="adu-callout-heading">Custom Modular<br><span class="em">ADUs.</span></h2>
+      <p class="adu-callout-body">In-law suites. Rental cottages. Home offices. Guest houses. Built to the same exacting standard as our full custom modular homes — at the same $250 per square foot, in the same 8–12 weeks. Mike handles permits, zoning, and the entire town approval process.</p>
+      <div class="adu-callout-stats">
+        <div>
+          <div class="adu-callout-stat-num">900<span>+</span></div>
+          <div class="adu-callout-stat-label">Sq Ft Max<br>MA ADU Cap</div>
+        </div>
+        <div>
+          <div class="adu-callout-stat-num">$<span>250</span></div>
+          <div class="adu-callout-stat-label">Per Sq Ft<br>Same as Full Build</div>
+        </div>
+        <div>
+          <div class="adu-callout-stat-num">8-12</div>
+          <div class="adu-callout-stat-label">Weeks to<br>Move-In</div>
+        </div>
+      </div>
+      <a href="/adu/" class="adu-callout-cta">
+        <span>Explore ADU Options</span>
+        <span class="adu-callout-cta-arrow">→</span>
+      </a>
+    </div>
+    <div class="adu-callout-right">
+      <div class="adu-use-card">
+        <div class="adu-use-num">01</div>
+        <div class="adu-use-title">In-Law Suite</div>
+        <p class="adu-use-desc">Bring aging parents home. Single-floor, walk-in shower, designed for aging in place.</p>
+      </div>
+      <div class="adu-use-card">
+        <div class="adu-use-num">02</div>
+        <div class="adu-use-title">Rental Income</div>
+        <p class="adu-use-desc">$1,800–$2,800/mo long-term in Plymouth County. Payback in 6–9 years typical.</p>
+      </div>
+      <div class="adu-use-card">
+        <div class="adu-use-num">03</div>
+        <div class="adu-use-title">Home Office</div>
+        <p class="adu-use-desc">Separate, climate-controlled workspace across the yard. Walk over, close the door.</p>
+      </div>
+      <div class="adu-use-card">
+        <div class="adu-use-num">04</div>
+        <div class="adu-use-title">Guest House</div>
+        <p class="adu-use-desc">Family in town for the holidays. College kids home for summer. Proper accommodations.</p>
+      </div>
+    </div>
+  </div>
+</section>
 
 <!-- ══════════════════════════════════════════
      PROCESS — HOW IT WORKS

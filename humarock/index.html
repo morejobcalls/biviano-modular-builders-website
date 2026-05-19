@@ -128,6 +128,7 @@
     <li><a href="../#process">Process</a></li>
     <li><a href="../#stories">Stories</a></li>
     <li><a href="../#faq">FAQ</a></li>
+    <li><a href="/adu/">ADUs</a></li>
   </ul>
   <a href="#consult" class="nav-cta">Begin Your Build</a>
   <button class="nav-hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
@@ -142,7 +143,8 @@
   <a href="../#process">Process</a>
   <a href="../#stories">Stories</a>
   <a href="../#faq">FAQ</a>
-  <a href="#consult" class="mobile-cta">Begin Your Build →</a>
+  <a href="/adu/">ADUs</a>
+    <a href="#consult" class="mobile-cta">Begin Your Build →</a>
 </nav>
 
 <!-- HERO -->
@@ -327,6 +329,89 @@
       <button class="faq-q" aria-expanded="false">Do you serve all of Humarock, or just certain streets?<span class="faq-icon">+</span></button>
       <div class="faq-a"><div class="faq-a-inner">We assess every project in Humarock individually. Call Mike and describe your lot — he'll tell you straight whether it's buildable, what the constraints are, and what the path forward looks like.</div></div>
     </div>
+  </div>
+</section>
+
+
+<!-- ADU CROSS-LINK — secondary service callout -->
+<section class="adu-xlink" aria-label="Also build ADUs in Humarock">
+  <style>
+    .adu-xlink {{
+      background: var(--coal, #111110);
+      padding: 64px 56px;
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }}
+    .adu-xlink-inner {{
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.4fr auto;
+      gap: 48px;
+      align-items: center;
+    }}
+    .adu-xlink-overline {{
+      font-family: 'Outfit', sans-serif;
+      font-size: 10px;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--blue, #4A90C4);
+      font-weight: 400;
+      margin-bottom: 12px;
+    }}
+    .adu-xlink-heading {{
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(28px, 3.4vw, 44px);
+      letter-spacing: 0.02em;
+      line-height: 1.05;
+      color: #fff;
+      margin: 0 0 14px;
+    }}
+    .adu-xlink-heading .em {{ color: var(--blue, #4A90C4); }}
+    .adu-xlink-body {{
+      font-family: 'Outfit', sans-serif;
+      font-size: 14px;
+      font-weight: 300;
+      line-height: 1.7;
+      color: rgba(255,255,255,0.5);
+      margin: 0;
+      max-width: 580px;
+    }}
+    .adu-xlink-cta {{
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      font-family: 'Outfit', sans-serif;
+      font-size: 11px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: #fff;
+      text-decoration: none;
+      padding: 18px 36px;
+      background: var(--blue, #4A90C4);
+      transition: background 0.25s ease, transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      white-space: nowrap;
+    }}
+    .adu-xlink-cta:hover {{
+      background: #3a7EBF;
+      transform: translateY(-2px);
+    }}
+    .adu-xlink-cta-arrow {{ transition: transform 0.25s ease; }}
+    .adu-xlink-cta:hover .adu-xlink-cta-arrow {{ transform: translateX(4px); }}
+    @media (max-width: 800px) {{
+      .adu-xlink {{ padding: 48px 24px; }}
+      .adu-xlink-inner {{ grid-template-columns: 1fr; gap: 28px; }}
+    }}
+  </style>
+  <div class="adu-xlink-inner">
+    <div>
+      <div class="adu-xlink-overline">Also Available · 900 sq ft &amp; under</div>
+      <h2 class="adu-xlink-heading">Looking for an <span class="em">ADU</span> in Humarock instead?</h2>
+      <p class="adu-xlink-body">Same Mike. Same factory-built quality. Same $250 per square foot. Same 8–12 week timeline — just sized for an in-law suite, rental cottage, home office, or guest house on your Humarock property.</p>
+    </div>
+    <a href="adu/" class="adu-xlink-cta">
+      <span>Humarock ADU Page</span>
+      <span class="adu-xlink-cta-arrow">→</span>
+    </a>
   </div>
 </section>
 
