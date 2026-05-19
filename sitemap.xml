@@ -4,7 +4,7 @@
   <!-- Homepage -->
   <url>
     <loc>https://www.bivianomodularbuilders.com/</loc>
-    <lastmod>2026-05-04</lastmod>
+    <lastmod>2026-05-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
@@ -12,77 +12,135 @@
   <!-- Core Pages -->
   <url>
     <loc>https://www.bivianomodularbuilders.com/why-modular/</loc>
-    <lastmod>2026-05-04</lastmod>
+    <lastmod>2026-05-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://www.bivianomodularbuilders.com/process/</loc>
-    <lastmod>2026-05-04</lastmod>
+    <lastmod>2026-05-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://www.bivianomodularbuilders.com/pricing/</loc>
-    <lastmod>2026-05-04</lastmod>
+    <lastmod>2026-05-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://www.bivianomodularbuilders.com/gallery/</loc>
-    <lastmod>2026-05-04</lastmod>
+    <lastmod>2026-05-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
-  <!-- Town Pages -->
+  <!-- ADU Landing Page -->
+  <url>
+    <loc>https://www.bivianomodularbuilders.com/adu/</loc>
+    <lastmod>2026-05-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Town Pages — Modular Home Service -->
   <url>
     <loc>https://www.bivianomodularbuilders.com/marshfield/</loc>
-    <lastmod>2026-05-04</lastmod>
+    <lastmod>2026-05-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://www.bivianomodularbuilders.com/scituate/</loc>
-    <lastmod>2026-05-04</lastmod>
+    <lastmod>2026-05-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://www.bivianomodularbuilders.com/humarock/</loc>
-    <lastmod>2026-05-04</lastmod>
+    <lastmod>2026-05-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://www.bivianomodularbuilders.com/duxbury/</loc>
-    <lastmod>2026-05-04</lastmod>
+    <lastmod>2026-05-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://www.bivianomodularbuilders.com/hanover/</loc>
-    <lastmod>2026-05-04</lastmod>
+    <lastmod>2026-05-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://www.bivianomodularbuilders.com/pembroke/</loc>
-    <lastmod>2026-05-04</lastmod>
+    <lastmod>2026-05-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://www.bivianomodularbuilders.com/norwell/</loc>
-    <lastmod>2026-05-04</lastmod>
+    <lastmod>2026-05-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://www.bivianomodularbuilders.com/hingham/</loc>
-    <lastmod>2026-05-04</lastmod>
+    <lastmod>2026-05-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
+  </url>
+
+  <!-- Town Pages — ADU Service -->
+  <url>
+    <loc>https://www.bivianomodularbuilders.com/marshfield/adu/</loc>
+    <lastmod>2026-05-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.bivianomodularbuilders.com/scituate/adu/</loc>
+    <lastmod>2026-05-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.bivianomodularbuilders.com/humarock/adu/</loc>
+    <lastmod>2026-05-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.bivianomodularbuilders.com/duxbury/adu/</loc>
+    <lastmod>2026-05-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.bivianomodularbuilders.com/hanover/adu/</loc>
+    <lastmod>2026-05-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.bivianomodularbuilders.com/pembroke/adu/</loc>
+    <lastmod>2026-05-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.bivianomodularbuilders.com/norwell/adu/</loc>
+    <lastmod>2026-05-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.bivianomodularbuilders.com/hingham/adu/</loc>
+    <lastmod>2026-05-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
 
 </urlset>
