@@ -178,7 +178,7 @@
       align-items: center;
       justify-content: space-between;
       padding: 0 56px;
-      height: 72px;
+      height: 88px;
       background: rgba(17,17,16,0.96);
       border-bottom: 1px solid var(--rule-dark);
       backdrop-filter: blur(12px);
@@ -193,13 +193,13 @@
       flex-shrink: 0;
     }
     .nav-crest-img {
-      height: 50px;
+      height: 66px;
       width: auto;
       flex-shrink: 0;
     }
     .nav-name {
       font-family: 'Bebas Neue', sans-serif;
-      font-size: 22px;
+      font-size: 27px;
       letter-spacing: 0.12em;
       color: var(--white);
       line-height: 1;
@@ -313,9 +313,9 @@
     /* Mobile Menu Overlay */
     .mobile-menu {
       position: fixed;
-      top: 72px; left: 0; right: 0;
-      height: calc(100dvh - 72px);
-      max-height: calc(100dvh - 72px);
+      top: 88px; left: 0; right: 0;
+      height: calc(100dvh - 88px);
+      max-height: calc(100dvh - 88px);
       background: var(--coal-mid);
       z-index: 99;
       display: flex;
@@ -381,7 +381,7 @@
       min-height: 100vh;
       display: grid;
       grid-template-rows: 1fr auto;
-      padding-top: 72px;
+      padding-top: 88px;
       position: relative;
       overflow: hidden;
     }
@@ -1381,6 +1381,14 @@
       justify-content: flex-end;
       padding: 64px;
     }
+    .cta-overlay-logo {
+      position: absolute;
+      top: clamp(24px, 4vw, 40px);
+      left: clamp(24px, 5vw, 64px);
+      height: clamp(60px, 7vw, 84px);
+      width: auto;
+      filter: drop-shadow(0 4px 18px rgba(0,0,0,0.45));
+    }
     .cta-tag {
       font-family: 'Outfit', sans-serif;
       font-size: 9px;
@@ -1575,6 +1583,12 @@
       padding-bottom: 48px;
       border-bottom: 1px solid var(--rule-dark);
     }
+    .footer-logo-img {
+      height: 76px;
+      width: auto;
+      display: block;
+      margin-bottom: 18px;
+    }
     .footer-brand-name {
       font-family: 'Bebas Neue', sans-serif;
       font-size: 28px;
@@ -1717,7 +1731,12 @@
        RESPONSIVE — MOBILE (≤900px)
     ───────────────────────────── */
     @media (max-width: 900px) {
-      nav { padding: 0 24px; }
+      /* Desktop logo grew; keep mobile header at its original approved size */
+      nav { padding: 0 24px; height: 72px; }
+      .nav-crest-img { height: 50px; }
+      .nav-name { font-size: 22px; }
+      .mobile-menu { top: 72px; height: calc(100dvh - 72px); max-height: calc(100dvh - 72px); }
+      .hero { padding-top: 72px; }
       .nav-links, .nav-cta { display: none; }
       .nav-hamburger { display: flex; }
 
@@ -2881,6 +2900,16 @@
         <p class="faq-a-inner">Approximately $250 per square foot — all-in, covering design, permits, site work, foundation, factory build, crane set, finish work, and final inspection. Compare that to $400–$600/sq ft for traditional stick-built construction in Plymouth County. For reference: a 2,500 sq ft home with BMB runs approximately $625,000 versus $1,000,000–$1,500,000 from traditional contractors. Your free consultation includes a personalized Cost Breakdown Report showing your exact numbers side-by-side.</p>
       </div>
     </div>
+
+    <div class="faq-item reveal">
+      <button class="faq-q" aria-expanded="false">
+        Do I need to be on site during construction?
+        <span class="faq-icon" aria-hidden="true">+</span>
+      </button>
+      <div class="faq-a" role="region">
+        <p class="faq-a-inner">No. Mike and the crew handle the entire build — design, permits, site prep, factory, crane set, finish work, all of it. You're welcome to come watch set day (honestly the best part to see), but you never need to be there managing anything. That's the whole point of having one builder run the job start to finish.</p>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -2895,6 +2924,7 @@
       loading="lazy"
     >
     <div class="cta-img-overlay">
+      <img src="/logo-crest.png" class="cta-overlay-logo" alt="Biviano Modular Builders crest">
       <span class="cta-tag">Begin Your Build</span>
       <h2 class="cta-title" id="cta-heading">
         Let's Build<br>Your <span class="em">Forever</span><br>Home.
@@ -2980,6 +3010,7 @@
   <div class="footer-inner">
     <div class="footer-top">
       <div>
+        <img src="/logo-crest.png" class="footer-logo-img" alt="Biviano Modular Builders crest">
         <div class="footer-brand-name">Biviano</div>
         <div class="footer-brand-sub">Modular Builders</div>
         <p class="footer-tagline">Precision-built custom homes for Plymouth County families — delivered in 12 weeks, for 25% less, by a contractor family serving the South Shore since the 1960s.</p>
@@ -3153,23 +3184,41 @@
       const myConfetti = canvas
         ? window.confetti.create(canvas, { resize: true, useWorker: true })
         : window.confetti;
-      const colors = ['#4A90C4', '#3A7EBF', '#BBA898', '#E8DDD5', '#FFFFFF'];
-      const burst = (originX) => {
+      const colors = ['#4A90C4', '#3A7EBF', '#2C6AA8', '#BBA898', '#E8DDD5', '#D4AF37', '#F4D58D', '#FFFFFF'];
+      // Big center burst
+      const bigBurst = (originX, originY) => {
         myConfetti({
-          particleCount: 90,
-          spread: 75,
-          startVelocity: 38,
-          ticks: 220,
-          origin: { x: originX, y: 0.7 },
+          particleCount: 260,
+          spread: 110,
+          startVelocity: 62,
+          ticks: 320,
+          origin: { x: originX, y: originY },
           colors,
-          scalar: 0.95,
+          scalar: 1.15,
           gravity: 0.9,
           disableForReducedMotion: true
         });
       };
-      burst(0.5);
-      setTimeout(() => burst(0.25), 180);
-      setTimeout(() => burst(0.75), 320);
+      // Side cannons for the full-load finale
+      const sideBurst = (originX, angle) => {
+        myConfetti({
+          particleCount: 120,
+          angle,
+          spread: 80,
+          startVelocity: 55,
+          ticks: 300,
+          origin: { x: originX, y: 0.75 },
+          colors,
+          scalar: 1.0,
+          gravity: 0.9,
+          disableForReducedMotion: true
+        });
+      };
+      bigBurst(0.5, 0.65);
+      setTimeout(() => sideBurst(0.0, 60), 120);
+      setTimeout(() => sideBurst(1.0, 120), 120);
+      setTimeout(() => bigBurst(0.3, 0.7), 280);
+      setTimeout(() => bigBurst(0.7, 0.7), 420);
     }
 
     const obs = new IntersectionObserver((entries) => {
