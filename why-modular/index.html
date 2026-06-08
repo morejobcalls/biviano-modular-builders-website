@@ -798,7 +798,7 @@
       margin-top: 48px;
       text-align: center;
     }
-    .what-keyline span { color: var(--blue); font-style: normal; font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: 0.05em; }
+    .what-keyline-text > span { color: var(--blue); font-style: normal; font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: 0.05em; }
 
     /* ─────────────────────────────
        COMPARISON TABLE
@@ -1388,6 +1388,15 @@
       justify-content: flex-end;
       padding: 64px;
     }
+    .cta-img-overlay .cta-overlay-logo {
+      position: absolute;
+      top: clamp(24px, 4vw, 40px);
+      left: clamp(24px, 5vw, 64px);
+      height: clamp(60px, 7vw, 84px);
+      width: auto;
+      object-fit: contain;
+      filter: drop-shadow(0 4px 18px rgba(0,0,0,0.45));
+    }
     .cta-tag {
       font-family: 'Outfit', sans-serif;
       font-size: 9px;
@@ -1723,6 +1732,15 @@
       .footer-top { grid-template-columns: 1fr; }
       .footer-lic { font-size: 10px; }
       .cred-item { flex: 1 1 50%; }
+      .cred-item:last-child {
+        flex: 1 1 100%;
+        flex-direction: row;
+        gap: 12px;
+        padding: 16px;
+        border-top: 1px solid var(--rule-dark);
+        border-bottom: none;
+      }
+      .cred-item:last-child .cred-label { margin-top: 0; }
       .compare-table { font-size: 12px; }
       .compare-table td, .compare-table th { padding: 14px 12px; }
     }
@@ -1819,7 +1837,7 @@
             <div class="hero-big-label">Weeks to move in</div>
           </div>
           <div>
-            <div class="hero-big-stat"><span>vs.</span> 15<span>mo</span></div>
+            <div class="hero-big-stat">15<span>mo</span></div>
             <div class="hero-big-label">Stick-built average</div>
           </div>
         </div>
@@ -2361,6 +2379,7 @@
         loading="lazy"
       >
       <div class="cta-img-overlay">
+        <img src="/logo-crest.png" class="cta-overlay-logo" alt="Biviano Modular Builders crest">
         <span class="cta-tag">Next Step</span>
         <h2 class="cta-title">
           Ready to See If<br>

@@ -491,6 +491,14 @@
       justify-content: flex-end;
       padding: 64px;
     }
+    .cta-overlay-logo {
+      position: absolute;
+      top: clamp(24px, 4vw, 40px);
+      left: clamp(24px, 5vw, 64px);
+      height: clamp(60px, 7vw, 84px);
+      width: auto;
+      filter: drop-shadow(0 4px 18px rgba(0,0,0,0.45));
+    }
     .cta-tag {
       font-family: 'Outfit', sans-serif;
       font-size: 9px;
@@ -689,6 +697,13 @@
       max-width: 900px;
       position: relative;
       z-index: 1;
+    }
+    .interior-hero-crest {
+      height: 44px;
+      width: auto;
+      opacity: 0.9;
+      margin-bottom: 20px;
+      display: block;
     }
     .interior-hero-tag {
       display: flex;
@@ -1470,7 +1485,8 @@
       .calc-section { padding: 72px 24px; }
       .calc-card { padding: 28px 20px; }
       .calc-grid { grid-template-columns: 1fr; }
-      .calc-formula-items { gap: 8px; }
+      .calc-formula-items { flex-direction: column; gap: 8px; }
+      .calc-formula-plus { display: none; }
       .calc-formula-num { font-size: 22px; }
     }
   </style>
@@ -1591,7 +1607,7 @@
     }
     @media (max-width: 700px) {
       .calc-town-grid { grid-template-columns: repeat(2, 1fr); }
-      .calc-town-other { grid-column: span 2; }
+      .calc-town-other { grid-column: span 2; font-size: 12px; padding-left: 8px; padding-right: 8px; white-space: nowrap; }
     }
     .calc-grid {
       display: grid;
@@ -1811,6 +1827,7 @@
   ═══════════════════════════════════════════ -->
   <section class="interior-hero">
     <div class="interior-hero-inner">
+      <img src="/logo-crest.png" class="interior-hero-crest" alt="Biviano Modular Builders crest">
       <div class="interior-hero-tag">
         <div class="interior-hero-tag-rule"></div>
         <div class="interior-hero-tag-text">Pricing &amp; Timelines — Plymouth County, MA</div>
@@ -1865,7 +1882,7 @@
             <button type="button" class="calc-town" data-town="Pembroke">Pembroke</button>
             <button type="button" class="calc-town" data-town="Norwell">Norwell</button>
             <button type="button" class="calc-town" data-town="Hingham">Hingham</button>
-            <button type="button" class="calc-town calc-town-other" data-town="Other">Another Plymouth County town →</button>
+            <button type="button" class="calc-town calc-town-other" data-town="Other">Another town →</button>
           </div>
           <div class="calc-field calc-town-other-field" id="calcTownOtherField" style="display:none;">
             <label class="calc-label" for="calcTownOther">Town name</label>
@@ -2308,6 +2325,7 @@
     <div class="cta-img-side">
       <img src="https://images.unsplash.com/photo-1773415988379-36e8be2e5c3e?w=1200&q=80&auto=format&fit=crop" alt="Custom home exterior — Plymouth County, MA" loading="lazy">
       <div class="cta-img-overlay">
+        <img src="/logo-crest.png" class="cta-overlay-logo" alt="Biviano Modular Builders crest">
         <span class="cta-tag">Free 60-Minute Consultation</span>
         <h2 class="cta-title">Get Your <span class="em">Actual</span> Numbers</h2>
         <p class="cta-body">The best way to know what your dream home costs is to talk to Mike. He'll walk you through real numbers for your specific vision, your land, and your situation. No obligation. No pressure. No vague estimates — just a straight conversation with a contractor who's done this for 40 years.</p>

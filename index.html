@@ -1020,8 +1020,24 @@
     .process-section {
       background: var(--coal);
       padding: 120px 56px;
+      position: relative;
+      overflow: hidden;
     }
-    .process-inner { max-width: 1400px; margin: 0 auto; }
+    /* Low-opacity crest watermark — embossed grayscale texture, behind content */
+    .process-section::before {
+      content: '';
+      position: absolute;
+      left: -3%;
+      bottom: -6%;
+      width: clamp(300px, 30vw, 440px);
+      aspect-ratio: 1 / 1;
+      background: url('/logo-crest.png') no-repeat center / contain;
+      opacity: 0.035;
+      filter: grayscale(1) brightness(1.7);
+      pointer-events: none;
+      z-index: 0;
+    }
+    .process-inner { max-width: 1400px; margin: 0 auto; position: relative; z-index: 1; }
     .process-top {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -1479,28 +1495,30 @@
     }
     .form-input {
       width: 100%;
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.16);
       color: var(--white);
       font-family: 'Outfit', sans-serif;
       font-size: 14px;
       font-weight: 300;
       padding: 13px 16px;
       outline: none;
-      transition: border-color 0.3s ease, background 0.3s ease;
+      transition: border-color 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
       -webkit-appearance: none;
       border-radius: 0;
     }
+    .form-input:hover { border-color: rgba(255,255,255,0.26); }
     .form-input:focus {
       border-color: var(--blue);
-      background: rgba(74,144,196,0.05);
+      background: rgba(74,144,196,0.08);
+      box-shadow: 0 0 0 1px rgba(74,144,196,0.35);
     }
-    .form-input::placeholder { color: rgba(255,255,255,0.18); }
+    .form-input::placeholder { color: rgba(255,255,255,0.32); }
     .form-select {
       width: 100%;
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(255,255,255,0.08);
-      color: rgba(255,255,255,0.4);
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.16);
+      color: rgba(255,255,255,0.55);
       font-family: 'Outfit', sans-serif;
       font-size: 14px;
       font-weight: 300;
@@ -1508,10 +1526,15 @@
       outline: none;
       -webkit-appearance: none;
       cursor: pointer;
-      transition: border-color 0.3s ease;
+      transition: border-color 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
       border-radius: 0;
     }
-    .form-select:focus { border-color: var(--blue); }
+    .form-select:hover { border-color: rgba(255,255,255,0.26); }
+    .form-select:focus {
+      border-color: var(--blue);
+      background: rgba(74,144,196,0.08);
+      box-shadow: 0 0 0 1px rgba(74,144,196,0.35);
+    }
     .form-select option { background: var(--coal-mid); color: var(--white); }
     .form-submit {
       width: 100%;
@@ -1784,7 +1807,8 @@
 
       .cta-section { grid-template-columns: 1fr; }
       .cta-img-side { min-height: 400px; }
-      .cta-img-overlay { padding: 40px 24px; }
+      .cta-img-overlay { padding: 96px 24px 40px; }
+      .cta-overlay-logo { top: 28px; left: 24px; height: 56px; }
       .cta-form-side { padding: 48px 24px; border-left: none; border-top: 1px solid var(--rule-dark); }
 
       footer { padding: 56px 24px 28px; }
@@ -2030,8 +2054,14 @@
       text-decoration: none;
     }
     .social-cta-note a:hover { text-decoration: underline; }
-    @media (max-width: 900px) {
+    @media (min-width: 601px) and (max-width: 900px) {
       .social-cards { grid-template-columns: 1fr 1fr; }
+    }
+    /* Mobile: full-width stacked, readable social cards */
+    @media (max-width: 600px) {
+      .social-cards { grid-template-columns: 1fr; gap: 20px; }
+      .social-card-body { padding: 22px 24px 24px; }
+      .social-card-text { font-size: 14.5px; line-height: 1.7; }
     }
   </style>
 <body>

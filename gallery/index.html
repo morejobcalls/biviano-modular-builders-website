@@ -720,6 +720,21 @@
     }
     .set-day-content {
       max-width: 620px;
+      position: relative;
+      z-index: 2;
+    }
+    /* Ultra-low-opacity embossed crest texture behind the dark editorial moment — never a logo placement */
+    .set-day-watermark {
+      position: absolute;
+      left: clamp(-40px, -2vw, -20px);
+      top: 50%;
+      transform: translateY(-50%);
+      height: clamp(360px, 46vw, 560px);
+      width: auto;
+      opacity: 0.04;
+      filter: grayscale(1) brightness(1.6);
+      pointer-events: none;
+      z-index: 1;
     }
     .set-day-overline {
       font-family: 'Outfit', sans-serif;
@@ -1068,6 +1083,19 @@
       border: 1px solid var(--rule-dark);
       padding: 52px 48px;
       border-top: 3px solid var(--blue);
+      position: relative;
+      overflow: hidden;
+    }
+    /* Reuse the homepage .cta-overlay-logo treatment verbatim — solid dark panel exit crest */
+    .cta-overlay-logo {
+      position: absolute;
+      top: clamp(24px, 4vw, 40px);
+      right: clamp(24px, 5vw, 56px);
+      height: clamp(56px, 6vw, 76px);
+      width: auto;
+      opacity: 0.16;
+      filter: drop-shadow(0 4px 18px rgba(0,0,0,0.45));
+      pointer-events: none;
     }
     .proof-list {
       list-style: none;
@@ -1269,6 +1297,9 @@
 
       .interior-hero { padding: 120px 24px 64px; }
       .interior-hero::before { display: none; }
+
+      /* Keep the exit crest a quiet corner texture clear of proof copy on mobile */
+      .cta-overlay-logo { height: 48px; opacity: 0.1; top: 18px; right: 18px; }
 
       .intro-section { padding: 64px 24px; }
       .filter-bar { padding: 0 24px; }
@@ -1812,6 +1843,7 @@
         loading="lazy"
       >
       <div class="set-day-overlay">
+        <img src="/logo-crest.png" class="set-day-watermark" alt="" aria-hidden="true">
         <div class="set-day-content">
           <span class="set-day-overline reveal">The Moment Everything Changes</span>
           <h2 class="set-day-heading reveal reveal-d1">
@@ -1889,6 +1921,7 @@
         </div>
       </div>
       <div class="page-cta-right reveal reveal-d2">
+        <img src="/logo-crest.png" class="cta-overlay-logo" alt="" aria-hidden="true">
         <ul class="proof-list" aria-label="What you get in a consultation">
           <li class="proof-item">
             <div class="proof-check" aria-hidden="true"></div>

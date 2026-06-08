@@ -432,6 +432,14 @@
       background: var(--coal-mid);
       border-bottom: 1px solid var(--rule-dark);
     }
+    .interior-hero-crest {
+      height: 44px;
+      width: auto;
+      opacity: 0.9;
+      margin-bottom: 20px;
+      display: block;
+      animation: fadeIn 0.7s ease 0.1s both;
+    }
     .interior-hero-tag {
       display: flex;
       align-items: center;
@@ -535,10 +543,26 @@
     .timeline-section {
       background: var(--coal);
       padding: 104px 56px;
+      position: relative;
+      overflow: hidden;
+    }
+    .timeline-watermark {
+      position: absolute;
+      right: -5%;
+      top: 120px;
+      width: clamp(300px, 28vw, 420px);
+      height: auto;
+      opacity: 0.04;
+      filter: grayscale(1) brightness(1.6);
+      pointer-events: none;
+      user-select: none;
+      z-index: 0;
     }
     .timeline-inner {
       max-width: 1200px;
       margin: 0 auto;
+      position: relative;
+      z-index: 1;
     }
     .timeline-header {
       text-align: center;
@@ -1113,7 +1137,7 @@
       position: relative;
       overflow: hidden;
     }
-    .cta-img-side img {
+    .cta-img-side > img {
       width: 100%; height: 100%;
       object-fit: cover;
       filter: saturate(0.38) brightness(0.38);
@@ -1126,6 +1150,14 @@
       flex-direction: column;
       justify-content: flex-end;
       padding: 64px;
+    }
+    .cta-overlay-logo {
+      position: absolute;
+      top: clamp(24px, 4vw, 40px);
+      left: clamp(24px, 5vw, 64px);
+      height: clamp(60px, 7vw, 84px);
+      width: auto;
+      filter: drop-shadow(0 4px 18px rgba(0,0,0,0.45));
     }
     .cta-tag {
       font-family: 'Outfit', sans-serif;
@@ -1474,6 +1506,7 @@
       .cta-section { grid-template-columns: 1fr; }
       .cta-img-side { min-height: 400px; }
       .cta-img-overlay { padding: 40px 24px; }
+      .cta-overlay-logo { top: 28px; left: 24px; height: 56px; }
       .cta-form-side { padding: 48px 24px; border-left: none; border-top: 1px solid var(--rule-dark); }
 
       footer { padding: 56px 24px 28px; }
@@ -1607,6 +1640,7 @@
        HERO
   ═══════════════════════════════════════════ -->
   <section class="interior-hero">
+    <img src="/logo-crest.png" class="interior-hero-crest" alt="" aria-hidden="true">
     <div class="interior-hero-tag">
       <div class="interior-hero-tag-rule"></div>
       <div class="interior-hero-tag-text">How It Works</div>
@@ -1649,6 +1683,7 @@
        TIMELINE — 5 STEPS
   ═══════════════════════════════════════════ -->
   <section class="timeline-section">
+    <img src="/logo-crest.png" class="timeline-watermark" alt="" aria-hidden="true">
     <div class="timeline-inner">
       <div class="timeline-header reveal">
         <span class="overline" style="text-align:center; display:block;">Step by Step</span>
@@ -1899,6 +1934,7 @@
       <img src="https://images.unsplash.com/photo-1704742950992-9815a104820c?w=1200&q=80&auto=format&fit=crop"
            alt="Modular home framing — South Shore Massachusetts" loading="lazy">
       <div class="cta-img-overlay">
+        <img src="/logo-crest.png" class="cta-overlay-logo" alt="Biviano Modular Builders crest">
         <span class="cta-tag">Ready to Take Step 1?</span>
         <div class="cta-title">It's <span class="em">Free.</span></div>
         <p class="cta-body">The free consultation takes about 60 minutes. You'll walk out with a clear picture of what your home could look like, what it costs, and what your timeline would be. No commitment, no pressure — just answers.</p>
