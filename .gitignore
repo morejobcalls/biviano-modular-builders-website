@@ -8,3 +8,6 @@ __MACOSX/
 # Examples / design references (not production code)
 Examples/
 .!*
+
+# screenshot tooling deps (never deploy)
+scripts/node_modules/
