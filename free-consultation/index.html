@@ -982,7 +982,7 @@
         'contact.bmb_town': form.town.value,
         'contact.bmb_project_description': desc,
         'contact.bmb_source': form.utm_source.value || 'google-ads',
-        'contact.bmb_gclid': gclid   // NEW FIELD — create contact.bmb_gclid in GHL UI
+        'contact.contact_gclid': gclid   // reuses existing GHL gclid field (no duplicate)
       },
       source: 'BMB Free Consult LP',
       tags: ['bmb-website', 'consultation-request', 'google-paid', 'modular-lp']
