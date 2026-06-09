@@ -1,0 +1,1065 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- ═══════════════════════════════════════════════════════════
+       GLOBAL TAG — GA4 G-GW5Z0VVDEC · Google Ads AW-XXXXXXXXXX
+       (Spencer: swap AW-XXXXXXXXXX + the /LABEL_xxx labels after
+        creating the 3 conversion actions in Google Ads.)
+       ═══════════════════════════════════════════════════════════ -->
+
+  <!-- 1. Consent Mode v2 — DEFAULT (runs BEFORE gtag.js loads) -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    // US-only South Shore traffic → grant by default, NO cookie banner.
+    // ad_user_data + ad_personalization are the v2 additions (required since Mar-2024).
+    gtag('consent', 'default', {
+      'ad_storage':         'granted',
+      'analytics_storage':  'granted',
+      'ad_user_data':       'granted',
+      'ad_personalization': 'granted'
+    });
+    // EEA NOTE: if EEA traffic is ever run, add a region:['EEA'] default-denied
+    // block ABOVE this one + a CMP banner that calls gtag('consent','update',...) on accept.
+  </script>
+
+  <!-- 2. Load the Google tag library (one library serves GA4 + Ads) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-GW5Z0VVDEC"></script>
+
+  <!-- 3. Initialize GA4 + Google Ads + Enhanced Conversions -->
+  <script>
+    gtag('js', new Date());
+    gtag('config', 'G-GW5Z0VVDEC');
+    // Google Ads + auto-tagging picks up gclid; allow_enhanced_conversions enables EC for Leads
+    gtag('config', 'AW-XXXXXXXXXX', { 'allow_enhanced_conversions': true });
+  </script>
+
+  <!-- ═══════════════════════════════════════════
+       SEO & META  —  PAID LP, KEEP OUT OF ORGANIC
+  ═══════════════════════════════════════════ -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex,follow">
+
+  <!-- Favicons -->
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="shortcut icon" href="/favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <meta name="theme-color" content="#4A90C4">
+
+  <title>Free Modular Home Design &amp; Budget Consultation | Biviano Modular Builders — South Shore, MA</title>
+  <meta name="description" content="Free Modular Home Design &amp; Budget Consultation. South Shore's family modular builder for 40+ years — custom homes built to stick-built codes for 20–25% less, in 8–12 weeks. No obligation.">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Free Modular Home Design &amp; Budget Consultation | Biviano Modular Builders">
+  <meta property="og:description" content="Your custom dream home — built in 8–12 weeks, for 20–25% less than stick-built. South Shore's family modular builder for 40+ years.">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:site_name" content="Biviano Modular Builders">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Outfit:wght@200;300;400;500&display=swap" rel="stylesheet">
+
+  <style>
+    /* ═══════════════════════════════════════════
+       DESIGN SYSTEM  (mirrors index.html tokens)
+    ═══════════════════════════════════════════ */
+    :root {
+      --coal:        #111110;
+      --coal-mid:    #1C1C1A;
+      --coal-light:  #2A2A27;
+      --stone:       #8C7B6B;
+      --stone-light: #BBA898;
+      --stone-pale:  #E8DDD5;
+      --sand:        #F0E8DF;
+      --cream:       #FAF7F4;
+      --blue:        #4A90C4;
+      --blue-mid:    #3A7EBF;
+      --blue-pale:   rgba(74,144,196,0.12);
+      --white:       #FFFFFF;
+      --rule-dark:   rgba(255,255,255,0.07);
+      --rule-light:  rgba(0,0,0,0.08);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Outfit', sans-serif;
+      background: var(--coal);
+      color: var(--white);
+      overflow-x: hidden;
+    }
+    a { color: inherit; }
+
+    /* ─────────────────────────────
+       SLIM NAV (logo + phone only — paid LP, no escape links)
+    ───────────────────────────── */
+    .lp-nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 56px;
+      height: 88px;
+      background: rgba(17,17,16,0.96);
+      border-bottom: 1px solid var(--rule-dark);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+    .lp-logo { display: flex; align-items: center; gap: 14px; text-decoration: none; flex-shrink: 0; }
+    .lp-crest-img { height: 66px; width: auto; flex-shrink: 0; }
+    .lp-name { font-family: 'Bebas Neue', sans-serif; font-size: 27px; letter-spacing: 0.12em; color: var(--white); line-height: 1; }
+    .lp-sub { font-family: 'Outfit', sans-serif; font-size: 9px; font-weight: 300; letter-spacing: 0.28em; color: var(--blue); text-transform: uppercase; margin-top: 2px; }
+    .lp-nav-call {
+      display: flex; align-items: center; gap: 10px;
+      text-decoration: none; flex-shrink: 0;
+    }
+    .lp-nav-call .lab { font-family: 'Outfit', sans-serif; font-size: 9px; font-weight: 300; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(255,255,255,0.35); }
+    .lp-nav-call .num { font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: 0.08em; color: var(--white); transition: color 0.2s ease; }
+    .lp-nav-call:hover .num { color: var(--blue); }
+
+    /* ─────────────────────────────
+       HERO + FORM
+    ───────────────────────────── */
+    .lp-hero {
+      position: relative;
+      padding: 88px 0 0;
+      overflow: hidden;
+    }
+    .lp-hero-bg { position: absolute; inset: 0; z-index: 0; }
+    .lp-hero-bg img { width: 100%; height: 100%; object-fit: cover; filter: saturate(0.5) brightness(0.5); }
+    .lp-hero-bg::after {
+      content: '';
+      position: absolute; inset: 0;
+      background:
+        linear-gradient(to right, rgba(17,17,16,0.86) 38%, rgba(17,17,16,0.4) 100%),
+        linear-gradient(to top, rgba(17,17,16,0.7) 0%, transparent 50%);
+    }
+    .lp-hero-inner {
+      position: relative; z-index: 2;
+      max-width: 1400px; margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 480px;
+      gap: 56px;
+      align-items: center;
+      padding: 64px 56px 72px;
+    }
+    .lp-hero-tag {
+      display: flex; align-items: center; gap: 14px; margin-bottom: 22px;
+    }
+    .lp-hero-tag-rule { width: 32px; height: 1px; background: var(--blue); flex-shrink: 0; }
+    .lp-hero-tag-text {
+      font-family: 'Outfit', sans-serif; font-size: 10px; font-weight: 300;
+      letter-spacing: 0.28em; text-transform: uppercase; color: var(--blue);
+    }
+    h1.lp-h1 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(46px, 5.6vw, 78px);
+      line-height: 0.94;
+      letter-spacing: 0.02em;
+      color: var(--white);
+    }
+    h1.lp-h1 .accent { color: var(--blue); }
+    .lp-subhead {
+      font-family: 'Outfit', sans-serif;
+      font-size: 16px; font-weight: 300; line-height: 1.75;
+      color: rgba(255,255,255,0.62);
+      max-width: 540px;
+      margin-top: 22px;
+    }
+    .lp-trust-bullets {
+      list-style: none;
+      margin-top: 26px;
+      display: flex; flex-direction: column; gap: 12px;
+    }
+    .lp-trust-bullets li {
+      display: flex; align-items: center; gap: 12px;
+      font-family: 'Outfit', sans-serif; font-size: 14px; font-weight: 300;
+      color: rgba(255,255,255,0.7);
+    }
+    .lp-trust-bullets .chk {
+      color: var(--blue); font-size: 16px; flex-shrink: 0;
+      font-family: 'Bebas Neue', sans-serif;
+    }
+    .lp-hero-call {
+      display: inline-flex; align-items: center; gap: 12px;
+      margin-top: 30px; text-decoration: none;
+    }
+    .lp-hero-call .lab { font-family: 'Outfit', sans-serif; font-size: 10px; font-weight: 300; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(255,255,255,0.4); }
+    .lp-hero-call .num { font-family: 'Bebas Neue', sans-serif; font-size: 30px; letter-spacing: 0.07em; color: var(--white); transition: color 0.2s ease; }
+    .lp-hero-call:hover .num { color: var(--blue); }
+
+    /* FORM CARD */
+    .lp-form-card {
+      background: var(--coal-mid);
+      border: 1px solid var(--rule-dark);
+      box-shadow: 0 30px 80px rgba(0,0,0,0.5);
+      padding: 36px 34px 30px;
+    }
+    .lp-form-hd { font-family: 'Bebas Neue', sans-serif; font-size: 30px; letter-spacing: 0.05em; color: var(--white); line-height: 1; }
+    .lp-form-reassure { font-family: 'Outfit', sans-serif; font-size: 12px; font-weight: 300; color: rgba(255,255,255,0.4); margin: 8px 0 24px; letter-spacing: 0.02em; }
+    .form-group { margin-bottom: 12px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .form-label {
+      display: block; font-family: 'Outfit', sans-serif; font-size: 9px; font-weight: 400;
+      letter-spacing: 0.22em; text-transform: uppercase; color: rgba(255,255,255,0.3); margin-bottom: 7px;
+    }
+    .form-input, .form-select {
+      width: 100%;
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.16);
+      color: var(--white);
+      font-family: 'Outfit', sans-serif; font-size: 14px; font-weight: 300;
+      padding: 12px 14px; outline: none;
+      transition: border-color 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
+      -webkit-appearance: none; border-radius: 0;
+    }
+    .form-select { color: rgba(255,255,255,0.55); cursor: pointer; }
+    .form-input:hover, .form-select:hover { border-color: rgba(255,255,255,0.26); }
+    .form-input:focus, .form-select:focus {
+      border-color: var(--blue);
+      background: rgba(74,144,196,0.08);
+      box-shadow: 0 0 0 1px rgba(74,144,196,0.35);
+    }
+    .form-input::placeholder { color: rgba(255,255,255,0.3); }
+    .form-input.invalid, .form-select.invalid { border-color: #c0584e; box-shadow: 0 0 0 1px rgba(192,88,78,0.4); }
+    .form-select option { background: var(--coal-mid); color: var(--white); }
+    .form-err { display: none; font-family: 'Outfit', sans-serif; font-size: 11px; font-weight: 300; color: #d98b82; margin-top: 5px; letter-spacing: 0.02em; }
+    .form-err.show { display: block; }
+    .form-submit {
+      width: 100%; background: var(--blue); color: var(--coal);
+      font-family: 'Bebas Neue', sans-serif; font-size: 16px; letter-spacing: 0.16em;
+      padding: 18px; border: none; cursor: pointer; margin-top: 10px;
+      transition: background 0.3s ease, transform 0.2s ease; border-radius: 0;
+    }
+    .form-submit:hover { background: var(--stone-light); transform: translateY(-1px); }
+    .form-submit:disabled { opacity: 0.6; cursor: wait; transform: none; }
+    .form-privacy { font-family: 'Outfit', sans-serif; font-size: 10px; font-weight: 300; color: rgba(255,255,255,0.22); text-align: center; margin-top: 12px; letter-spacing: 0.04em; }
+
+    /* ─────────────────────────────
+       SHARED SECTION TYPE
+    ───────────────────────────── */
+    .overline {
+      font-family: 'Outfit', sans-serif; font-size: 9px; font-weight: 400;
+      letter-spacing: 0.35em; text-transform: uppercase; color: var(--blue);
+      display: block; margin-bottom: 16px;
+    }
+    .sect-heading {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(40px, 5vw, 64px);
+      letter-spacing: 0.03em; line-height: 0.96;
+    }
+    .sect-heading .em { color: var(--blue); }
+
+    /* ─────────────────────────────
+       2 · WHY MODULAR (value stack)
+    ───────────────────────────── */
+    .why-section { background: var(--sand); color: var(--coal); padding: 96px 56px; }
+    .why-inner { max-width: 1280px; margin: 0 auto; }
+    .why-section .sect-heading { color: var(--coal); }
+    .why-section .overline { color: var(--blue-mid); }
+    .why-mechanism {
+      font-family: 'Libre Baskerville', serif; font-style: italic; font-size: 16px;
+      line-height: 1.85; color: var(--stone); max-width: 720px; margin-top: 22px;
+    }
+    .why-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 0;
+      margin-top: 56px; border-top: 1px solid var(--rule-light); border-left: 1px solid var(--rule-light);
+    }
+    .why-card {
+      padding: 38px 30px; border-right: 1px solid var(--rule-light); border-bottom: 1px solid var(--rule-light);
+      background: rgba(255,255,255,0.35);
+    }
+    .why-card-num { font-family: 'Bebas Neue', sans-serif; font-size: 44px; line-height: 1; color: var(--blue-mid); letter-spacing: 0.02em; }
+    .why-card-title { font-family: 'Bebas Neue', sans-serif; font-size: 21px; letter-spacing: 0.04em; color: var(--coal); margin: 14px 0 10px; line-height: 1.05; }
+    .why-card-body { font-family: 'Outfit', sans-serif; font-size: 13px; font-weight: 300; line-height: 1.7; color: var(--stone); }
+    .why-counter {
+      margin-top: 40px; padding: 26px 30px;
+      background: var(--coal); color: rgba(255,255,255,0.82);
+      border-left: 3px solid var(--blue);
+      font-family: 'Outfit', sans-serif; font-size: 15px; font-weight: 300; line-height: 1.75;
+    }
+    .why-counter strong { color: var(--white); font-weight: 500; }
+
+    /* ─────────────────────────────
+       3 · PROOF
+    ───────────────────────────── */
+    .proof-section { background: var(--coal); padding: 96px 56px; }
+    .proof-inner { max-width: 1280px; margin: 0 auto; }
+    .proof-chips {
+      display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; margin-bottom: 56px;
+    }
+    .proof-chip {
+      display: inline-flex; align-items: center; gap: 9px;
+      border: 1px solid rgba(74,144,196,0.35); background: rgba(74,144,196,0.07);
+      padding: 11px 18px;
+      font-family: 'Outfit', sans-serif; font-size: 12px; font-weight: 300; letter-spacing: 0.04em;
+      color: rgba(255,255,255,0.78);
+    }
+    .proof-chip .star { color: var(--blue); }
+    .proof-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .proof-card { background: var(--coal-mid); border: 1px solid var(--rule-dark); padding: 34px 30px; display: flex; flex-direction: column; }
+    .proof-stars { color: var(--blue); font-size: 15px; letter-spacing: 3px; margin-bottom: 16px; }
+    .proof-rule { width: 32px; height: 1px; background: var(--blue); margin-bottom: 18px; }
+    .proof-quote { font-family: 'Libre Baskerville', serif; font-style: italic; font-size: 15px; line-height: 1.75; color: rgba(255,255,255,0.74); flex: 1; }
+    .proof-name { font-family: 'Bebas Neue', sans-serif; font-size: 16px; letter-spacing: 0.1em; color: var(--blue); margin-top: 20px; }
+    .proof-role { font-family: 'Outfit', sans-serif; font-size: 11px; font-weight: 300; color: rgba(255,255,255,0.34); letter-spacing: 0.04em; margin-top: 3px; }
+    .proof-photos { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 24px; }
+    .proof-photo { position: relative; overflow: hidden; min-height: 280px; border: 1px solid var(--rule-dark); }
+    .proof-photo img { width: 100%; height: 100%; object-fit: cover; }
+    .proof-caption {
+      text-align: center; margin-top: 26px;
+      font-family: 'Libre Baskerville', serif; font-style: italic; font-size: 15px;
+      color: rgba(255,255,255,0.4);
+    }
+
+    /* ─────────────────────────────
+       4 · HOW IT WORKS
+    ───────────────────────────── */
+    .how-section { background: var(--coal-mid); padding: 96px 56px; border-top: 1px solid var(--rule-dark); border-bottom: 1px solid var(--rule-dark); }
+    .how-inner { max-width: 1100px; margin: 0 auto; }
+    .how-steps { margin-top: 56px; display: flex; flex-direction: column; }
+    .how-step {
+      display: grid; grid-template-columns: 64px 1fr; gap: 28px;
+      padding: 30px 0; border-bottom: 1px solid var(--rule-dark);
+    }
+    .how-step:first-child { border-top: 1px solid var(--rule-dark); }
+    .how-step-num {
+      width: 52px; height: 52px; border: 1px solid rgba(74,144,196,0.35);
+      display: grid; place-items: center;
+      font-family: 'Bebas Neue', sans-serif; font-size: 24px; color: var(--blue);
+    }
+    .how-step-title { font-family: 'Bebas Neue', sans-serif; font-size: 24px; letter-spacing: 0.04em; color: var(--white); line-height: 1; margin-bottom: 9px; }
+    .how-step-body { font-family: 'Outfit', sans-serif; font-size: 14px; font-weight: 300; line-height: 1.75; color: rgba(255,255,255,0.5); max-width: 640px; }
+    .how-cta-row { margin-top: 48px; display: flex; align-items: center; gap: 30px; flex-wrap: wrap; }
+
+    /* ─────────────────────────────
+       SHARED CTA BUTTON
+    ───────────────────────────── */
+    .btn-primary {
+      font-family: 'Bebas Neue', sans-serif; font-size: 15px; letter-spacing: 0.16em;
+      color: var(--coal); background: var(--blue); padding: 17px 34px;
+      text-decoration: none; display: inline-block;
+      transition: background 0.3s ease, transform 0.2s ease; border: none; cursor: pointer;
+    }
+    .btn-primary:hover { background: var(--stone-light); transform: translateY(-1px); }
+    .cta-call-inline { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; }
+    .cta-call-inline .lab { font-family: 'Outfit', sans-serif; font-size: 10px; font-weight: 300; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.38); }
+    .cta-call-inline .num { font-family: 'Bebas Neue', sans-serif; font-size: 26px; letter-spacing: 0.07em; color: var(--white); transition: color 0.2s ease; }
+    .cta-call-inline:hover .num { color: var(--blue); }
+
+    /* ─────────────────────────────
+       5 · FAQ
+    ───────────────────────────── */
+    .faq-section { background: var(--coal); padding: 96px 56px; }
+    .faq-inner { max-width: 900px; margin: 0 auto; }
+    .faq-header { margin-bottom: 56px; }
+    .faq-heading { font-family: 'Bebas Neue', sans-serif; font-size: clamp(44px, 5vw, 66px); letter-spacing: 0.03em; line-height: 0.95; color: var(--white); margin-top: 14px; }
+    .faq-heading .em { color: var(--blue); }
+    .faq-item { border-bottom: 1px solid var(--rule-dark); }
+    .faq-item:first-of-type { border-top: 1px solid var(--rule-dark); }
+    .faq-q {
+      width: 100%; background: none; border: none; color: var(--white);
+      font-family: 'Outfit', sans-serif; font-size: 15px; font-weight: 400; letter-spacing: 0.02em;
+      text-align: left; padding: 26px 0; cursor: pointer;
+      display: flex; justify-content: space-between; align-items: center; gap: 24px;
+      transition: color 0.25s ease;
+    }
+    .faq-q:hover { color: var(--blue); }
+    .faq-icon {
+      width: 22px; height: 22px; border: 1px solid rgba(255,255,255,0.18); border-radius: 50%;
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+      font-size: 14px; line-height: 1; color: var(--blue);
+      transition: transform 0.35s ease, background 0.3s ease, border-color 0.3s ease;
+    }
+    .faq-item.open .faq-icon { transform: rotate(45deg); background: var(--blue); border-color: var(--blue); color: var(--white); }
+    .faq-a { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; }
+    .faq-item.open .faq-a { max-height: 420px; }
+    .faq-a-inner { font-family: 'Outfit', sans-serif; font-size: 14px; font-weight: 300; line-height: 1.9; color: rgba(255,255,255,0.46); padding-bottom: 26px; }
+
+    /* ─────────────────────────────
+       6 · FINAL CTA
+    ───────────────────────────── */
+    .final-section { background: var(--coal-mid); padding: 100px 56px; border-top: 1px solid var(--rule-dark); text-align: center; }
+    .final-inner { max-width: 820px; margin: 0 auto; }
+    .final-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(44px, 6vw, 76px); letter-spacing: 0.03em; line-height: 0.92; color: var(--white); margin: 14px 0 24px; }
+    .final-title .em { color: var(--blue); }
+    .final-body { font-family: 'Outfit', sans-serif; font-size: 16px; font-weight: 300; line-height: 1.8; color: rgba(255,255,255,0.55); max-width: 620px; margin: 0 auto 36px; }
+    .final-cta-row { display: flex; align-items: center; justify-content: center; gap: 32px; flex-wrap: wrap; }
+    .final-areas { font-family: 'Outfit', sans-serif; font-size: 12px; font-weight: 300; letter-spacing: 0.06em; color: rgba(255,255,255,0.3); margin-top: 40px; }
+
+    /* ─────────────────────────────
+       FOOTER (slim)
+    ───────────────────────────── */
+    footer { background: var(--coal); padding: 48px 56px; border-top: 1px solid var(--rule-dark); }
+    .footer-inner { max-width: 1280px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 18px; }
+    .footer-brand { font-family: 'Bebas Neue', sans-serif; font-size: 18px; letter-spacing: 0.12em; color: rgba(255,255,255,0.6); }
+    .footer-brand span { color: var(--blue); font-size: 9px; letter-spacing: 0.28em; display: block; font-family: 'Outfit', sans-serif; font-weight: 300; text-transform: uppercase; margin-top: 2px; }
+    .footer-copy { font-family: 'Outfit', sans-serif; font-size: 11px; font-weight: 300; color: rgba(255,255,255,0.16); }
+    .footer-lic { font-family: 'Bebas Neue', sans-serif; font-size: 11px; letter-spacing: 0.16em; color: rgba(74,144,196,0.32); }
+
+    /* ─────────────────────────────
+       STICKY MOBILE CLICK-TO-CALL
+    ───────────────────────────── */
+    .sticky-call {
+      display: none;
+      position: fixed; left: 0; right: 0; bottom: 0; z-index: 120;
+      background: var(--blue);
+      padding: 14px 20px calc(14px + env(safe-area-inset-bottom));
+      text-align: center; text-decoration: none;
+      font-family: 'Bebas Neue', sans-serif; font-size: 19px; letter-spacing: 0.1em; color: var(--coal);
+      box-shadow: 0 -6px 24px rgba(0,0,0,0.4);
+    }
+    .sticky-call .pre { font-family: 'Outfit', sans-serif; font-size: 11px; font-weight: 500; letter-spacing: 0.1em; margin-right: 8px; }
+
+    /* ─────────────────────────────
+       REVEAL ANIMATION
+    ───────────────────────────── */
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .reveal.visible { opacity: 1; transform: none; }
+    .reveal-d1 { transition-delay: 0.08s; }
+    .reveal-d2 { transition-delay: 0.16s; }
+    .reveal-d3 { transition-delay: 0.24s; }
+
+    /* ─────────────────────────────
+       RESPONSIVE
+    ───────────────────────────── */
+    @media (max-width: 1100px) {
+      .why-grid { grid-template-columns: 1fr 1fr; }
+      .proof-cards { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 900px) {
+      .lp-nav { padding: 0 20px; height: 64px; }
+      .lp-crest-img { height: 44px; }
+      .lp-name { font-size: 20px; }
+      .lp-nav-call .lab { display: none; }
+      .lp-nav-call .num { font-size: 18px; }
+
+      .lp-hero { padding-top: 64px; }
+      .lp-hero-inner { grid-template-columns: 1fr; gap: 32px; padding: 40px 22px 40px; }
+      h1.lp-h1 { font-size: clamp(38px, 9vw, 56px); }
+      .lp-subhead { font-size: 15px; }
+      .lp-form-card { padding: 30px 22px 26px; }
+
+      .why-section, .proof-section, .how-section, .faq-section, .final-section { padding: 64px 22px; }
+      .why-grid { grid-template-columns: 1fr; }
+      .why-counter { font-size: 14px; }
+      .proof-photos { grid-template-columns: 1fr; }
+      .how-step { grid-template-columns: 48px 1fr; gap: 18px; }
+      .how-step-num { width: 44px; height: 44px; font-size: 20px; }
+      .how-cta-row, .final-cta-row { flex-direction: column; align-items: stretch; gap: 20px; }
+      .how-cta-row .btn-primary, .final-cta-row .btn-primary { text-align: center; }
+      .how-cta-row .cta-call-inline, .final-cta-row .cta-call-inline { justify-content: center; }
+
+      footer { padding: 40px 22px; }
+      .footer-inner { flex-direction: column; align-items: flex-start; gap: 14px; }
+
+      body { padding-bottom: 0; }
+      .sticky-call { display: block; }
+    }
+    @media (max-width: 600px) {
+      .form-row { grid-template-columns: 1fr; }
+      .proof-chips { gap: 8px; }
+      .proof-chip { font-size: 11px; padding: 9px 13px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════ SLIM NAV ═══════════════ -->
+<nav class="lp-nav" role="navigation" aria-label="Top bar">
+  <a href="#lp-form" class="lp-logo" aria-label="Biviano Modular Builders">
+    <img src="/logo-crest.png" class="lp-crest-img" alt="" aria-hidden="true">
+    <div>
+      <div class="lp-name">Biviano</div>
+      <div class="lp-sub">Modular Builders</div>
+    </div>
+  </a>
+  <a href="tel:+16176786446" class="lp-nav-call" onclick="return firePhoneConversion();">
+    <span class="lab">Call Mike</span>
+    <span class="num">(617) 678-6446</span>
+  </a>
+</nav>
+
+<!-- ═══════════════ 1 · HERO + FORM ═══════════════ -->
+<section class="lp-hero" aria-label="Free consultation offer">
+  <div class="lp-hero-bg" aria-hidden="true">
+    <img src="/hero-home.jpg" alt="" fetchpriority="high"
+         onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1600&q=80&auto=format&fit=crop';">
+  </div>
+  <div class="lp-hero-inner">
+    <div class="lp-hero-copy">
+      <div class="lp-hero-tag">
+        <span class="lp-hero-tag-rule"></span>
+        <span class="lp-hero-tag-text">South Shore MA · 4th Generation · Marshfield</span>
+      </div>
+      <h1 class="lp-h1">Free Modular Home <span class="accent">Design &amp; Budget</span> Consultation</h1>
+      <p class="lp-subhead">South Shore's family modular builder for 40+ years. Custom homes built to the same codes as stick-built — for 20–25% less, in as little as 8–12 weeks.</p>
+      <ul class="lp-trust-bullets">
+        <li><span class="chk">★</span> 5.0★ · 21 five-star reviews</li>
+        <li><span class="chk">✓</span> Licensed &amp; insured, MA (CS-108728)</li>
+        <li><span class="chk">✓</span> 40+ years, 4th generation, Marshfield-based</li>
+      </ul>
+      <a href="tel:+16176786446" class="lp-hero-call" onclick="return firePhoneConversion();">
+        <span class="lab">Or call Mike directly</span>
+        <span class="num">(617) 678-6446</span>
+      </a>
+    </div>
+
+    <!-- FORM CARD -->
+    <div class="lp-form-card" id="lp-form">
+      <div class="lp-form-hd">Start your free consultation</div>
+      <p class="lp-form-reassure">No obligation. Mike personally reviews every request.</p>
+
+      <form id="lp-consult-form" name="bmb-free-consult" novalidate
+            onsubmit="return submitLpForm(event);" aria-label="Free consultation request">
+
+        <div class="form-group">
+          <label class="form-label" for="f_full_name">Full Name</label>
+          <input type="text" id="f_full_name" name="full_name" class="form-input" placeholder="John Smith" required autocomplete="name">
+          <div class="form-err" id="e_full_name">Please enter your name.</div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="f_phone">Phone</label>
+            <input type="tel" id="f_phone" name="phone" class="form-input" placeholder="(781) 555-0000"
+                   required autocomplete="tel" inputmode="tel" maxlength="18"
+                   oninput="formatPhone(this);">
+            <div class="form-err" id="e_phone">Enter a valid 10-digit US phone.</div>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="f_email">Email</label>
+            <input type="email" id="f_email" name="email" class="form-input" placeholder="john@email.com" required autocomplete="email">
+            <div class="form-err" id="e_email">Enter a valid email address.</div>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="f_town">Town</label>
+            <select id="f_town" name="town" class="form-select" required>
+              <option value="">Select town…</option>
+              <option>Marshfield</option>
+              <option>Scituate</option>
+              <option>Duxbury</option>
+              <option>Pembroke</option>
+              <option>Norwell</option>
+              <option>Hanover</option>
+              <option>Hingham</option>
+              <option>Humarock</option>
+              <option>Other Plymouth County</option>
+            </select>
+            <div class="form-err" id="e_town">Please select your town.</div>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="f_land">Do you own the land?</label>
+            <select id="f_land" name="land_status" class="form-select" required>
+              <option value="">Select…</option>
+              <option>Yes, I own it</option>
+              <option>Under agreement / in contract</option>
+              <option>Still looking</option>
+            </select>
+            <div class="form-err" id="e_land">Please select an option.</div>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="f_timeline">Timeline</label>
+            <select id="f_timeline" name="timeline" class="form-select" required>
+              <option value="">Select…</option>
+              <option>0–6 months</option>
+              <option>6–12 months</option>
+              <option>12+ months</option>
+            </select>
+            <div class="form-err" id="e_timeline">Please select a timeline.</div>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="f_project_type">Project type</label>
+            <select id="f_project_type" name="project_type" class="form-select" required>
+              <option value="">Select…</option>
+              <option>New custom home</option>
+              <option>ADU / in-law suite</option>
+              <option>Not sure yet</option>
+            </select>
+            <div class="form-err" id="e_project_type">Please select a project type.</div>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="f_home_size">Approx. home size</label>
+            <select id="f_home_size" name="home_size" class="form-select">
+              <option value="">Optional…</option>
+              <option>Under 1,500 sq ft</option>
+              <option>1,500–2,500 sq ft</option>
+              <option>2,500–3,500 sq ft</option>
+              <option>3,500+ sq ft</option>
+              <option>Not sure</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="f_budget">Budget range</label>
+            <select id="f_budget" name="budget" class="form-select">
+              <option value="">Optional…</option>
+              <option>Under $500K</option>
+              <option>$500K–$750K</option>
+              <option>$750K–$1M</option>
+              <option>$1M+</option>
+              <option>Not sure yet</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- HIDDEN: gclid / click-id / utm capture -->
+        <input type="hidden" name="gclid"        id="f_gclid">
+        <input type="hidden" name="gbraid"       id="f_gbraid">
+        <input type="hidden" name="wbraid"       id="f_wbraid">
+        <input type="hidden" name="utm_source"   id="f_utm_source">
+        <input type="hidden" name="utm_medium"   id="f_utm_medium">
+        <input type="hidden" name="utm_campaign" id="f_utm_campaign">
+        <input type="hidden" name="utm_term"     id="f_utm_term">
+        <input type="hidden" name="utm_content"  id="f_utm_content">
+
+        <button type="submit" class="form-submit" id="lp-submit-btn">Get My Free Consultation →</button>
+        <p class="form-privacy">No spam. No pressure. One builder. Your dream home.</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ 2 · WHY MODULAR (VALUE STACK) ═══════════════ -->
+<section class="why-section" aria-labelledby="why-heading">
+  <div class="why-inner">
+    <span class="overline reveal">Why Modular With Biviano</span>
+    <h2 class="sect-heading reveal" id="why-heading">Same Quality. <span class="em">Same Codes.</span><br>Half the Time. A Fraction of the Stress.</h2>
+    <p class="why-mechanism reveal">It's not cutting corners — it's <em>The 12-Week Dream Home System</em>: your home is built in a climate-controlled factory at the <strong style="font-style:normal;color:var(--coal);">same time</strong> we prep your site and pull permits.</p>
+
+    <div class="why-grid reveal">
+      <div class="why-card">
+        <div class="why-card-num">01</div>
+        <div class="why-card-title">20–25% Less</div>
+        <p class="why-card-body">Than stick-built — roughly $300/sq ft vs. $400–$600/sq ft. Most families save $200K–$300K.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-card-num">02</div>
+        <div class="why-card-title">8–12 Weeks</div>
+        <p class="why-card-body">Not the 12–15 months a traditional custom build takes. Move in while neighbors are still framing.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-card-num">03</div>
+        <div class="why-card-title">No Weather Delays</div>
+        <p class="why-card-body">The factory build and your site prep run simultaneously — rain and snow never stall the schedule.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-card-num">04</div>
+        <div class="why-card-title">One GC, Start to Finish</div>
+        <p class="why-card-body">Design, permits, foundation, factory build, crane, finish work, inspection — Mike handles all of it.</p>
+      </div>
+    </div>
+
+    <p class="why-counter reveal">
+      <strong>"But isn't modular a trailer?"</strong> No. These look identical to custom stick-built homes — built to the same codes, set on a permanent foundation, and they appraise and finance identically. You won't be able to tell the difference. Neither will the appraiser.
+    </p>
+  </div>
+</section>
+
+<!-- ═══════════════ 3 · PROOF ═══════════════ -->
+<section class="proof-section" aria-labelledby="proof-heading">
+  <div class="proof-inner">
+    <span class="overline reveal" style="text-align:center;display:block;" id="proof-heading">The Family Everyone In Town Already Knows</span>
+    <div class="proof-chips reveal">
+      <span class="proof-chip"><span class="star">★</span> 5.0 · 21 five-star reviews (Birdeye)</span>
+      <span class="proof-chip">BuildZoom Score 101 — Top 12% of MA contractors</span>
+      <span class="proof-chip">MA Construction Supervisor Lic. CS-108728</span>
+      <span class="proof-chip">Former Marshfield Planning Board Chair</span>
+    </div>
+
+    <div class="proof-cards">
+      <div class="proof-card reveal">
+        <div class="proof-stars">★★★★★</div>
+        <div class="proof-rule"></div>
+        <p class="proof-quote">"Building our new house in Humarock with Mike Biviano was a happily ever after journey."</p>
+        <div class="proof-name">Joanne Keogh</div>
+        <div class="proof-role">Full home build · Humarock</div>
+      </div>
+      <div class="proof-card reveal reveal-d1">
+        <div class="proof-stars">★★★★★</div>
+        <div class="proof-rule"></div>
+        <p class="proof-quote">"From the suggestions Mike comes up with that I never would have thought of, to the handholding throughout the process — I can't thank you enough. Honest, knowledgeable and prompt are the words I use to describe Mike Biviano and his crew."</p>
+        <div class="proof-name">Susan R.</div>
+        <div class="proof-role">Custom build &amp; finish</div>
+      </div>
+      <div class="proof-card reveal reveal-d2">
+        <div class="proof-stars">★★★★★</div>
+        <div class="proof-rule"></div>
+        <p class="proof-quote">"As a single mother, it can be difficult to find a contractor I can truly trust, but Mike and his team have consistently come through for me, even during tough times. Their work is top-notch."</p>
+        <div class="proof-name">Verified Homeowner</div>
+        <div class="proof-role">South Shore, MA</div>
+      </div>
+    </div>
+
+    <div class="proof-photos reveal">
+      <div class="proof-photo">
+        <img src="/photos/social-humarock-crane.jpg" alt="Modular home set in place by crane in Humarock, MA" loading="lazy"
+             onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1570129477492-45c003edd2be?w=1200&q=80&auto=format&fit=crop';">
+      </div>
+      <div class="proof-photo">
+        <img src="/photos/social-marshfield-spec-build.jpg" alt="Finished custom home built by Biviano Modular Builders in Marshfield, MA" loading="lazy"
+             onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1200&q=80&auto=format&fit=crop';">
+      </div>
+    </div>
+    <p class="proof-caption reveal">Real South Shore homes, built by a family everyone in town already knows.</p>
+  </div>
+</section>
+
+<!-- ═══════════════ 4 · HOW IT WORKS ═══════════════ -->
+<section class="how-section" aria-labelledby="how-heading">
+  <div class="how-inner">
+    <span class="overline reveal">The 12-Week Dream Home System</span>
+    <h2 class="sect-heading how-heading reveal" id="how-heading" style="color:var(--white);">Five Steps From <span class="em">First Meeting</span> To Move-In Day</h2>
+
+    <div class="how-steps">
+      <div class="how-step reveal">
+        <div class="how-step-num">1</div>
+        <div>
+          <div class="how-step-title">Design Your Dream</div>
+          <p class="how-step-body">Free consultation, then 100% custom plans for ~$2,500 — versus $20–30K for traditional architectural drawings. Your layout, not a catalog floor plan.</p>
+        </div>
+      </div>
+      <div class="how-step reveal">
+        <div class="how-step-num">2</div>
+        <div>
+          <div class="how-step-title">Lock Price &amp; Timeline</div>
+          <p class="how-step-body">An itemized quote covering everything — design, permits, site work, foundation, crane, assembly, final inspection. Your price and 8–12 week timeline, locked in writing.</p>
+        </div>
+      </div>
+      <div class="how-step reveal">
+        <div class="how-step-num">3</div>
+        <div>
+          <div class="how-step-title">Factory-Build While We Prep Your Site</div>
+          <p class="how-step-body">Your home is precision-built in a climate-controlled factory at the same time we prep your site, pour the foundation, and pull permits. That parallel build is the 12 weeks.</p>
+        </div>
+      </div>
+      <div class="how-step reveal">
+        <div class="how-step-num">4</div>
+        <div>
+          <div class="how-step-title">Crane, Assemble &amp; Finish</div>
+          <p class="how-step-body">Modules are delivered and set in a single day. Our crew completes utilities, finishes, and every detail — Mike manages all of it personally.</p>
+        </div>
+      </div>
+      <div class="how-step reveal">
+        <div class="how-step-num">5</div>
+        <div>
+          <div class="how-step-title">Move Into Your Forever Home</div>
+          <p class="how-step-body">Final inspection, keys in hand — and you're in while families who chose stick-built are still 9+ months out.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="how-cta-row reveal">
+      <a href="#lp-form" class="btn-primary">Start at Step 1 — Book Your Free Consultation →</a>
+      <a href="tel:+16176786446" class="cta-call-inline" onclick="return firePhoneConversion();">
+        <span class="lab">Or call</span>
+        <span class="num">(617) 678-6446</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ 5 · FAQ ═══════════════ -->
+<section class="faq-section" aria-labelledby="faq-heading">
+  <div class="faq-inner">
+    <div class="faq-header reveal">
+      <span class="overline">Straight Answers</span>
+      <h2 class="faq-heading" id="faq-heading">Your Questions, <span class="em">Answered.</span></h2>
+    </div>
+
+    <div class="faq-item reveal">
+      <button class="faq-q" aria-expanded="false">
+        Is a modular home the same quality as stick-built?
+        <span class="faq-icon" aria-hidden="true">+</span>
+      </button>
+      <div class="faq-a"><div class="faq-a-inner">
+        Yes — and then some. Modular homes are built to the exact same Massachusetts building codes as stick-built, on permanent foundations, with the same architectural details and finishes. Because they're assembled in a climate-controlled factory (no rain on the lumber, no rushed crews), the build is often <em>tighter</em> than site-built. Once finished, they're completely indistinguishable from any custom home on the street.
+      </div></div>
+    </div>
+
+    <div class="faq-item reveal">
+      <button class="faq-q" aria-expanded="false">
+        Can I get a mortgage or construction loan?
+        <span class="faq-icon" aria-hidden="true">+</span>
+      </button>
+      <div class="faq-a"><div class="faq-a-inner">
+        Absolutely. You use a standard construction loan from the same local South Shore banks you'd use for any custom home — same process, same terms. On a permanent foundation, a modular home appraises identically to stick-built, so financing and resale work exactly the way you'd expect.
+      </div></div>
+    </div>
+
+    <div class="faq-item reveal">
+      <button class="faq-q" aria-expanded="false">
+        Is 8–12 weeks really realistic?
+        <span class="faq-icon" aria-hidden="true">+</span>
+      </button>
+      <div class="faq-a"><div class="faq-a-inner">
+        It is, because two things happen at once. While your modules are being precision-built in the factory, we're simultaneously prepping your site, pouring the foundation, and pulling permits. Traditional construction does all of that in sequence — one delay after another — which is why it stretches to 12–15 months. The parallel build is the whole secret.
+      </div></div>
+    </div>
+
+    <div class="faq-item reveal">
+      <button class="faq-q" aria-expanded="false">
+        What does it actually cost?
+        <span class="faq-icon" aria-hidden="true">+</span>
+      </button>
+      <div class="faq-a"><div class="faq-a-inner">
+        Roughly $300/sq ft all-in — so a 2,500 sq ft custom home lands around $625K, versus $1M–$1.5M for the same home stick-built. Your free consultation includes a personalized Cost Breakdown Report with your exact number, based on your land, your layout, and your finishes. No guessing, no surprises.
+      </div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ 6 · FINAL CTA ═══════════════ -->
+<section class="final-section" aria-labelledby="final-heading">
+  <div class="final-inner">
+    <span class="overline reveal">No Obligation · 60 Minutes</span>
+    <h2 class="final-title reveal" id="final-heading">Find Out Exactly What Your <span class="em">Dream Home</span> Costs.</h2>
+    <p class="final-body reveal">Free Modular Home Design &amp; Budget Consultation — 60 minutes, no obligation. You'll leave knowing exactly what your dream home costs, how long it takes, and the path from first design meeting to move-in day.</p>
+    <div class="final-cta-row reveal">
+      <a href="#lp-form" class="btn-primary">Book My Free Consultation →</a>
+      <a href="tel:+16176786446" class="cta-call-inline" onclick="return firePhoneConversion();">
+        <span class="lab">Or call Mike</span>
+        <span class="num">(617) 678-6446</span>
+      </a>
+    </div>
+    <p class="final-areas reveal">Serving Marshfield, Scituate, Duxbury, Pembroke, Norwell, Hanover, Hingham &amp; Plymouth County.</p>
+  </div>
+</section>
+
+<!-- ═══════════════ FOOTER ═══════════════ -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">Biviano<span>Modular Builders</span></div>
+    <div class="footer-copy">© 2025 Biviano General Contracting LLC · Marshfield, MA 02050</div>
+    <div class="footer-lic">MA Lic. CS-108728 · 122033 · 203862 · HIC Registered · Licensed · Bonded · Insured</div>
+  </div>
+</footer>
+
+<!-- ═══════════════ STICKY MOBILE CLICK-TO-CALL ═══════════════ -->
+<a href="tel:+16176786446" class="sticky-call" onclick="return firePhoneConversion();">
+  <span class="pre">Call Mike now</span> (617) 678-6446
+</a>
+
+<!-- ══════════════════════════════════════════
+     TRACKING + CAPTURE + FORM JS
+══════════════════════════════════════════ -->
+<script>
+  /* ───── Conversion event helpers (GHL-safe global functions) ───── */
+
+  // LEAD — fire on successful LP submit. Pass RAW email/phone for Enhanced Conversions.
+  function fireLeadConversion(email, phone){
+    gtag('set', 'user_data', {
+      'email': (email || '').trim().toLowerCase(),
+      'phone_number': (phone || '').replace(/[^\d+]/g, '')   // +1XXXXXXXXXX
+    });
+    gtag('event', 'conversion', {
+      'send_to': 'AW-XXXXXXXXXX/LEAD_LABEL_xxx',
+      'value': 30.0,
+      'currency': 'USD'
+    });
+    gtag('event', 'generate_lead', { 'currency': 'USD', 'value': 30.0 });
+  }
+
+  // PHONE — fire on every click-to-call tap (inline onclick="return firePhoneConversion();")
+  function firePhoneConversion(){
+    gtag('event', 'conversion', {
+      'send_to': 'AW-XXXXXXXXXX/PHONE_LABEL_xxx',
+      'value': 30.0,
+      'currency': 'USD'
+    });
+    return true; // allow the tel: navigation to proceed
+  }
+</script>
+
+<script>
+  /* ───── GCLID + UTM capture (persists gclid to localStorage, 90-day window) ───── */
+  (function(){
+    var p = new URLSearchParams(location.search);
+    function setv(id, key){
+      var el = document.getElementById(id); if(!el) return;
+      var v = p.get(key);
+      if (v) { el.value = v; try { localStorage.setItem('bmb_'+key, v); } catch(e){} }
+      else   { try { var s = localStorage.getItem('bmb_'+key); if (s) el.value = s; } catch(e){} }
+    }
+    setv('f_gclid','gclid'); setv('f_gbraid','gbraid'); setv('f_wbraid','wbraid');
+    setv('f_utm_source','utm_source'); setv('f_utm_medium','utm_medium');
+    setv('f_utm_campaign','utm_campaign'); setv('f_utm_term','utm_term'); setv('f_utm_content','utm_content');
+  })();
+</script>
+
+<script>
+  /* ───── FORM RULES: phone E.164 auto-format, email gate, validation ───── */
+
+  // US phone → display as (XXX) XXX-XXXX while typing; store E.164 on submit.
+  function formatPhone(el){
+    var d = el.value.replace(/\D/g, '');
+    if (d.length > 0 && d[0] === '1') d = d.slice(1); // strip leading country digit
+    d = d.slice(0, 10);
+    var out = '';
+    if (d.length > 6)      out = '(' + d.slice(0,3) + ') ' + d.slice(3,6) + '-' + d.slice(6);
+    else if (d.length > 3) out = '(' + d.slice(0,3) + ') ' + d.slice(3);
+    else if (d.length > 0) out = '(' + d.slice(0,3);
+    el.value = out;
+  }
+  function toE164(v){
+    var d = (v || '').replace(/\D/g, '');
+    if (d.length === 11 && d[0] === '1') d = d.slice(1);
+    return d.length === 10 ? '+1' + d : '';
+  }
+  function isEmail(v){ return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test((v||'').trim()); }
+
+  function showErr(inputId, errId, on){
+    var inp = document.getElementById(inputId), err = document.getElementById(errId);
+    if (inp) inp.classList.toggle('invalid', on);
+    if (err) err.classList.toggle('show', on);
+  }
+
+  /* ───── SUBMIT: validate → fire Lead → POST to GHL (no-cors) → redirect ───── */
+  function submitLpForm(e){
+    e.preventDefault();
+    var form = document.getElementById('lp-consult-form');
+
+    // --- validation gates ---
+    var ok = true;
+    var nameV  = (form.full_name.value || '').trim();
+    var phoneE = toE164(form.phone.value);
+    var emailV = (form.email.value || '').trim();
+
+    var nameBad = nameV.length < 2;             showErr('f_full_name','e_full_name', nameBad);     if(nameBad) ok=false;
+    var phoneBad = !phoneE;                       showErr('f_phone','e_phone', phoneBad);             if(phoneBad) ok=false;
+    var emailBad = !isEmail(emailV);              showErr('f_email','e_email', emailBad);             if(emailBad) ok=false;
+    var townBad = !form.town.value;               showErr('f_town','e_town', townBad);                if(townBad) ok=false;
+    var landBad = !form.land_status.value;        showErr('f_land','e_land', landBad);                if(landBad) ok=false;
+    var tlBad = !form.timeline.value;             showErr('f_timeline','e_timeline', tlBad);          if(tlBad) ok=false;
+    var ptBad = !form.project_type.value;         showErr('f_project_type','e_project_type', ptBad);  if(ptBad) ok=false;
+
+    if (!ok) {
+      var firstBad = form.querySelector('.invalid');
+      if (firstBad) firstBad.focus();
+      return false;
+    }
+
+    // --- split name → first / last ---
+    var parts = nameV.split(/\s+/);
+    var firstName = parts.shift();
+    var lastName  = parts.join(' ') || firstName;
+
+    // --- concatenate qualifiers + utm into project description / source ---
+    var utmStr = ['utm_source','utm_medium','utm_campaign','utm_term','utm_content']
+      .map(function(k){ var v = form[k] && form[k].value; return v ? k+'='+v : ''; })
+      .filter(Boolean).join(' | ');
+
+    var desc =
+      'Land: ' + form.land_status.value +
+      ' | Timeline: ' + form.timeline.value +
+      ' | Project: ' + form.project_type.value +
+      ' | Budget: ' + (form.budget.value || 'Not specified') +
+      (utmStr ? ' || ' + utmStr : '');
+
+    var gclid = form.gclid.value || '';
+
+    var payload = {
+      firstName: firstName,
+      lastName: lastName,
+      email: emailV,
+      phone: phoneE,
+      customField: {
+        'contact.bmb_home_size': form.home_size.value || '',
+        'contact.bmb_town': form.town.value,
+        'contact.bmb_project_description': desc,
+        'contact.bmb_source': form.utm_source.value || 'google-ads',
+        'contact.bmb_gclid': gclid   // NEW FIELD — create contact.bmb_gclid in GHL UI
+      },
+      source: 'BMB Free Consult LP',
+      tags: ['bmb-website', 'consultation-request', 'google-paid', 'modular-lp']
+    };
+
+    // --- persist identifiers for downstream Enhanced Conversions + offline import
+    //     (booking-confirmed reads these from localStorage, NOT the URL — no PII in querystring) ---
+    try {
+      if (gclid) localStorage.setItem('bmb_gclid', gclid);
+      if (emailV) localStorage.setItem('bmb_email', emailV);
+      if (phoneE) localStorage.setItem('bmb_phone', phoneE);
+    } catch(e){}
+
+    // --- 1) fire Lead conversion (optimistic — no-cors response is opaque) ---
+    try { fireLeadConversion(emailV, phoneE); } catch(err){}
+
+    // --- 2) POST to GHL webhook (no-cors) ---
+    var btn = document.getElementById('lp-submit-btn');
+    if (btn) { btn.disabled = true; btn.textContent = 'Sending…'; }
+
+    var redirect = function(){
+      var url = '/thank-you/';
+      if (gclid) url += '?gclid=' + encodeURIComponent(gclid);
+      window.location.href = url;
+    };
+
+    try {
+      fetch('https://services.leadconnectorhq.com/hooks/zPo4vLlEjjXCflgDSXlI/webhook-trigger/0eba93d2-0fb2-4770-9af2-4e912dc84502', {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      }).then(redirect).catch(redirect);
+    } catch(err) {
+      redirect();
+    }
+
+    // safety: redirect even if fetch never resolves
+    setTimeout(redirect, 1500);
+    return false;
+  }
+</script>
+
+<script>
+  /* ───── Scroll reveal + FAQ accordion + smooth in-page scroll ───── */
+  var revealObs = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if (e.isIntersecting) { e.target.classList.add('visible'); revealObs.unobserve(e.target); }
+    });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.reveal').forEach(function(el){ revealObs.observe(el); });
+
+  document.querySelectorAll('a[href^="#"]').forEach(function(a){
+    a.addEventListener('click', function(e){
+      var href = a.getAttribute('href');
+      if (href === '#') return;
+      var target = document.querySelector(href);
+      if (!target) return;
+      e.preventDefault();
+      var offset = (window.innerWidth <= 900) ? 64 : 88;
+      var top = target.getBoundingClientRect().top + window.scrollY - offset - 12;
+      window.scrollTo({ top: top, behavior: 'smooth' });
+    });
+  });
+
+  document.querySelectorAll('.faq-q').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var item = btn.closest('.faq-item');
+      var isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(function(i){
+        i.classList.remove('open');
+        i.querySelector('.faq-q').setAttribute('aria-expanded', 'false');
+      });
+      if (!isOpen) { item.classList.add('open'); btn.setAttribute('aria-expanded', 'true'); }
+    });
+  });
+</script>
+
+</body>
+</html>

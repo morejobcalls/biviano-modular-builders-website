@@ -1,10 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Biviano Modular Builders — XML sitemap (organic SEO pages only).
+  Host: https://www.bivianomodularbuilders.com (www — must match the Search Console URL-prefix property).
+  22 real SEO URLs: home, 5 core pages (why-modular, process, pricing, gallery, adu),
+  8 town pages, 8 town/adu pages.
+
+  DELIBERATELY EXCLUDED — paid-funnel landing pages:
+    /free-consultation/  /booking/  /thank-you/  /booking-confirmed/
+  These are paid-ad landing pages. They carry an in-page <meta name="robots" content="noindex,follow">
+  so they stay OUT of the organic index, and they are intentionally NOT listed here. They are NOT
+  Disallowed in robots.txt — Googlebot / Google-Ads bots must be able to crawl + render them for the
+  Google Ads landing-page experience / Quality Score checks. (Disallowing them in robots.txt would block
+  the render and can hurt the Ads landing-page review while NOT reliably de-indexing them — page-level
+  noindex is the correct lever for keeping them out of organic.)
+-->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
   <!-- Homepage -->
   <url>
     <loc>https://www.bivianomodularbuilders.com/</loc>
-    <lastmod>2026-05-19</lastmod>
+    <lastmod>2026-06-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
@@ -12,25 +27,25 @@
   <!-- Core Pages -->
   <url>
     <loc>https://www.bivianomodularbuilders.com/why-modular/</loc>
-    <lastmod>2026-05-19</lastmod>
+    <lastmod>2026-06-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://www.bivianomodularbuilders.com/process/</loc>
-    <lastmod>2026-05-19</lastmod>
+    <lastmod>2026-06-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://www.bivianomodularbuilders.com/pricing/</loc>
-    <lastmod>2026-05-19</lastmod>
+    <lastmod>2026-06-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://www.bivianomodularbuilders.com/gallery/</loc>
-    <lastmod>2026-05-19</lastmod>
+    <lastmod>2026-06-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -38,7 +53,7 @@
   <!-- ADU Landing Page -->
   <url>
     <loc>https://www.bivianomodularbuilders.com/adu/</loc>
-    <lastmod>2026-05-19</lastmod>
+    <lastmod>2026-06-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -46,49 +61,49 @@
   <!-- Town Pages — Modular Home Service -->
   <url>
     <loc>https://www.bivianomodularbuilders.com/marshfield/</loc>
-    <lastmod>2026-05-19</lastmod>
+    <lastmod>2026-06-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://www.bivianomodularbuilders.com/scituate/</loc>
-    <lastmod>2026-05-19</lastmod>
+    <lastmod>2026-06-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://www.bivianomodularbuilders.com/humarock/</loc>
-    <lastmod>2026-05-19</lastmod>
+    <lastmod>2026-06-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://www.bivianomodularbuilders.com/duxbury/</loc>
-    <lastmod>2026-05-19</lastmod>
+    <lastmod>2026-06-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://www.bivianomodularbuilders.com/hanover/</loc>
-    <lastmod>2026-05-19</lastmod>
+    <lastmod>2026-06-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://www.bivianomodularbuilders.com/pembroke/</loc>
-    <lastmod>2026-05-19</lastmod>
+    <lastmod>2026-06-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://www.bivianomodularbuilders.com/norwell/</loc>
-    <lastmod>2026-05-19</lastmod>
+    <lastmod>2026-06-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://www.bivianomodularbuilders.com/hingham/</loc>
-    <lastmod>2026-05-19</lastmod>
+    <lastmod>2026-06-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
@@ -96,49 +111,49 @@
   <!-- Town Pages — ADU Service -->
   <url>
     <loc>https://www.bivianomodularbuilders.com/marshfield/adu/</loc>
-    <lastmod>2026-05-19</lastmod>
+    <lastmod>2026-06-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.bivianomodularbuilders.com/scituate/adu/</loc>
-    <lastmod>2026-05-19</lastmod>
+    <lastmod>2026-06-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.bivianomodularbuilders.com/humarock/adu/</loc>
-    <lastmod>2026-05-19</lastmod>
+    <lastmod>2026-06-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.bivianomodularbuilders.com/duxbury/adu/</loc>
-    <lastmod>2026-05-19</lastmod>
+    <lastmod>2026-06-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.bivianomodularbuilders.com/hanover/adu/</loc>
-    <lastmod>2026-05-19</lastmod>
+    <lastmod>2026-06-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.bivianomodularbuilders.com/pembroke/adu/</loc>
-    <lastmod>2026-05-19</lastmod>
+    <lastmod>2026-06-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.bivianomodularbuilders.com/norwell/adu/</loc>
-    <lastmod>2026-05-19</lastmod>
+    <lastmod>2026-06-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.bivianomodularbuilders.com/hingham/adu/</loc>
-    <lastmod>2026-05-19</lastmod>
+    <lastmod>2026-06-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>

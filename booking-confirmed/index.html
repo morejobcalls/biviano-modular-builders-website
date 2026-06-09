@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- ═══════════════════════════════════════════════════════════
+       GLOBAL TAG — GA4 G-GW5Z0VVDEC · Google Ads AW-XXXXXXXXXX
+       (Spencer: swap AW-XXXXXXXXXX after creating conversion actions)
+       ═══════════════════════════════════════════════════════════ -->
+  <!-- 1. Consent Mode v2 — DEFAULT (runs BEFORE gtag.js) -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('consent', 'default', {
+      'ad_storage':         'granted',
+      'analytics_storage':  'granted',
+      'ad_user_data':       'granted',
+      'ad_personalization': 'granted'
+    });
+    // EEA NOTE: add a region:['EEA'] default-denied line + CMP banner if EEA traffic is ever run.
+  </script>
+  <!-- 2. Google tag library (serves GA4 + Ads) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-GW5Z0VVDEC"></script>
+  <!-- 3. Init GA4 + Google Ads + Enhanced Conversions -->
+  <script>
+    gtag('js', new Date());
+    gtag('config', 'G-GW5Z0VVDEC');
+    gtag('config', 'AW-XXXXXXXXXX', { 'allow_enhanced_conversions': true });
+  </script>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       BOOKED CONSULT CONVERSION — the money metric. Fires ONCE on load.
+       This is the ONLINE PROXY. The AUTHORITATIVE Booked Consult comes via
+       GHL → Google Ads OFFLINE import keyed on gclid (blueprint §8C).
+       Spencer: once offline import has volume, set the web action to Secondary /
+       "don't include in Conversions" to avoid double-counting (see TRACKING notes).
+       ═══════════════════════════════════════════════════════════ -->
+  <script>
+    (function(){
+      if (window.__bmbBookedFired) return;   // de-dupe guard
+      window.__bmbBookedFired = true;
+
+      // Enhanced Conversions: pull email/phone from localStorage (stored at LP submit) —
+      // NOT from the URL (GHL's redirect doesn't carry them, and PII in a querystring leaks
+      // via Referer). Raw values — gtag normalizes + SHA-256 hashes client-side; do NOT pre-hash.
+      try {
+        var email = '', phone = '';
+        try { email = localStorage.getItem('bmb_email') || ''; phone = localStorage.getItem('bmb_phone') || ''; } catch(e2){}
+        if (email || phone) {
+          gtag('set', 'user_data', {
+            'email': email.trim().toLowerCase(),
+            'phone_number': phone.replace(/[^\d+]/g,'')
+          });
+        }
+      } catch(e){}
+
+      // Stable transaction_id (from gclid if present) so a double page-load / the LP-side
+      // proxy de-dupes against this fire.
+      var txn = '';
+      try {
+        var p = new URLSearchParams(location.search);
+        txn = p.get('gclid') || '';
+        if (!txn) { try { txn = localStorage.getItem('bmb_gclid') || ''; } catch(e){} }
+      } catch(e){}
+
+      gtag('event', 'conversion', {
+        'send_to': 'AW-XXXXXXXXXX/BOOKED_LABEL_xxx',
+        'value': 150.0,
+        'currency': 'USD',
+        'transaction_id': txn || ('bmb_booked_' + Date.now())
+      });
+      // GA4 mirror
+      gtag('event', 'booked_consult', { 'currency':'USD', 'value':150.0 });
+      gtag('event', 'schedule',       { 'currency':'USD', 'value':150.0 });
+    })();
+  </script>
+
+  <!-- SEO & META — PAID LP FLOW (noindex) -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex,follow">
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="shortcut icon" href="/favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <meta name="theme-color" content="#4A90C4">
+
+  <title>You're Booked — Talk Soon | Biviano Modular Builders</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Outfit:wght@200;300;400;500&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --coal:        #111110;
+      --coal-mid:    #1C1C1A;
+      --coal-light:  #2A2A27;
+      --stone:       #8C7B6B;
+      --stone-light: #BBA898;
+      --blue:        #4A90C4;
+      --blue-mid:    #3A7EBF;
+      --blue-pale:   rgba(74,144,196,0.12);
+      --white:       #FFFFFF;
+      --rule-dark:   rgba(255,255,255,0.07);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Outfit', sans-serif;
+      background: var(--coal);
+      color: var(--white);
+      overflow-x: hidden;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ── Minimal nav ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 56px; height: 88px;
+      background: rgba(17,17,16,0.96);
+      border-bottom: 1px solid var(--rule-dark);
+      backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+    }
+    .nav-logo { display: flex; align-items: center; gap: 14px; text-decoration: none; }
+    .nav-crest-img { height: 66px; width: auto; }
+    .nav-name { font-family: 'Bebas Neue', sans-serif; font-size: 27px; letter-spacing: 0.12em; color: var(--white); line-height: 1; }
+    .nav-sub { font-family: 'Outfit', sans-serif; font-size: 9px; font-weight: 300; letter-spacing: 0.28em; color: var(--blue); text-transform: uppercase; margin-top: 2px; }
+    .nav-phone {
+      font-family: 'Bebas Neue', sans-serif; font-size: 18px; letter-spacing: 0.1em;
+      color: var(--white); text-decoration: none; display: flex; align-items: center; gap: 8px;
+      transition: color 0.25s ease;
+    }
+    .nav-phone:hover { color: var(--blue); }
+    .nav-phone-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--blue); display: inline-block; }
+
+    /* ── Main ── */
+    .bc-wrap { flex: 1; display: flex; align-items: center; justify-content: center; padding: 150px 24px 120px; text-align: center; }
+    .bc-inner { max-width: 680px; }
+    .bc-check {
+      width: 80px; height: 80px; border-radius: 50%; margin: 0 auto 32px;
+      display: grid; place-items: center;
+      background: var(--blue); color: var(--coal);
+      font-size: 40px; line-height: 1;
+      box-shadow: 0 0 0 8px var(--blue-pale);
+    }
+    .overline {
+      display: inline-block;
+      font-family: 'Outfit', sans-serif; font-size: 11px; letter-spacing: 0.28em;
+      text-transform: uppercase; color: var(--blue); font-weight: 400; margin-bottom: 18px;
+    }
+    .bc-h1 {
+      font-family: 'Bebas Neue', sans-serif; font-size: clamp(44px, 7vw, 76px);
+      line-height: 0.96; letter-spacing: 0.015em; color: var(--white); margin-bottom: 24px;
+    }
+    .bc-h1 .em { color: var(--blue); }
+    .bc-body {
+      font-family: 'Outfit', sans-serif; font-size: 17px; line-height: 1.75; font-weight: 300;
+      color: rgba(255,255,255,0.62); margin: 0 auto 28px; max-width: 540px;
+    }
+    .bc-body strong { color: var(--stone-light); font-weight: 400; }
+    .bc-quote {
+      font-family: 'Libre Baskerville', serif; font-style: italic;
+      font-size: 17px; line-height: 1.7; color: var(--stone-light);
+      margin: 0 auto 8px; max-width: 540px;
+    }
+    .bc-sign {
+      font-family: 'Bebas Neue', sans-serif; font-size: 16px; letter-spacing: 0.12em;
+      color: var(--blue); margin-bottom: 40px;
+    }
+
+    /* ── Next steps strip ── */
+    .bc-steps {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;
+      margin: 0 auto 44px; max-width: 600px; text-align: left;
+    }
+    .bc-step {
+      background: var(--coal-mid); border: 1px solid var(--rule-dark);
+      border-left: 2px solid var(--blue); padding: 20px 18px;
+    }
+    .bc-step-num { font-family: 'Bebas Neue', sans-serif; font-size: 15px; letter-spacing: 0.16em; color: var(--blue); margin-bottom: 10px; }
+    .bc-step-txt { font-family: 'Outfit', sans-serif; font-size: 13px; font-weight: 300; line-height: 1.55; color: rgba(255,255,255,0.55); }
+
+    .bc-call-row { font-family: 'Outfit', sans-serif; font-size: 14px; font-weight: 300; color: rgba(255,255,255,0.45); }
+    .bc-call-row a { color: var(--blue); text-decoration: none; font-weight: 400; }
+    .bc-call-row a:hover { text-decoration: underline; }
+    .bc-home {
+      display: inline-block; margin-top: 28px;
+      font-family: 'Outfit', sans-serif; font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase;
+      color: rgba(255,255,255,0.4); text-decoration: none; transition: color 0.25s ease;
+    }
+    .bc-home:hover { color: var(--white); }
+
+    /* ── Footer ── */
+    footer {
+      background: var(--coal-mid); border-top: 1px solid var(--rule-dark);
+      padding: 36px 56px; text-align: center;
+    }
+    .footer-copy { font-family: 'Outfit', sans-serif; font-size: 11px; font-weight: 300; color: rgba(255,255,255,0.2); }
+    .footer-lic { font-family: 'Bebas Neue', sans-serif; font-size: 11px; letter-spacing: 0.18em; color: rgba(74,144,196,0.32); margin-top: 8px; }
+
+    /* ── Sticky mobile click-to-call ── */
+    .sticky-call {
+      display: none;
+      position: fixed; left: 0; right: 0; bottom: 0; z-index: 200;
+      background: var(--blue); color: var(--coal);
+      text-align: center; text-decoration: none;
+      font-family: 'Bebas Neue', sans-serif; font-size: 18px; letter-spacing: 0.12em;
+      padding: 16px; box-shadow: 0 -4px 20px rgba(0,0,0,0.4);
+    }
+
+    @media (max-width: 900px) {
+      nav { padding: 0 20px; height: 72px; }
+      .nav-crest-img { height: 50px; }
+      .nav-name { font-size: 22px; }
+      .nav-phone { font-size: 0; gap: 0; }
+      .nav-phone .nav-phone-dot { width: 9px; height: 9px; }
+      .nav-phone::after { content: 'Call'; font-size: 15px; margin-left: 8px; }
+      .bc-wrap { padding: 116px 20px 110px; }
+      .bc-steps { grid-template-columns: 1fr; }
+      footer { padding: 32px 24px 96px; }
+      .sticky-call { display: block; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── Nav (minimal — logo + call) ── -->
+  <nav role="navigation" aria-label="Main navigation">
+    <a href="/" class="nav-logo" aria-label="Biviano Modular Builders — home">
+      <img src="/logo-crest.png" class="nav-crest-img" alt="" aria-hidden="true">
+      <div>
+        <div class="nav-name">Biviano</div>
+        <div class="nav-sub">Modular Builders</div>
+      </div>
+    </a>
+    <a href="tel:+16176786446" class="nav-phone" onclick="return firePhoneConversion();" aria-label="Call (617) 678-6446">
+      <span class="nav-phone-dot" aria-hidden="true"></span>(617) 678-6446
+    </a>
+  </nav>
+
+  <main class="bc-wrap">
+    <div class="bc-inner">
+      <div class="bc-check" aria-hidden="true">✓</div>
+      <span class="overline">You're Booked</span>
+      <h1 class="bc-h1">Your Consultation<br><span class="em">Is Locked In.</span></h1>
+      <p class="bc-body">You'll get a confirmation email with the details and a calendar invite. <strong>Add it to your calendar so it doesn't slip</strong> — your time is held just for you.</p>
+
+      <p class="bc-quote">"Come with your wish list, your land details if you have them, and any number a stick-built contractor quoted you. I'll show you exactly what your home costs, how long it takes, and how we get you the keys in 8–12 weeks. Looking forward to meeting you."</p>
+      <div class="bc-sign">— Mike Biviano</div>
+
+      <div class="bc-steps">
+        <div class="bc-step">
+          <div class="bc-step-num">Before We Talk</div>
+          <div class="bc-step-txt">Jot down your must-haves — beds, baths, rough square footage, and your town. No pressure if you're still figuring it out.</div>
+        </div>
+        <div class="bc-step">
+          <div class="bc-step-num">On The Call</div>
+          <div class="bc-step-txt">60 minutes with Mike. We talk design, budget, and timeline — and you leave with your exact numbers.</div>
+        </div>
+        <div class="bc-step">
+          <div class="bc-step-num">After</div>
+          <div class="bc-step-txt">You get a personalized Cost Breakdown Report comparing your modular build side-by-side with stick-built.</div>
+        </div>
+      </div>
+
+      <div class="bc-call-row">Need to reschedule or have a question first? Call Mike at
+        <a href="tel:+16176786446" onclick="return firePhoneConversion();">(617) 678-6446</a>.
+      </div>
+      <a href="/" class="bc-home">Back to Biviano Modular →</a>
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-copy">© 2025 Biviano General Contracting LLC. All rights reserved. &nbsp;·&nbsp; Marshfield, MA 02050</div>
+    <div class="footer-lic">MA Lic. CS-108728 · 122033 · 203862 &nbsp;·&nbsp; HIC Registered &nbsp;·&nbsp; Licensed · Bonded · Insured</div>
+  </footer>
+
+  <!-- ── Sticky mobile click-to-call ── -->
+  <a href="tel:+16176786446" class="sticky-call" onclick="return firePhoneConversion();">📞 Call Mike — (617) 678-6446</a>
+
+  <script>
+    /* ── Phone Call conversion (every tel: tap) — inline handler, GHL-safe ── */
+    function firePhoneConversion(){
+      gtag('event', 'conversion', {
+        'send_to': 'AW-XXXXXXXXXX/PHONE_LABEL_xxx',
+        'value': 30.0,
+        'currency': 'USD'
+      });
+      return true;
+    }
+  </script>
+</body>
+</html>

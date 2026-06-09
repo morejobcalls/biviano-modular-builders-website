@@ -1,3 +1,13 @@
+# Biviano Modular Builders — robots.txt
+# Full crawl access is INTENTIONAL.
+#
+# The paid-ad funnel pages — /free-consultation/  /booking/  /thank-you/  /booking-confirmed/ —
+# are kept OUT of the organic index via a page-level <meta name="robots" content="noindex,follow">,
+# NOT via a Disallow here. Reason: Googlebot and the Google-Ads crawlers must be able to fetch and
+# render these pages to evaluate landing-page experience / Quality Score. Disallowing them in robots.txt
+# would block that render (hurting Ads) while NOT reliably de-indexing them. Page-level noindex is the
+# correct lever. They are also excluded from sitemap.xml.
+
 User-agent: *
 Allow: /
 

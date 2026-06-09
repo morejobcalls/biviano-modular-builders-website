@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- ═══════════════════════════════════════════════════════════
+       GLOBAL TAG — GA4 G-GW5Z0VVDEC · Google Ads AW-XXXXXXXXXX
+       (Spencer: swap AW-XXXXXXXXXX after creating conversion actions)
+       ═══════════════════════════════════════════════════════════ -->
+  <!-- 1. Consent Mode v2 — DEFAULT (runs BEFORE gtag.js) -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    // US-only South Shore traffic → grant by default, NO cookie banner.
+    gtag('consent', 'default', {
+      'ad_storage':         'granted',
+      'analytics_storage':  'granted',
+      'ad_user_data':       'granted',
+      'ad_personalization': 'granted'
+    });
+    // EEA NOTE: if EEA traffic is ever run, add a region:['EEA'] default-denied
+    // line ABOVE this one + a CMP banner that calls gtag('consent','update',{...}).
+  </script>
+  <!-- 2. Google tag library (serves GA4 + Ads) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-GW5Z0VVDEC"></script>
+  <!-- 3. Init GA4 + Google Ads + Enhanced Conversions -->
+  <script>
+    gtag('js', new Date());
+    gtag('config', 'G-GW5Z0VVDEC');
+    gtag('config', 'AW-XXXXXXXXXX', { 'allow_enhanced_conversions': true });
+  </script>
+
+  <!-- ═══════════════════════════════════════════
+       SEO & META — PAID LP FLOW (noindex)
+  ═══════════════════════════════════════════ -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex,follow">
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="shortcut icon" href="/favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <meta name="theme-color" content="#4A90C4">
+
+  <title>You're In — Pick Your Consultation Time | Biviano Modular Builders</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Outfit:wght@200;300;400;500&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --coal:        #111110;
+      --coal-mid:    #1C1C1A;
+      --coal-light:  #2A2A27;
+      --stone:       #8C7B6B;
+      --stone-light: #BBA898;
+      --stone-pale:  #E8DDD5;
+      --blue:        #4A90C4;
+      --blue-mid:    #3A7EBF;
+      --blue-pale:   rgba(74,144,196,0.12);
+      --white:       #FFFFFF;
+      --rule-dark:   rgba(255,255,255,0.07);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Outfit', sans-serif;
+      background: var(--coal);
+      color: var(--white);
+      overflow-x: hidden;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ── Minimal nav (logo only — focus on conversion) ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 56px; height: 88px;
+      background: rgba(17,17,16,0.96);
+      border-bottom: 1px solid var(--rule-dark);
+      backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+    }
+    .nav-logo { display: flex; align-items: center; gap: 14px; text-decoration: none; }
+    .nav-crest-img { height: 66px; width: auto; }
+    .nav-name { font-family: 'Bebas Neue', sans-serif; font-size: 27px; letter-spacing: 0.12em; color: var(--white); line-height: 1; }
+    .nav-sub { font-family: 'Outfit', sans-serif; font-size: 9px; font-weight: 300; letter-spacing: 0.28em; color: var(--blue); text-transform: uppercase; margin-top: 2px; }
+    .nav-phone {
+      font-family: 'Bebas Neue', sans-serif; font-size: 18px; letter-spacing: 0.1em;
+      color: var(--white); text-decoration: none; display: flex; align-items: center; gap: 8px;
+      transition: color 0.25s ease;
+    }
+    .nav-phone:hover { color: var(--blue); }
+    .nav-phone-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--blue); display: inline-block; }
+
+    /* ── Main ── */
+    .ty-wrap {
+      flex: 1;
+      display: flex; align-items: center; justify-content: center;
+      padding: 150px 24px 120px;
+      text-align: center;
+    }
+    .ty-inner { max-width: 660px; }
+    .ty-check {
+      width: 72px; height: 72px; border-radius: 50%;
+      margin: 0 auto 32px;
+      display: grid; place-items: center;
+      background: var(--blue-pale);
+      border: 1.5px solid var(--blue);
+      color: var(--blue);
+      font-size: 36px; line-height: 1;
+    }
+    .overline {
+      display: inline-block;
+      font-family: 'Outfit', sans-serif; font-size: 11px; letter-spacing: 0.28em;
+      text-transform: uppercase; color: var(--blue); font-weight: 400; margin-bottom: 18px;
+    }
+    .ty-h1 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(44px, 7vw, 78px);
+      line-height: 0.96; letter-spacing: 0.015em; color: var(--white);
+      margin-bottom: 24px;
+    }
+    .ty-h1 .em { color: var(--blue); }
+    .ty-body {
+      font-family: 'Outfit', sans-serif; font-size: 17px; line-height: 1.75; font-weight: 300;
+      color: rgba(255,255,255,0.6); margin: 0 auto 14px; max-width: 540px;
+    }
+    .ty-body strong { color: var(--stone-light); font-weight: 400; }
+    .ty-reassure {
+      font-family: 'Libre Baskerville', serif; font-style: italic;
+      font-size: 16px; line-height: 1.7; color: var(--stone-light);
+      margin: 0 auto 40px; max-width: 520px;
+    }
+    .ty-cta {
+      display: inline-block;
+      font-family: 'Bebas Neue', sans-serif; font-size: 19px; letter-spacing: 0.14em;
+      color: var(--coal); background: var(--blue); padding: 20px 48px;
+      text-decoration: none; transition: background 0.3s ease, transform 0.25s ease;
+    }
+    .ty-cta:hover { background: var(--stone-light); transform: translateY(-2px); }
+    .ty-or {
+      margin-top: 26px; font-family: 'Outfit', sans-serif; font-size: 13px; font-weight: 300;
+      letter-spacing: 0.04em; color: rgba(255,255,255,0.4);
+    }
+    .ty-or a { color: var(--blue); text-decoration: none; font-weight: 400; }
+    .ty-or a:hover { text-decoration: underline; }
+
+    /* ── Trust strip ── */
+    .ty-chips {
+      display: flex; flex-wrap: wrap; gap: 10px; justify-content: center;
+      margin-top: 48px;
+    }
+    .ty-chip {
+      font-family: 'Outfit', sans-serif; font-size: 11px; font-weight: 300;
+      letter-spacing: 0.06em; color: rgba(255,255,255,0.5);
+      border: 1px solid var(--rule-dark); padding: 8px 16px; border-radius: 999px;
+    }
+    .ty-chip strong { color: var(--blue); font-weight: 500; }
+
+    /* ── Footer (compact) ── */
+    footer {
+      background: var(--coal-mid); border-top: 1px solid var(--rule-dark);
+      padding: 36px 56px; text-align: center;
+    }
+    .footer-copy { font-family: 'Outfit', sans-serif; font-size: 11px; font-weight: 300; color: rgba(255,255,255,0.2); }
+    .footer-lic { font-family: 'Bebas Neue', sans-serif; font-size: 11px; letter-spacing: 0.18em; color: rgba(74,144,196,0.32); margin-top: 8px; }
+
+    /* ── Sticky mobile click-to-call ── */
+    .sticky-call {
+      display: none;
+      position: fixed; left: 0; right: 0; bottom: 0; z-index: 200;
+      background: var(--blue); color: var(--coal);
+      text-align: center; text-decoration: none;
+      font-family: 'Bebas Neue', sans-serif; font-size: 18px; letter-spacing: 0.12em;
+      padding: 16px; box-shadow: 0 -4px 20px rgba(0,0,0,0.4);
+    }
+
+    @media (max-width: 900px) {
+      nav { padding: 0 20px; height: 72px; }
+      .nav-crest-img { height: 50px; }
+      .nav-name { font-size: 22px; }
+      .nav-phone { font-size: 0; gap: 0; }
+      .nav-phone .nav-phone-dot { width: 9px; height: 9px; }
+      .nav-phone::after { content: 'Call'; font-size: 15px; margin-left: 8px; }
+      .ty-wrap { padding: 120px 20px 110px; }
+      footer { padding: 32px 24px 96px; }
+      .sticky-call { display: block; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── Nav (minimal — logo + call) ── -->
+  <nav role="navigation" aria-label="Main navigation">
+    <a href="/" class="nav-logo" aria-label="Biviano Modular Builders — home">
+      <img src="/logo-crest.png" class="nav-crest-img" alt="" aria-hidden="true">
+      <div>
+        <div class="nav-name">Biviano</div>
+        <div class="nav-sub">Modular Builders</div>
+      </div>
+    </a>
+    <a href="tel:+16176786446" class="nav-phone" onclick="return firePhoneConversion();" aria-label="Call (617) 678-6446">
+      <span class="nav-phone-dot" aria-hidden="true"></span>(617) 678-6446
+    </a>
+  </nav>
+
+  <!-- ── Thank you / push to booking ── -->
+  <main class="ty-wrap">
+    <div class="ty-inner">
+      <div class="ty-check" aria-hidden="true">✓</div>
+      <span class="overline">Request Received</span>
+      <h1 class="ty-h1">You're In — Now<br><span class="em">Pick Your Time.</span></h1>
+      <p class="ty-body">Your request is in, and <strong>Mike personally reviews every single one.</strong> The fastest way forward is to lock your free Design &amp; Budget Consultation right now — so you get the slot you actually want instead of waiting on phone tag.</p>
+      <p class="ty-reassure">60 minutes, no obligation. You'll leave knowing exactly what your dream home costs, how long it takes, and the path from first design meeting to move-in day.</p>
+
+      <a href="/booking/" class="ty-cta" id="ty-book-btn">Pick My Consultation Time →</a>
+      <div class="ty-or">Prefer to talk first? Call Mike directly at
+        <a href="tel:+16176786446" onclick="return firePhoneConversion();">(617) 678-6446</a>.
+      </div>
+
+      <div class="ty-chips">
+        <span class="ty-chip"><strong>5.0★</strong> · 21 five-star reviews</span>
+        <span class="ty-chip">Licensed &amp; insured · MA CS-108728</span>
+        <span class="ty-chip">40+ years · 4th generation · Marshfield</span>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-copy">© 2025 Biviano General Contracting LLC. All rights reserved. &nbsp;·&nbsp; Marshfield, MA 02050</div>
+    <div class="footer-lic">MA Lic. CS-108728 · 122033 · 203862 &nbsp;·&nbsp; HIC Registered &nbsp;·&nbsp; Licensed · Bonded · Insured</div>
+  </footer>
+
+  <!-- ── Sticky mobile click-to-call ── -->
+  <a href="tel:+16176786446" class="sticky-call" onclick="return firePhoneConversion();">📞 Call Mike — (617) 678-6446</a>
+
+  <script>
+    /* ── Phone Call conversion (every tel: tap) — inline handler, GHL-safe ── */
+    function firePhoneConversion(){
+      gtag('event', 'conversion', {
+        'send_to': 'AW-XXXXXXXXXX/PHONE_LABEL_xxx',
+        'value': 30.0,
+        'currency': 'USD'
+      });
+      return true; // allow the tel: navigation to proceed
+    }
+
+    /* ── Carry gclid / utm forward to the booking page so attribution survives the hop. ──
+       Reads them from this URL (forwarded by the LP) or from the 90-day localStorage fallback. */
+    (function(){
+      var KEYS = ['gclid','gbraid','wbraid','utm_source','utm_medium','utm_campaign','utm_term','utm_content'];
+      var here = new URLSearchParams(location.search);
+      var out  = new URLSearchParams();
+      KEYS.forEach(function(k){
+        var v = here.get(k);
+        if (!v) { try { v = localStorage.getItem('bmb_'+k) || ''; } catch(e){ v=''; } }
+        else    { try { localStorage.setItem('bmb_'+k, v); } catch(e){} }
+        if (v) out.set(k, v);
+      });
+      var qs = out.toString();
+      if (qs) {
+        var btn = document.getElementById('ty-book-btn');
+        if (btn) btn.setAttribute('href', '/booking/?' + qs);
+      }
+    })();
+    /* NOTE: the LP-Lead conversion already fired on /free-consultation/ — we do NOT re-fire it here. */
+  </script>
+</body>
+</html>
