@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
   <!-- ═══════════════════════════════════════════════════════════
-       GLOBAL TAG — GA4 G-GW5Z0VVDEC · Google Ads AW-XXXXXXXXXX
-       (Spencer: swap AW-XXXXXXXXXX + the /LABEL_xxx labels after
+       GLOBAL TAG — GA4 G-GW5Z0VVDEC · Google Ads AW-16742219835
+       (Spencer: swap AW-16742219835 + the /LABEL_xxx labels after
         creating the 3 conversion actions in Google Ads.)
        ═══════════════════════════════════════════════════════════ -->
 
@@ -31,7 +31,7 @@
     gtag('js', new Date());
     gtag('config', 'G-GW5Z0VVDEC');
     // Google Ads + auto-tagging picks up gclid; allow_enhanced_conversions enables EC for Leads
-    gtag('config', 'AW-XXXXXXXXXX', { 'allow_enhanced_conversions': true });
+    gtag('config', 'AW-16742219835', { 'allow_enhanced_conversions': true });
   </script>
 
   <!-- ═══════════════════════════════════════════
@@ -867,7 +867,7 @@
       'phone_number': (phone || '').replace(/[^\d+]/g, '')   // +1XXXXXXXXXX
     });
     gtag('event', 'conversion', {
-      'send_to': 'AW-XXXXXXXXXX/LEAD_LABEL_xxx',
+      'send_to': 'AW-16742219835/LEAD_LABEL_xxx',
       'value': 30.0,
       'currency': 'USD'
     });
@@ -877,7 +877,7 @@
   // PHONE — fire on every click-to-call tap (inline onclick="return firePhoneConversion();")
   function firePhoneConversion(){
     gtag('event', 'conversion', {
-      'send_to': 'AW-XXXXXXXXXX/PHONE_LABEL_xxx',
+      'send_to': 'AW-16742219835/PHONE_LABEL_xxx',
       'value': 30.0,
       'currency': 'USD'
     });
