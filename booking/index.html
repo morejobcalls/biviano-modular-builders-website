@@ -216,7 +216,7 @@
     /* ── Phone Call conversion (every tel: tap) — inline handler, GHL-safe ── */
     function firePhoneConversion(){
       gtag('event', 'conversion', {
-        'send_to': 'AW-16742219835/PHONE_LABEL_xxx',
+        'send_to': 'AW-16742219835/xcCUCKrE97scELuAqK8-',
         'value': 30.0,
         'currency': 'USD'
       });
@@ -262,12 +262,12 @@
             if (!txn) txn = localStorage.getItem('bmb_gclid') || '';
           } catch(err2){}
           gtag('event', 'conversion', {
-            'send_to': 'AW-16742219835/BOOKED_LABEL_xxx',
-            'value': 150.0,
+            'send_to': 'AW-16742219835/EiYqCPbT9rscELuAqK8-',
+            'value': 300.0,
             'currency': 'USD',
             'transaction_id': txn || ('bmb_booked_' + Date.now())
           });
-          gtag('event', 'schedule', { 'currency':'USD', 'value':150.0 });
+          gtag('event', 'schedule', { 'currency':'USD', 'value':300.0 });
         }
       } catch(err){}
     }, false);

@@ -3,8 +3,7 @@
 <head>
   <!-- ═══════════════════════════════════════════════════════════
        GLOBAL TAG — GA4 G-GW5Z0VVDEC · Google Ads AW-16742219835
-       (Spencer: swap AW-16742219835 + the /LABEL_xxx labels after
-        creating the 3 conversion actions in Google Ads.)
+       Conversion actions LIVE (2026-06-09): Lead, Booked Consult ($300), Phone Call.
        ═══════════════════════════════════════════════════════════ -->
 
   <!-- 1. Consent Mode v2 — DEFAULT (runs BEFORE gtag.js loads) -->
@@ -867,7 +866,7 @@
       'phone_number': (phone || '').replace(/[^\d+]/g, '')   // +1XXXXXXXXXX
     });
     gtag('event', 'conversion', {
-      'send_to': 'AW-16742219835/LEAD_LABEL_xxx',
+      'send_to': 'AW-16742219835/yisSCKuX9rscELuAqK8-',
       'value': 30.0,
       'currency': 'USD'
     });
@@ -877,7 +876,7 @@
   // PHONE — fire on every click-to-call tap (inline onclick="return firePhoneConversion();")
   function firePhoneConversion(){
     gtag('event', 'conversion', {
-      'send_to': 'AW-16742219835/PHONE_LABEL_xxx',
+      'send_to': 'AW-16742219835/xcCUCKrE97scELuAqK8-',
       'value': 30.0,
       'currency': 'USD'
     });
