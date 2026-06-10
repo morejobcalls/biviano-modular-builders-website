@@ -32,6 +32,7 @@
   <meta property="og:image" content="https://images.unsplash.com/photo-1602001758170-b0980b967433?w=1200&q=80&auto=format&fit=crop">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://images.unsplash.com">
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Outfit:wght@200;300;400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../towns.css">
   <script type="application/ld+json">
@@ -151,7 +152,7 @@
 <!-- HERO -->
 <section class="town-hero">
   <div class="hero-bg">
-    <img src="https://images.unsplash.com/photo-1602001758170-b0980b967433?w=1600&q=80&auto=format&fit=crop" alt="Custom modular home in Norwell MA" loading="eager">
+    <img src="https://images.unsplash.com/photo-1602001758170-b0980b967433?w=1600&q=80&auto=format&fit=crop" srcset="https://images.unsplash.com/photo-1602001758170-b0980b967433?w=800&q=80&auto=format&fit=crop 800w, https://images.unsplash.com/photo-1602001758170-b0980b967433?w=1200&q=80&auto=format&fit=crop 1200w, https://images.unsplash.com/photo-1602001758170-b0980b967433?w=1600&q=80&auto=format&fit=crop 1600w" sizes="100vw" fetchpriority="high" alt="Custom modular home in Norwell MA" loading="eager">
   </div>
   <div class="hero-content">
     <div class="hero-breadcrumb">
@@ -335,23 +336,38 @@
 </section>
 
 
+<!-- COMPARE CROSS-LINK -->
+<section class="adu-xlink" aria-label="Modular vs stick-built in Norwell">
+  <div class="adu-xlink-inner">
+    <div>
+      <div class="adu-xlink-overline">The Honest Comparison</div>
+      <h2 class="adu-xlink-heading">Modular vs <span class="em">Stick-Built</span> in Norwell: the real math.</h2>
+      <p class="adu-xlink-body">$250 vs $400&ndash;$600 per square foot. 8&ndash;12 weeks vs 12&ndash;15 months. Same Massachusetts building code. See the full line-by-line comparison for Norwell &mdash; costs, quality, financing, and resale.</p>
+    </div>
+    <a href="modular-vs-stick-built/" class="adu-xlink-cta">
+      <span>Read the Norwell Comparison</span>
+      <span class="adu-xlink-cta-arrow">&rarr;</span>
+    </a>
+  </div>
+</section>
+
 <!-- ADU CROSS-LINK — secondary service callout -->
 <section class="adu-xlink" aria-label="Also build ADUs in Norwell">
   <style>
-    .adu-xlink {{
+    .adu-xlink {
       background: var(--coal, #111110);
       padding: 64px 56px;
       border-top: 1px solid rgba(255,255,255,0.06);
-    }}
-    .adu-xlink-inner {{
+    }
+    .adu-xlink-inner {
       max-width: 1100px;
       margin: 0 auto;
       display: grid;
       grid-template-columns: 1.4fr auto;
       gap: 48px;
       align-items: center;
-    }}
-    .adu-xlink-overline {{
+    }
+    .adu-xlink-overline {
       font-family: 'Outfit', sans-serif;
       font-size: 10px;
       letter-spacing: 0.28em;
@@ -359,17 +375,17 @@
       color: var(--blue, #4A90C4);
       font-weight: 400;
       margin-bottom: 12px;
-    }}
-    .adu-xlink-heading {{
+    }
+    .adu-xlink-heading {
       font-family: 'Bebas Neue', sans-serif;
       font-size: clamp(28px, 3.4vw, 44px);
       letter-spacing: 0.02em;
       line-height: 1.05;
       color: #fff;
       margin: 0 0 14px;
-    }}
-    .adu-xlink-heading .em {{ color: var(--blue, #4A90C4); }}
-    .adu-xlink-body {{
+    }
+    .adu-xlink-heading .em { color: var(--blue, #4A90C4); }
+    .adu-xlink-body {
       font-family: 'Outfit', sans-serif;
       font-size: 14px;
       font-weight: 300;
@@ -377,8 +393,8 @@
       color: rgba(255,255,255,0.5);
       margin: 0;
       max-width: 580px;
-    }}
-    .adu-xlink-cta {{
+    }
+    .adu-xlink-cta {
       display: inline-flex;
       align-items: center;
       gap: 14px;
@@ -392,17 +408,17 @@
       background: var(--blue, #4A90C4);
       transition: background 0.25s ease, transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
       white-space: nowrap;
-    }}
-    .adu-xlink-cta:hover {{
+    }
+    .adu-xlink-cta:hover {
       background: #3a7EBF;
       transform: translateY(-2px);
-    }}
-    .adu-xlink-cta-arrow {{ transition: transform 0.25s ease; }}
-    .adu-xlink-cta:hover .adu-xlink-cta-arrow {{ transform: translateX(4px); }}
-    @media (max-width: 800px) {{
-      .adu-xlink {{ padding: 48px 24px; }}
-      .adu-xlink-inner {{ grid-template-columns: 1fr; gap: 28px; }}
-    }}
+    }
+    .adu-xlink-cta-arrow { transition: transform 0.25s ease; }
+    .adu-xlink-cta:hover .adu-xlink-cta-arrow { transform: translateX(4px); }
+    @media (max-width: 800px) {
+      .adu-xlink { padding: 48px 24px; }
+      .adu-xlink-inner { grid-template-columns: 1fr; gap: 28px; }
+    }
   </style>
   <div class="adu-xlink-inner">
     <div>
@@ -492,6 +508,12 @@
       <a href="../pembroke/" class="town-link">Pembroke</a>
       <a href="../norwell/" class="town-link active">Norwell</a>
       <a href="../hingham/" class="town-link">Hingham</a>
+      <a href="../cohasset/" class="town-link">Cohasset</a>
+      <a href="../hull/" class="town-link">Hull</a>
+      <a href="../kingston/" class="town-link">Kingston</a>
+      <a href="../plymouth/" class="town-link">Plymouth</a>
+      <a href="../hanson/" class="town-link">Hanson</a>
+      <a href="../halifax/" class="town-link">Halifax</a>
     </div>
   </div>
 </div>
@@ -511,6 +533,8 @@
           <li><a href="../#what-is">What Is Modular</a></li>
           <li><a href="../#advantages">Why BMB</a></li>
           <li><a href="../#process">Our Process</a></li>
+          <li><a href="../pricing/">Pricing</a></li>
+          <li><a href="../financing/">Financing</a></li>
           <li><a href="#consult">Free Consultation</a></li>
         </ul>
       </div>

@@ -2,8 +2,10 @@
 <!--
   Biviano Modular Builders — XML sitemap (organic SEO pages only).
   Host: https://www.bivianomodularbuilders.com (www — must match the Search Console URL-prefix property).
-  22 real SEO URLs: home, 5 core pages (why-modular, process, pricing, gallery, adu),
-  8 town pages, 8 town/adu pages.
+  53 real SEO URLs: home, 5 core pages (why-modular, process, pricing, gallery, adu),
+  14 town pages, 14 town/adu pages, 8 modular-vs-stick-built town articles + 1 pillar,
+  financing, 8 guides.
+  ALSO EXCLUDED: /feedback/ (noindex utility page) and /scorecard/.
 
   DELIBERATELY EXCLUDED — paid-funnel landing pages:
     /free-consultation/  /booking/  /thank-you/  /booking-confirmed/
@@ -158,4 +160,200 @@
     <priority>0.7</priority>
   </url>
 
+
+  <!-- Cornerstone comparison + financing (added 2026-06-10) -->
+  <url>
+    <loc>https://www.bivianomodularbuilders.com/modular-vs-stick-built/</loc>
+    <lastmod>2026-06-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.bivianomodularbuilders.com/financing/</loc>
+    <lastmod>2026-06-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Tier-2 town pages (added 2026-06-10) -->
+  <url>
+    <loc>https://www.bivianomodularbuilders.com/cohasset/</loc>
+    <lastmod>2026-06-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.bivianomodularbuilders.com/hull/</loc>
+    <lastmod>2026-06-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.bivianomodularbuilders.com/kingston/</loc>
+    <lastmod>2026-06-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.bivianomodularbuilders.com/plymouth/</loc>
+    <lastmod>2026-06-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.bivianomodularbuilders.com/hanson/</loc>
+    <lastmod>2026-06-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.bivianomodularbuilders.com/halifax/</loc>
+    <lastmod>2026-06-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Tier-2 town ADU pages (added 2026-06-10) -->
+  <url>
+    <loc>https://www.bivianomodularbuilders.com/cohasset/adu/</loc>
+    <lastmod>2026-06-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.bivianomodularbuilders.com/hull/adu/</loc>
+    <lastmod>2026-06-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.bivianomodularbuilders.com/kingston/adu/</loc>
+    <lastmod>2026-06-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.bivianomodularbuilders.com/plymouth/adu/</loc>
+    <lastmod>2026-06-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.bivianomodularbuilders.com/hanson/adu/</loc>
+    <lastmod>2026-06-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.bivianomodularbuilders.com/halifax/adu/</loc>
+    <lastmod>2026-06-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Town comparison articles (added 2026-06-10) -->
+  <url>
+    <loc>https://www.bivianomodularbuilders.com/marshfield/modular-vs-stick-built/</loc>
+    <lastmod>2026-06-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.bivianomodularbuilders.com/scituate/modular-vs-stick-built/</loc>
+    <lastmod>2026-06-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.bivianomodularbuilders.com/humarock/modular-vs-stick-built/</loc>
+    <lastmod>2026-06-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.bivianomodularbuilders.com/duxbury/modular-vs-stick-built/</loc>
+    <lastmod>2026-06-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.bivianomodularbuilders.com/hanover/modular-vs-stick-built/</loc>
+    <lastmod>2026-06-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.bivianomodularbuilders.com/pembroke/modular-vs-stick-built/</loc>
+    <lastmod>2026-06-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.bivianomodularbuilders.com/norwell/modular-vs-stick-built/</loc>
+    <lastmod>2026-06-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.bivianomodularbuilders.com/hingham/modular-vs-stick-built/</loc>
+    <lastmod>2026-06-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Guides (added 2026-06-10) -->
+  <url>
+    <loc>https://www.bivianomodularbuilders.com/guides/</loc>
+    <lastmod>2026-06-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.bivianomodularbuilders.com/guides/what-is-a-modular-home/</loc>
+    <lastmod>2026-06-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.bivianomodularbuilders.com/guides/are-modular-homes-good-quality/</loc>
+    <lastmod>2026-06-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.bivianomodularbuilders.com/guides/do-modular-homes-hold-their-value/</loc>
+    <lastmod>2026-06-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.bivianomodularbuilders.com/guides/modular-home-permits-massachusetts/</loc>
+    <lastmod>2026-06-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.bivianomodularbuilders.com/guides/modular-home-foundation-types/</loc>
+    <lastmod>2026-06-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.bivianomodularbuilders.com/guides/can-modular-homes-be-two-stories/</loc>
+    <lastmod>2026-06-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.bivianomodularbuilders.com/guides/teardown-rebuild-modular-home-massachusetts/</loc>
+    <lastmod>2026-06-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.bivianomodularbuilders.com/guides/modular-home-property-taxes-massachusetts/</loc>
+    <lastmod>2026-06-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
 </urlset>
