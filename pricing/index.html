@@ -2702,38 +2702,30 @@
           const firstName = $('calcFirstName').value.trim();
           const lastName = $('calcLastName').value.trim();
 
+          // FLAT payload — sent as x-www-form-urlencoded via no-cors. GHL's
+          // webhook rejects text/plain bodies and no-cors forbids
+          // application/json (the old nested JSON version never reached GHL
+          // from a browser — verified 2026-06-10). Workflow mappings must
+          // reference these flat keys.
           const payload = {
-            firstName,
-            lastName,
+            first_name: firstName,
+            last_name: lastName,
+            full_name: (firstName + ' ' + lastName).trim(),
             email,
             phone,
-            customField: {
-              'contact.bmb_town': town,
-              'contact.bmb_home_size': sf ? String(sf) : '',
-              'contact.bmb_source': 'Calculator',
-              'contact.bmb_estimate_total': totalEstimate,
-              'contact.bmb_home_cost_calc': homeCost
-            },
+            phone_digits: digitsOnly(phone),
+            town,
+            square_footage: sf ? String(sf) : '',
+            home_rate_per_sf: String(RATE_PER_SF),
+            home_cost: String(homeCost),
+            foundation_cost: String(FOUNDATION),
+            deck_cost: String(DECK),
+            estimate_total: String(totalEstimate),
+            bmb_source: 'Calculator',
             source: 'BMB Website — Pricing Calculator',
-            tags: ['bmb-website', 'pricing-calculator'],
-            lead: {
-              firstName,
-              lastName,
-              email,
-              phone,
-              phoneDigits: digitsOnly(phone),
-              town
-            },
-            calculator: {
-              inputs: { squareFootage: sf, town },
-              assumptions: { homeRatePerSf: RATE_PER_SF, foundationStandard: FOUNDATION, deckStandard: DECK },
-              totals: { homeCost, foundationCost: FOUNDATION, deckCost: DECK, totalEstimate }
-            },
-            meta: {
-              pageUrl: location.href,
-              submittedAt: new Date().toISOString(),
-              source: 'BMB Website — Pricing Calculator'
-            }
+            tags: 'bmb-website,pricing-calculator',
+            page_url: location.href,
+            submitted_at: new Date().toISOString()
           };
 
           $('calcConfirmEmail').textContent = email;
@@ -2742,14 +2734,11 @@
           try {
             await fetch(CALC_WEBHOOK, {
               method: 'POST',
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify(payload)
+              mode: 'no-cors',
+              headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' },
+              body: new URLSearchParams(payload).toString()
             });
-          } catch (err) {
-            try {
-              await fetch(CALC_WEBHOOK, { method: 'POST', mode: 'no-cors', body: JSON.stringify(payload) });
-            } catch (_) { /* silent */ }
-          } finally {
+          } catch (_) { /* silent */ } finally {
             submitBtn.disabled = false;
             submitBtn.textContent = 'Send My Estimate →';
           }

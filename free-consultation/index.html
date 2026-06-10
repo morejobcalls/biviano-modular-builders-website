@@ -997,20 +997,23 @@
 
     var gclid = form.gclid.value || '';
 
+    // FLAT payload — sent as x-www-form-urlencoded. GHL's webhook rejects
+    // text/plain bodies and no-cors forbids application/json (the old nested
+    // JSON version never reached GHL from a browser — verified 2026-06-10).
+    // Workflow mappings must reference these flat keys.
     var payload = {
-      firstName: firstName,
-      lastName: lastName,
+      first_name: firstName,
+      last_name: lastName,
+      full_name: nameV,
       email: emailV,
       phone: phoneE,
-      customField: {
-        'contact.bmb_home_size': form.home_size.value || '',
-        'contact.bmb_town': form.town.value,
-        'contact.bmb_project_description': desc,
-        'contact.bmb_source': form.utm_source.value || 'google-ads',
-        'contact.contact_gclid': gclid   // reuses existing GHL gclid field (no duplicate)
-      },
+      home_size: form.home_size.value || '',
+      town: form.town.value,
+      project_description: desc,
+      bmb_source: form.utm_source.value || 'google-ads',
+      gclid: gclid,
       source: 'BMB Free Consult LP',
-      tags: ['bmb-website', 'consultation-request', 'google-paid', 'modular-lp']
+      tags: 'bmb-website,consultation-request,google-paid,modular-lp'
     };
 
     // --- persist identifiers for downstream Enhanced Conversions + offline import
@@ -1038,8 +1041,8 @@
       fetch('https://services.leadconnectorhq.com/hooks/zPo4vLlEjjXCflgDSXlI/webhook-trigger/0eba93d2-0fb2-4770-9af2-4e912dc84502', {
         method: 'POST',
         mode: 'no-cors',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload)
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' },
+        body: new URLSearchParams(payload).toString()
       }).then(redirect).catch(redirect);
     } catch(err) {
       redirect();
