@@ -127,11 +127,19 @@
     const reviewCta = REVIEW_LINK.indexOf('http') === 0
       ? '<a class="fb-gbtn" href="' + reviewHref + '" target="_blank" rel="noopener">Leave a Google Review →</a>'
       : '<a class="fb-gbtn" href="/">Back to the Site →</a>';
+    const reviewHints = score >= 4
+      ? '<div style="background:rgba(74,144,196,0.08);border-left:2px solid #4A90C4;padding:14px 18px;text-align:left;margin:0 0 24px">' +
+        '<div style="font-family:Outfit,sans-serif;font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:#4A90C4;margin-bottom:8px">Not sure what to write? Mention any of these:</div>' +
+        '<div style="font-family:Outfit,sans-serif;font-size:13px;font-weight:300;line-height:1.8;color:rgba(255,255,255,0.6)">' +
+        '• What we built for you — and in which town<br>' +
+        '• What you were worried about before, and how it turned out<br>' +
+        '• How the timeline and price compared to what you expected</div></div>'
+      : '';
     document.getElementById('fb-card').innerHTML =
       '<div class="fb-thanks"><div class="big">✓</div><h2>Thank You.</h2>' +
       '<p>Your feedback went straight to Mike' + (score <= 3 ? ' — he\'ll be in touch personally.' : '.') +
       ' If you have another 30 seconds, a public review helps more South Shore families find an honest builder.</p>' +
-      reviewCta + '</div>';
+      reviewHints + reviewCta + '</div>';
   });
 </script>
 </body>
