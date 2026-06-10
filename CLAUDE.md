@@ -26,8 +26,8 @@
 
 **Proof/credentials:**
 - 21 five-star reviews (Birdeye)  
-- MA Construction Supervisor License CS-108728, 122033, 203862  
-- MA HIC Registered  
+- MA CSL #CS-108728 (Construction Supervisor)  
+- MA HIC Reg. #181337  
 - BuildZoom Score 101 (Top 12% of 139,240 MA licensed contractors)  
 - Former Marshfield Planning Board Chair — knows every inspector  
 
@@ -245,7 +245,7 @@ For root-level pages (`/why-modular/`, `/process/`, etc.) — all links point to
     </div>
     <div class="footer-bottom">
       <div class="footer-copy">© 2025 Biviano General Contracting LLC. All rights reserved. &nbsp;·&nbsp; Marshfield, MA 02050</div>
-      <div class="footer-lic">MA Lic. CS-108728 · 122033 · 203862 &nbsp;·&nbsp; HIC Registered &nbsp;·&nbsp; Licensed · Bonded · Insured</div>
+      <div class="footer-lic">MA HIC Reg. #181337 · MA CSL #CS-108728 &nbsp;·&nbsp; HIC Registered &nbsp;·&nbsp; Licensed · Bonded · Insured</div>
     </div>
   </div>
 </footer>
