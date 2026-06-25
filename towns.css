@@ -261,8 +261,10 @@ footer { background: var(--coal-mid); padding: 56px 56px 32px; border-top: 1px s
   .steps { grid-template-columns: 1fr 1fr; }
   .faq-section { padding: 72px 24px; }
   .cta-section { grid-template-columns: 1fr; }
-  .cta-img-side { min-height: 380px; }
-  .cta-img-overlay { padding: 96px 24px 40px; justify-content: flex-start; }
+  .cta-img-side { min-height: 0; }
+  .cta-img-side > img { position: absolute; inset: 0; height: 100%; }
+  .cta-img-overlay { position: relative; padding: 104px 24px 44px; justify-content: flex-start; }
+  .cta-title { font-size: clamp(38px, 9vw, 60px); }
   .cta-form-side { padding: 44px 24px; border-left: none; border-top: 1px solid var(--rule-dark); }
   .towns-strip { padding: 48px 24px; }
   footer { padding: 48px 24px 28px; }

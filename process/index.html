@@ -1506,8 +1506,10 @@
       .compare-col { padding: 40px 28px; }
 
       .cta-section { grid-template-columns: 1fr; }
-      .cta-img-side { min-height: 400px; }
-      .cta-img-overlay { padding: 40px 24px; }
+      .cta-img-side { min-height: 0; }
+      .cta-img-side > img { position: absolute; inset: 0; height: 100%; }
+      .cta-img-overlay { position: relative; justify-content: flex-start; padding: 104px 24px 44px; }
+      .cta-title { font-size: clamp(38px, 9vw, 60px); }
       .cta-overlay-logo { top: 28px; left: 24px; height: 56px; }
       .cta-form-side { padding: 48px 24px; border-left: none; border-top: 1px solid var(--rule-dark); }
 

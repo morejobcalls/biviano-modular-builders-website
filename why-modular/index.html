@@ -1295,17 +1295,18 @@
       width: 100%;
       height: 480px;
       object-fit: cover;
-      filter: saturate(0.3) brightness(0.45);
+      object-position: center 72%;
+      filter: saturate(0.92) brightness(0.82);
       display: block;
     }
     .mike-img-badge {
       position: absolute;
-      bottom: -1px; left: 0; right: 0;
-      padding: 0 28px 28px;
-      background: linear-gradient(to top, rgba(17,17,16,1) 0%, rgba(17,17,16,0.6) 60%, transparent 100%);
+      top: -1px; left: 0; right: 0;
+      padding: 26px 28px 0;
+      background: linear-gradient(to bottom, rgba(17,17,16,0.92) 0%, rgba(17,17,16,0.5) 55%, transparent 100%);
       display: flex;
       gap: 28px;
-      align-items: flex-end;
+      align-items: flex-start;
     }
     .mike-badge-stat {
       text-align: center;
@@ -1710,8 +1711,10 @@
       .financing-cards { grid-template-columns: 1fr; }
 
       .cta-section { grid-template-columns: 1fr; }
-      .cta-img-side { min-height: 360px; }
-      .cta-img-overlay { padding: 40px 24px; }
+      .cta-img-side { min-height: 0; }
+      .cta-img-side > img { position: absolute; inset: 0; height: 100%; }
+      .cta-img-overlay { position: relative; justify-content: flex-start; padding: 104px 24px 44px; }
+      .cta-title { font-size: clamp(38px, 9vw, 60px); }
       .cta-action-side { padding: 48px 24px; border-left: none; border-top: 1px solid var(--rule-dark); }
 
       .cred-bar-inner { flex-wrap: wrap; }
@@ -2301,8 +2304,8 @@
 
       <div class="mike-img-wrap reveal">
         <img
-          src="https://images.unsplash.com/photo-1774780855191-3ab5f0b06932?w=1200&q=80&auto=format&fit=crop"
-          alt="Construction project — South Shore Massachusetts"
+          src="/photos/gallery/mike-and-dad-jobsite.jpg"
+          alt="Mike Biviano on a South Shore jobsite with his father during a modular home set"
           loading="lazy"
         >
         <div class="mike-img-badge">
