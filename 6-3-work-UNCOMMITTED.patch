@@ -1,0 +1,349 @@
+diff --git a/HANDOFF.md b/HANDOFF.md
+index f60541e..2dfc493 100644
+--- a/HANDOFF.md
++++ b/HANDOFF.md
+@@ -124,11 +124,11 @@ Cannot create via API — PIT scope blocks pipeline write. ~3 min in GHL UI. See
+ ### 2. GA4 verification (Spencer to confirm)
+ Spencer reported GA4 Realtime tab was empty on 2026-05-05 EOD. If still empty, run the GA4 troubleshooting checklist at bottom of this file. After confirmed firing → Search Console at `https://search.google.com/search-console`, verify via GA, submit `https://www.bivianomodularbuilders.com/sitemap.xml`.
+ 
+-### 3. Monthly scorecard
+-Friday 5/8 deliverable per the Project-Update timeline. One-page report: # leads, # discovery calls, # site visits, # contracts, revenue. Pull automatically from GHL — could be a Google Sheet via GHL Webhooks or a GHL dashboard. Custom fields are now in place to support this.
++### 3. Monthly scorecard ✅ BUILT 2026-05-15 (awaiting spin-up)
++Apps Script + Google Sheet artifacts ready at `Modular/scorecard/`. Pulls GHL daily, writes current-month + previous-month side-by-side dashboard. Graceful fallback if `Modular Pipeline` not yet created in GHL UI. **Spencer to spin up:** follow `scorecard/SETUP.md` (~10 min — create Sheet, paste Code.gs, add `GHL_API_KEY` script property, run `setup()`, share with mbiviano@hotmail.com).
+ 
+-### 4. Nurture sequence
+-8–12 week email/SMS sequence for modular leads. Deferred per Spencer until 30 days of real lead flow so messaging matches actual buyer behavior.
++### 4. Nurture sequence ✅ v1 DRAFTED 2026-05-15
++12-email, 8-week sequence in Mike's voice at `BIVIANO/Marketing/Nurture Sequences/Email - 8 Week Modular Lead/`. Email-only. Trigger = any new contact with `bmb_source` set. CTA = book a call (placeholder `[[BOOK_CALL_URL]]`). **Spencer to:** swap booking URL, paste into GHL workflow, set send-after intervals per README cadence table. Revise after 30 days of real lead behavior data.
+ 
+ ### 5. Real photos (waiting on Mike)
+ - Set-day crane photos (the moment modules drop)
+@@ -136,8 +136,8 @@ Friday 5/8 deliverable per the Project-Update timeline. One-page report: # leads
+ - Screenshots of 3 Facebook posts for social proof: Joanne Keogh Humarock + 2 Marshfield spec homes
+ Drop into `/content/`, update `src` in `index.html` social-proof section + `gallery/index.html`.
+ 
+-### 6. HTTPS enforcement
+-Waiting on GitHub SSL provisioning. Check status: `gh api repos/morejobcalls/bmb-website/pages | jq '.protected_domain_state, .https_enforced'`. When `protected_domain_state` = `"verified"`, run: `gh api --method PUT repos/morejobcalls/bmb-website/pages --field https_enforced=true`.
++### 6. HTTPS enforcement ✅ DONE 2026-05-14
++`https_enforced: true` confirmed on the repo. Site serves over HTTPS cleanly (`curl -sIL https://www.bivianomodularbuilders.com/` → 301 www → apex → HTTP/2 200). GH Pages API shows `protected_domain_state: null` / `status: errored` but that's a stale API field — the live HTTPS serve is what matters.
+ 
+ ### 7. bivianocontracting.com updates
+ Project scope calls for adding drone video + calculator to the existing GC site. Separate project — don't touch until modular site is fully producing. Low priority.
+diff --git a/index.html b/index.html
+index dbb67ab..4a5142c 100644
+--- a/index.html
++++ b/index.html
+@@ -169,7 +169,7 @@
+       align-items: center;
+       justify-content: space-between;
+       padding: 0 56px;
+-      height: 72px;
++      height: 88px;
+       background: rgba(17,17,16,0.96);
+       border-bottom: 1px solid var(--rule-dark);
+       backdrop-filter: blur(12px);
+@@ -184,13 +184,13 @@
+       flex-shrink: 0;
+     }
+     .nav-crest-img {
+-      height: 50px;
++      height: 66px;
+       width: auto;
+       flex-shrink: 0;
+     }
+     .nav-name {
+       font-family: 'Bebas Neue', sans-serif;
+-      font-size: 22px;
++      font-size: 27px;
+       letter-spacing: 0.12em;
+       color: var(--white);
+       line-height: 1;
+@@ -304,9 +304,9 @@
+     /* Mobile Menu Overlay */
+     .mobile-menu {
+       position: fixed;
+-      top: 72px; left: 0; right: 0;
+-      height: calc(100dvh - 72px);
+-      max-height: calc(100dvh - 72px);
++      top: 88px; left: 0; right: 0;
++      height: calc(100dvh - 88px);
++      max-height: calc(100dvh - 88px);
+       background: var(--coal-mid);
+       z-index: 99;
+       display: flex;
+@@ -372,7 +372,7 @@
+       min-height: 100vh;
+       display: grid;
+       grid-template-rows: 1fr auto;
+-      padding-top: 72px;
++      padding-top: 88px;
+       position: relative;
+       overflow: hidden;
+     }
+@@ -446,6 +446,30 @@
+       color: transparent;
+     }
+ 
++    .hero-speed-tag {
++      display: inline-flex;
++      align-items: center;
++      gap: 12px;
++      margin-top: 24px;
++      opacity: 0;
++      animation: fadeIn 0.7s ease 0.7s forwards;
++    }
++    .hero-speed-tag .hero-speed-dot {
++      width: 8px;
++      height: 8px;
++      border-radius: 50%;
++      background: var(--blue);
++      flex-shrink: 0;
++    }
++    .hero-speed-tag .hero-speed-text {
++      font-family: 'Bebas Neue', sans-serif;
++      font-size: 22px;
++      letter-spacing: 0.08em;
++      color: var(--white);
++      line-height: 1;
++    }
++    .hero-speed-tag .hero-speed-text .em { color: var(--blue); }
++
+     .hero-bottom-row {
+       position: relative;
+       z-index: 2;
+@@ -1317,6 +1341,14 @@
+       justify-content: flex-end;
+       padding: 64px;
+     }
++    .cta-overlay-logo {
++      position: absolute;
++      top: 40px;
++      left: 64px;
++      height: 84px;
++      width: auto;
++      filter: drop-shadow(0 4px 18px rgba(0,0,0,0.45));
++    }
+     .cta-tag {
+       font-family: 'Outfit', sans-serif;
+       font-size: 9px;
+@@ -1511,6 +1543,12 @@
+       padding-bottom: 48px;
+       border-bottom: 1px solid var(--rule-dark);
+     }
++    .footer-logo-img {
++      height: 76px;
++      width: auto;
++      display: block;
++      margin-bottom: 18px;
++    }
+     .footer-brand-name {
+       font-family: 'Bebas Neue', sans-serif;
+       font-size: 28px;
+@@ -1653,7 +1691,12 @@
+        RESPONSIVE — MOBILE (≤900px)
+     ───────────────────────────── */
+     @media (max-width: 900px) {
+-      nav { padding: 0 24px; }
++      /* Keep mobile header at its original (approved) size — desktop logo grew, mobile stays */
++      nav { padding: 0 24px; height: 72px; }
++      .nav-crest-img { height: 50px; }
++      .nav-name { font-size: 22px; }
++      .mobile-menu { top: 72px; height: calc(100dvh - 72px); max-height: calc(100dvh - 72px); }
++      .hero { padding-top: 72px; }
+       .nav-links, .nav-cta { display: none; }
+       .nav-hamburger { display: flex; }
+ 
+@@ -1702,6 +1745,7 @@
+       .cta-section { grid-template-columns: 1fr; }
+       .cta-img-side { min-height: 400px; }
+       .cta-img-overlay { padding: 40px 24px; }
++      .cta-overlay-logo { top: 28px; left: 24px; height: 64px; }
+       .cta-form-side { padding: 48px 24px; border-left: none; border-top: 1px solid var(--rule-dark); }
+ 
+       footer { padding: 56px 24px 28px; }
+@@ -2035,6 +2079,10 @@
+       <span class="accent">Homes.</span><br>
+       <span class="outline">Built Faster. 25% Less.</span>
+     </h1>
++    <div class="hero-speed-tag">
++      <span class="hero-speed-dot" aria-hidden="true"></span>
++      <span class="hero-speed-text">Ready in <span class="em">8–12 weeks</span>, not 8–12 months</span>
++    </div>
+   </div>
+ 
+   <div class="hero-bottom-row">
+@@ -2641,6 +2689,16 @@
+         <p class="faq-a-inner">Approximately $250 per square foot — all-in, covering design, permits, site work, foundation, factory build, crane set, finish work, and final inspection. Compare that to $400–$600/sq ft for traditional stick-built construction in Plymouth County. For reference: a 2,500 sq ft home with BMB runs approximately $625,000 versus $1,000,000–$1,500,000 from traditional contractors. Your free consultation includes a personalized Cost Breakdown Report showing your exact numbers side-by-side.</p>
+       </div>
+     </div>
++
++    <div class="faq-item reveal">
++      <button class="faq-q" aria-expanded="false">
++        Do I need to be on site during construction?
++        <span class="faq-icon" aria-hidden="true">+</span>
++      </button>
++      <div class="faq-a" role="region">
++        <p class="faq-a-inner">No. Mike and the crew handle the entire build — design, permits, site prep, factory, crane set, finish work, all of it. You're welcome to come watch set day (honestly the best part to see), but you never need to be there managing anything. That's the whole point of having one builder run the job start to finish.</p>
++      </div>
++    </div>
+   </div>
+ </section>
+ 
+@@ -2655,6 +2713,7 @@
+       loading="lazy"
+     >
+     <div class="cta-img-overlay">
++      <img src="/logo-crest.png" class="cta-overlay-logo" alt="Biviano Modular Builders crest">
+       <span class="cta-tag">Begin Your Build</span>
+       <h2 class="cta-title" id="cta-heading">
+         Let's Build<br>Your <span class="em">Forever</span><br>Home.
+@@ -2740,6 +2799,7 @@
+   <div class="footer-inner">
+     <div class="footer-top">
+       <div>
++        <img src="/logo-crest.png" class="footer-logo-img" alt="Biviano Modular Builders crest">
+         <div class="footer-brand-name">Biviano</div>
+         <div class="footer-brand-sub">Modular Builders</div>
+         <p class="footer-tagline">Precision-built custom homes for Plymouth County families — delivered in 12 weeks, for 25% less, by a contractor family serving the South Shore since the 1960s.</p>
+@@ -2913,23 +2973,65 @@
+       const myConfetti = canvas
+         ? window.confetti.create(canvas, { resize: true, useWorker: true })
+         : window.confetti;
+-      const colors = ['#4A90C4', '#3A7EBF', '#BBA898', '#E8DDD5', '#FFFFFF'];
+-      const burst = (originX) => {
++      const colors = ['#4A90C4', '#3A7EBF', '#2C6AA8', '#BBA898', '#E8DDD5', '#D4AF37', '#F4D58D', '#FFFFFF'];
++
++      // Big center burst
++      const bigBurst = (originX, originY) => {
+         myConfetti({
+-          particleCount: 90,
+-          spread: 75,
+-          startVelocity: 38,
+-          ticks: 220,
+-          origin: { x: originX, y: 0.7 },
++          particleCount: 260,
++          spread: 110,
++          startVelocity: 62,
++          ticks: 320,
++          origin: { x: originX, y: originY },
+           colors,
+-          scalar: 0.95,
++          scalar: 1.15,
+           gravity: 0.9,
+           disableForReducedMotion: true
+         });
+       };
+-      burst(0.5);
+-      setTimeout(() => burst(0.25), 180);
+-      setTimeout(() => burst(0.75), 320);
++
++      // Side cannon — angled inward
++      const cannon = (originX, angle) => {
++        myConfetti({
++          particleCount: 160,
++          angle,
++          spread: 80,
++          startVelocity: 70,
++          ticks: 320,
++          origin: { x: originX, y: 0.75 },
++          colors,
++          scalar: 1.1,
++          gravity: 0.9,
++          disableForReducedMotion: true
++        });
++      };
++
++      // Wide "raining" curtain from the top
++      const rain = () => {
++        myConfetti({
++          particleCount: 200,
++          spread: 180,
++          startVelocity: 45,
++          ticks: 360,
++          origin: { x: 0.5, y: -0.1 },
++          colors,
++          scalar: 1.05,
++          gravity: 0.7,
++          drift: 0.4,
++          disableForReducedMotion: true
++        });
++      };
++
++      // Staggered "full load" over ~2.5s
++      cannon(0, 60);          // left cannon, up-right
++      cannon(1, 120);         // right cannon, up-left
++      bigBurst(0.5, 0.55);    // big center pop
++      setTimeout(() => { cannon(0, 60); cannon(1, 120); }, 250);
++      setTimeout(() => bigBurst(0.5, 0.6), 500);
++      setTimeout(rain, 700);
++      setTimeout(() => { bigBurst(0.3, 0.55); bigBurst(0.7, 0.55); }, 1100);
++      setTimeout(rain, 1500);
++      setTimeout(() => { cannon(0, 65); cannon(1, 115); bigBurst(0.5, 0.6); }, 2100);
+     }
+ 
+     const obs = new IntersectionObserver((entries) => {
+diff --git a/process/index.html b/process/index.html
+index 7936eba..7ed95d5 100644
+--- a/process/index.html
++++ b/process/index.html
+@@ -1201,7 +1201,7 @@
+     @media (max-width: 1100px) {
+       .timeline-track::before { left: 32px; }
+       .tl-step {
+-        grid-template-columns: 1fr;
++        grid-template-columns: minmax(0, 1fr);
+         grid-template-rows: auto auto;
+         padding-left: 88px;
+         position: relative;
+@@ -1266,19 +1266,41 @@
+        RESPONSIVE — SMALL (≤600px)
+     ───────────────────────────── */
+     @media (max-width: 600px) {
+-      .timeline-track::before { display: none; }
+-      .tl-step { padding-left: 0; }
++      .interior-hero h1 { font-size: clamp(40px, 12vw, 56px); }
++      /* Keep the single-column left-rail timeline (same as ≤1100px) so the
++         number bubbles stay attached to each card on a continuous line —
++         instead of floating as orphaned circles in empty space. */
++      .timeline-track { padding-left: 0; }
++      .timeline-track::before { left: 22px; }
++      .tl-step {
++        display: block;            /* drop the 3-col grid — it was forcing cards wider than the viewport */
++        position: relative;
++        padding-left: 60px;
++        padding-right: 4px;
++        margin-bottom: 56px;
++      }
++      .tl-step .tl-empty { display: none; }
++      .tl-card { min-width: 0; max-width: 100%; width: 100%; }
++      .tl-card-title, .tl-card-body, .tl-resp-text { overflow-wrap: anywhere; }
+       .tl-center {
+-        position: static;
+-        flex-direction: row;
++        position: absolute;
++        left: 0;
++        top: 0;
++        width: 44px;
++        flex-direction: column;
+         align-items: center;
+-        gap: 12px;
+-        margin-bottom: 16px;
+-        width: auto;
++        margin-bottom: 0;
++        z-index: 2;
+       }
+-      .tl-step-timing { margin-top: 0; }
+-      .tl-card { padding: 32px 24px; }
+-      .tl-card-ghost-num { font-size: 100px; }
++      .tl-bubble { width: 44px; height: 44px; font-size: 18px; }
++      .tl-step-timing { margin-top: 6px; font-size: 8px; }
++      .tl-card { padding: 28px 22px; }
++      .tl-card-ghost-num { font-size: 90px; top: -6px; right: -4px; }
++      .tl-step.right .tl-card-ghost-num { left: auto; right: -4px; }
++      /* Stack the responsibility label + text so neither gets clipped */
++      .tl-resp { flex-direction: column; gap: 6px; }
++      .tl-resp-label { white-space: normal; align-self: flex-start; }
++      .tl-card-title { font-size: 26px; }
+       .form-row { grid-template-columns: 1fr; }
+       .footer-top { grid-template-columns: 1fr; }
+       .footer-lic { font-size: 10px; }
