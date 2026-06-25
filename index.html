@@ -2721,6 +2721,94 @@
 <!-- ══════════════════════════════════════════
      SOCIAL PROOF / RECENT WORK
 ══════════════════════════════════════════ -->
+<!-- ══════════════════════════════════════════
+     VIDEO — See It Built
+══════════════════════════════════════════ -->
+<style>
+  .video-section { background: var(--coal); padding: 100px 56px; }
+  .video-inner { max-width: 1200px; margin: 0 auto; }
+  .video-header { margin-bottom: 48px; max-width: 720px; }
+  .video-header p { font-family: 'Outfit', sans-serif; font-weight: 300; font-size: 16px; line-height: 1.7; color: rgba(255,255,255,0.5); margin-top: 14px; }
+  .video-feature { display: grid; grid-template-columns: 300px 1fr; gap: 40px; align-items: center; margin-bottom: 56px; }
+  .v-frame { position: relative; border-radius: 14px; overflow: hidden; background: #000; box-shadow: 0 24px 60px rgba(0,0,0,0.45); }
+  .v-frame video { display: block; width: 100%; height: 100%; aspect-ratio: 9 / 16; object-fit: cover; background: #000; }
+  .video-feature .v-frame { max-width: 300px; }
+  .video-feature-copy .vf-tag { font-family: 'Outfit', sans-serif; font-size: 12px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--blue); }
+  .video-feature-copy h3 { font-family: 'Outfit', sans-serif; font-weight: 700; font-size: clamp(26px, 3.4vw, 40px); line-height: 1.1; color: var(--white); margin: 12px 0 16px; }
+  .video-feature-copy p { font-family: 'Outfit', sans-serif; font-weight: 300; font-size: 16px; line-height: 1.75; color: rgba(255,255,255,0.62); max-width: 520px; }
+  .video-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+  .v-card .v-frame { margin-bottom: 14px; }
+  .v-card .vc-title { font-family: 'Outfit', sans-serif; font-weight: 600; font-size: 15px; color: var(--white); }
+  .v-card .vc-sub { font-family: 'Outfit', sans-serif; font-weight: 300; font-size: 13px; color: rgba(255,255,255,0.42); margin-top: 3px; }
+  @media (max-width: 900px) {
+    .video-section { padding: 72px 24px; }
+    .video-feature { grid-template-columns: 1fr; gap: 24px; }
+    .video-feature .v-frame { max-width: 260px; margin: 0 auto; }
+    .video-grid { grid-template-columns: 1fr 1fr; gap: 18px; }
+  }
+</style>
+<section id="see-it-built" class="video-section" aria-label="Project videos">
+  <div class="video-inner">
+    <div class="video-header reveal">
+      <span class="overline overline-light">See It Built</span>
+      <h2 class="section-title" style="color: var(--white); margin-top: 8px;">Watch a Home <span class="em">Go Up.</span></h2>
+      <p>No renderings, no stock footage — real Biviano modular homes going up across the South Shore. This is what 12 weeks and 25% less actually looks like on your lot.</p>
+    </div>
+
+    <div class="video-feature reveal">
+      <div class="v-frame">
+        <video controls preload="none" playsinline muted poster="/photos/videos/set-4-hours.jpg">
+          <source src="/photos/videos/set-4-hours.mp4" type="video/mp4">
+        </video>
+      </div>
+      <div class="video-feature-copy">
+        <span class="vf-tag">The 4-Hour Set</span>
+        <h3>A full two-story home — set in one morning.</h3>
+        <p>"11:15am, all done." Foundation in the ground, then the crane sets the modules and the house is weather-tight the same day. Try getting that from a stick-built crew. This is the speed that protects your build from a New England winter.</p>
+      </div>
+    </div>
+
+    <div class="video-grid">
+      <div class="v-card reveal">
+        <div class="v-frame">
+          <video controls preload="none" playsinline muted poster="/photos/videos/modular-set-cribbing.jpg">
+            <source src="/photos/videos/modular-set-cribbing.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="vc-title">Setting the modules</div>
+        <div class="vc-sub">Crane day on site</div>
+      </div>
+      <div class="v-card reveal reveal-d1">
+        <div class="v-frame">
+          <video controls preload="none" playsinline muted poster="/photos/videos/modular-update-scituate.jpg">
+            <source src="/photos/videos/modular-update-scituate.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="vc-title">Build update — Scituate</div>
+        <div class="vc-sub">Custom modular in progress</div>
+      </div>
+      <div class="v-card reveal reveal-d2">
+        <div class="v-frame">
+          <video controls preload="none" playsinline muted poster="/photos/videos/modular-deck-kent-st.jpg">
+            <source src="/photos/videos/modular-deck-kent-st.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="vc-title">Modular + deck, Kent St</div>
+        <div class="vc-sub">Scituate, MA</div>
+      </div>
+      <div class="v-card reveal reveal-d3">
+        <div class="v-frame">
+          <video controls preload="none" playsinline muted poster="/photos/videos/modular-builders-intro.jpg">
+            <source src="/photos/videos/modular-builders-intro.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="vc-title">Meet Biviano Modular</div>
+        <div class="vc-sub">What we build &amp; why</div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section class="social-section" aria-label="Recent projects">
   <div class="social-inner">
     <div class="social-header reveal">
