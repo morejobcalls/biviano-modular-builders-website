@@ -1506,11 +1506,16 @@
       .compare-col { padding: 40px 28px; }
 
       .cta-section { grid-template-columns: 1fr; }
+      .cta-img-side, .cta-form-side { min-width: 0; }
       .cta-img-side { min-height: 0; }
       .cta-img-side > img { position: absolute; inset: 0; height: 100%; }
-      .cta-img-overlay { position: relative; justify-content: flex-start; padding: 104px 24px 44px; }
+      .cta-img-overlay { position: relative; min-width: 0; justify-content: flex-start; padding: 44px 24px; }
+      .cta-overlay-logo { position: static; height: 54px; margin-bottom: 18px; }
       .cta-title { font-size: clamp(38px, 9vw, 60px); }
-      .cta-overlay-logo { top: 28px; left: 24px; height: 56px; }
+      .cta-body { max-width: 100%; overflow-wrap: anywhere; }
+      .cta-contacts { flex-direction: column; align-items: flex-start; gap: 22px; }
+      .cta-divider { display: none; }
+      .cta-contact-val { font-size: 18px; word-break: break-word; }
       .cta-form-side { padding: 48px 24px; border-left: none; border-top: 1px solid var(--rule-dark); }
 
       footer { padding: 56px 24px 28px; }

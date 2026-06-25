@@ -107,6 +107,20 @@
   }
   </script>
 </head>
+<style id="mobile-cta-fix">
+@media (max-width: 900px) {
+  .cta-section { grid-template-columns: 1fr !important; }
+  .cta-img-side, .cta-form-side { min-width: 0 !important; }
+  .cta-img-side { min-height: 0 !important; }
+  .cta-img-side > img { position: absolute !important; inset: 0 !important; width: 100% !important; height: 100% !important; object-fit: cover !important; }
+  .cta-img-overlay { position: relative !important; min-width: 0 !important; justify-content: flex-start !important; padding: 44px 24px !important; }
+  .cta-overlay-logo { position: static !important; top: auto !important; left: auto !important; right: auto !important; height: 54px !important; margin-bottom: 18px !important; opacity: 1 !important; }
+  .cta-body { max-width: 100% !important; overflow-wrap: anywhere !important; }
+  .cta-contacts { flex-direction: column !important; align-items: flex-start !important; gap: 22px !important; }
+  .cta-divider { display: none !important; }
+  .cta-form-side { padding: 48px 24px !important; border-left: none !important; }
+}
+</style>
 <body>
 
 <!-- NAV -->
