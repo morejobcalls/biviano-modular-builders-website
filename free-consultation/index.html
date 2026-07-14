@@ -489,6 +489,54 @@
       .proof-chips { gap: 8px; }
       .proof-chip { font-size: 11px; padding: 9px 13px; }
     }
+
+    /* ═══════════════════════════════════════════
+       SURVEY (multi-step) + INLINE CALENDAR SWAP
+    ═══════════════════════════════════════════ */
+    .lp-hero-right { position: relative; }
+    .lp-survey-card { display: flex; flex-direction: column; min-height: 468px; }
+    .sv-top { margin-bottom: 26px; }
+    .sv-progress { height: 3px; background: rgba(255,255,255,0.10); overflow: hidden; }
+    .sv-progress-fill { display: block; height: 100%; width: 16.66%; background: var(--blue); transition: width 0.45s cubic-bezier(.4,0,.2,1); }
+    .sv-step-count { font-family: 'Outfit', sans-serif; font-size: 9px; font-weight: 400; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(255,255,255,0.32); margin-top: 11px; }
+    .sv-step { display: none; }
+    .sv-step.is-active { display: block; animation: svIn 0.34s ease; }
+    @keyframes svIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+    .sv-q { font-family: 'Bebas Neue', 'Bebas Fallback', sans-serif; font-size: 27px; letter-spacing: 0.03em; line-height: 1.06; color: var(--white); }
+    .sv-hint { font-family: 'Outfit', sans-serif; font-size: 12px; font-weight: 300; line-height: 1.5; color: rgba(255,255,255,0.42); margin-top: 8px; }
+    .sv-tiles { display: flex; flex-direction: column; gap: 10px; margin-top: 22px; }
+    .sv-tiles-2col { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .sv-tile {
+      text-align: left; background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.16); color: rgba(255,255,255,0.85);
+      font-family: 'Outfit', sans-serif; font-size: 14px; font-weight: 400;
+      padding: 15px 16px; cursor: pointer; border-radius: 0;
+      transition: border-color 0.2s ease, background 0.2s ease, transform 0.2s ease;
+      display: flex; justify-content: space-between; align-items: center; gap: 10px;
+    }
+    .sv-tile::after { content: '→'; font-family: 'Bebas Neue', 'Bebas Fallback', sans-serif; color: var(--blue); opacity: 0; transition: opacity 0.2s ease; }
+    .sv-tile:hover { border-color: var(--blue); background: rgba(74,144,196,0.10); transform: translateX(2px); }
+    .sv-tile:hover::after { opacity: 1; }
+    .sv-tile.is-selected { border-color: var(--blue); background: rgba(74,144,196,0.16); }
+    .sv-tiles-2col .sv-tile { padding: 14px 14px; font-size: 13px; }
+    .sv-back { align-self: flex-start; margin-top: 22px; background: none; border: none; color: rgba(255,255,255,0.4); font-family: 'Outfit', sans-serif; font-size: 12px; font-weight: 300; letter-spacing: 0.05em; cursor: pointer; padding: 6px 0; transition: color 0.2s ease; }
+    .sv-back:hover { color: var(--blue); }
+    /* contact step reuses .form-group/.form-input/.form-submit from the base design system */
+
+    /* Inline calendar swap card */
+    .lp-cal-card { background: var(--coal-mid); border: 1px solid var(--rule-dark); box-shadow: 0 30px 80px rgba(0,0,0,0.5); overflow: hidden; min-height: 468px; }
+    .cal-loading { padding: 70px 34px; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 18px; }
+    .cal-spinner { width: 42px; height: 42px; border: 3px solid rgba(74,144,196,0.2); border-top-color: var(--blue); border-radius: 50%; animation: calspin 0.8s linear infinite; }
+    @keyframes calspin { to { transform: rotate(360deg); } }
+    .cal-load-title { font-family: 'Bebas Neue', 'Bebas Fallback', sans-serif; font-size: 28px; letter-spacing: 0.03em; color: var(--white); line-height: 1.05; }
+    .cal-load-sub { font-family: 'Outfit', sans-serif; font-size: 13px; font-weight: 300; color: rgba(255,255,255,0.5); max-width: 300px; line-height: 1.6; }
+    .cal-embed-wrap { display: none; }
+    .cal-embed-wrap.show { display: block; }
+    .cal-embed-wrap iframe { width: 100%; min-height: 700px; border: none; display: block; }
+    @media (max-width: 900px) {
+      .sv-tiles-2col { grid-template-columns: 1fr 1fr; }
+      .lp-survey-card, .lp-cal-card { min-height: 0; }
+    }
   </style>
 </head>
 <body>
@@ -536,125 +584,129 @@
       </a>
     </div>
 
-    <!-- FORM CARD -->
-    <div class="lp-form-card" id="lp-form">
-      <div class="lp-form-hd">Start your free consultation</div>
-      <p class="lp-form-reassure">No obligation. Mike personally reviews every request.</p>
+    <!-- SURVEY + INLINE CALENDAR (right column) -->
+    <div class="lp-hero-right">
 
-      <form id="lp-consult-form" name="bmb-free-consult" novalidate
-            onsubmit="return submitLpForm(event);" aria-label="Free consultation request">
-
-        <div class="form-group">
-          <label class="form-label" for="f_full_name">Full Name</label>
-          <input type="text" id="f_full_name" name="full_name" class="form-input" placeholder="John Smith" required autocomplete="name">
-          <div class="form-err" id="e_full_name">Please enter your name.</div>
+      <!-- SURVEY CARD -->
+      <div class="lp-form-card lp-survey-card" id="lp-form">
+        <div class="sv-top">
+          <div class="sv-progress"><span class="sv-progress-fill" id="sv-fill"></span></div>
+          <div class="sv-step-count">Step <span id="sv-cur">1</span> of 6</div>
         </div>
 
-        <div class="form-row">
-          <div class="form-group">
-            <label class="form-label" for="f_phone">Phone</label>
-            <input type="tel" id="f_phone" name="phone" class="form-input" placeholder="(781) 555-0000"
-                   required autocomplete="tel" inputmode="tel" maxlength="18"
-                   oninput="formatPhone(this);">
-            <div class="form-err" id="e_phone">Enter a valid 10-digit US phone.</div>
+        <form id="lp-consult-form" name="bmb-free-consult" novalidate
+              onsubmit="return submitLpForm(event);" aria-label="Free consultation request">
+
+          <!-- STEP 1 -->
+          <div class="sv-step is-active" data-step="1">
+            <div class="sv-q">What are you looking to build?</div>
+            <div class="sv-tiles">
+              <button type="button" class="sv-tile" data-f="project_type" data-v="New custom modular home">New custom modular home</button>
+              <button type="button" class="sv-tile" data-f="project_type" data-v="ADU / in-law suite">ADU / in-law suite</button>
+              <button type="button" class="sv-tile" data-f="project_type" data-v="Teardown &amp; rebuild">Teardown &amp; rebuild</button>
+              <button type="button" class="sv-tile" data-f="project_type" data-v="Not sure yet">Not sure yet</button>
+            </div>
           </div>
-          <div class="form-group">
-            <label class="form-label" for="f_email">Email</label>
-            <input type="email" id="f_email" name="email" class="form-input" placeholder="john@email.com" required autocomplete="email">
-            <div class="form-err" id="e_email">Enter a valid email address.</div>
+
+          <!-- STEP 2 -->
+          <div class="sv-step" data-step="2">
+            <div class="sv-q">Do you own the lot?</div>
+            <div class="sv-tiles">
+              <button type="button" class="sv-tile" data-f="land_status" data-v="Yes, I own it">Yes, I own it</button>
+              <button type="button" class="sv-tile" data-f="land_status" data-v="Under agreement / in contract">Under agreement / in contract</button>
+              <button type="button" class="sv-tile" data-f="land_status" data-v="Still looking">Still looking for land</button>
+            </div>
           </div>
+
+          <!-- STEP 3 -->
+          <div class="sv-step" data-step="3">
+            <div class="sv-q">When do you want to break ground?</div>
+            <div class="sv-tiles">
+              <button type="button" class="sv-tile" data-f="timeline" data-v="Ready now (0-6 mo)">Ready now (0&ndash;6 months)</button>
+              <button type="button" class="sv-tile" data-f="timeline" data-v="6-12 months">6&ndash;12 months</button>
+              <button type="button" class="sv-tile" data-f="timeline" data-v="12+ months">12+ months</button>
+              <button type="button" class="sv-tile" data-f="timeline" data-v="Just exploring">Just exploring</button>
+            </div>
+          </div>
+
+          <!-- STEP 4 -->
+          <div class="sv-step" data-step="4">
+            <div class="sv-q">Ballpark budget?</div>
+            <div class="sv-hint">Your consultation includes an exact number &mdash; this just helps Mike prep for your call.</div>
+            <div class="sv-tiles">
+              <button type="button" class="sv-tile" data-f="budget" data-v="Under $300K">Under $300K</button>
+              <button type="button" class="sv-tile" data-f="budget" data-v="$300K-$500K">$300K &ndash; $500K</button>
+              <button type="button" class="sv-tile" data-f="budget" data-v="$500K-$750K">$500K &ndash; $750K</button>
+              <button type="button" class="sv-tile" data-f="budget" data-v="$750K+">$750K+</button>
+              <button type="button" class="sv-tile" data-f="budget" data-v="Not sure yet">Not sure yet</button>
+            </div>
+          </div>
+
+          <!-- STEP 5 -->
+          <div class="sv-step" data-step="5">
+            <div class="sv-q">Which town is the project in?</div>
+            <div class="sv-tiles sv-tiles-2col">
+              <button type="button" class="sv-tile" data-f="town" data-v="Marshfield">Marshfield</button>
+              <button type="button" class="sv-tile" data-f="town" data-v="Scituate">Scituate</button>
+              <button type="button" class="sv-tile" data-f="town" data-v="Duxbury">Duxbury</button>
+              <button type="button" class="sv-tile" data-f="town" data-v="Pembroke">Pembroke</button>
+              <button type="button" class="sv-tile" data-f="town" data-v="Norwell">Norwell</button>
+              <button type="button" class="sv-tile" data-f="town" data-v="Hanover">Hanover</button>
+              <button type="button" class="sv-tile" data-f="town" data-v="Hingham">Hingham</button>
+              <button type="button" class="sv-tile" data-f="town" data-v="Humarock">Humarock</button>
+              <button type="button" class="sv-tile" data-f="town" data-v="Other Plymouth County">Other Plymouth Co.</button>
+            </div>
+          </div>
+
+          <!-- STEP 6 — contact -->
+          <div class="sv-step" data-step="6">
+            <div class="sv-q">Last step &mdash; where should Mike send your consultation details?</div>
+            <div class="sv-hint">Then you&rsquo;ll pick a time on the next screen.</div>
+            <div class="form-group" style="margin-top:20px;">
+              <label class="form-label" for="f_full_name">Full Name</label>
+              <input type="text" id="f_full_name" name="full_name" class="form-input" placeholder="John Smith" autocomplete="name">
+              <div class="form-err" id="e_full_name">Please enter your name.</div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label" for="f_phone">Phone</label>
+                <input type="tel" id="f_phone" name="phone" class="form-input" placeholder="(781) 555-0000"
+                       autocomplete="tel" inputmode="tel" maxlength="18" oninput="formatPhone(this);">
+                <div class="form-err" id="e_phone">Enter a valid 10-digit US phone.</div>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="f_email">Email</label>
+                <input type="email" id="f_email" name="email" class="form-input" placeholder="john@email.com" autocomplete="email">
+                <div class="form-err" id="e_email">Enter a valid email address.</div>
+              </div>
+            </div>
+            <button type="submit" class="form-submit" id="lp-submit-btn">See My Consultation Times &rarr;</button>
+            <p class="form-privacy">No spam. No pressure. One builder. Your dream home.</p>
+          </div>
+
+          <!-- HIDDEN: gclid / click-id / utm capture -->
+          <input type="hidden" name="gclid"        id="f_gclid">
+          <input type="hidden" name="gbraid"       id="f_gbraid">
+          <input type="hidden" name="wbraid"       id="f_wbraid">
+          <input type="hidden" name="utm_source"   id="f_utm_source">
+          <input type="hidden" name="utm_medium"   id="f_utm_medium">
+          <input type="hidden" name="utm_campaign" id="f_utm_campaign">
+          <input type="hidden" name="utm_term"     id="f_utm_term">
+          <input type="hidden" name="utm_content"  id="f_utm_content">
+        </form>
+
+        <button type="button" class="sv-back" id="sv-back" style="display:none;">&larr; Back</button>
+      </div>
+
+      <!-- INLINE CALENDAR (revealed on submit) -->
+      <div class="lp-cal-card" id="lp-cal-card" style="display:none;">
+        <div class="cal-loading" id="cal-loading">
+          <div class="cal-spinner"></div>
+          <div class="cal-load-title">Perfect &mdash; you&rsquo;re all set.</div>
+          <div class="cal-load-sub" id="cal-load-sub">Pulling up Mike&rsquo;s next available consultation times&hellip;</div>
         </div>
-
-        <div class="form-row">
-          <div class="form-group">
-            <label class="form-label" for="f_town">Town</label>
-            <select id="f_town" name="town" class="form-select" required>
-              <option value="">Select town…</option>
-              <option>Marshfield</option>
-              <option>Scituate</option>
-              <option>Duxbury</option>
-              <option>Pembroke</option>
-              <option>Norwell</option>
-              <option>Hanover</option>
-              <option>Hingham</option>
-              <option>Humarock</option>
-              <option>Other Plymouth County</option>
-            </select>
-            <div class="form-err" id="e_town">Please select your town.</div>
-          </div>
-          <div class="form-group">
-            <label class="form-label" for="f_land">Do you own the land?</label>
-            <select id="f_land" name="land_status" class="form-select" required>
-              <option value="">Select…</option>
-              <option>Yes, I own it</option>
-              <option>Under agreement / in contract</option>
-              <option>Still looking</option>
-            </select>
-            <div class="form-err" id="e_land">Please select an option.</div>
-          </div>
-        </div>
-
-        <div class="form-row">
-          <div class="form-group">
-            <label class="form-label" for="f_timeline">Timeline</label>
-            <select id="f_timeline" name="timeline" class="form-select" required>
-              <option value="">Select…</option>
-              <option>0–6 months</option>
-              <option>6–12 months</option>
-              <option>12+ months</option>
-            </select>
-            <div class="form-err" id="e_timeline">Please select a timeline.</div>
-          </div>
-          <div class="form-group">
-            <label class="form-label" for="f_project_type">Project type</label>
-            <select id="f_project_type" name="project_type" class="form-select" required>
-              <option value="">Select…</option>
-              <option>New custom home</option>
-              <option>ADU / in-law suite</option>
-              <option>Not sure yet</option>
-            </select>
-            <div class="form-err" id="e_project_type">Please select a project type.</div>
-          </div>
-        </div>
-
-        <div class="form-row">
-          <div class="form-group">
-            <label class="form-label" for="f_home_size">Approx. home size</label>
-            <select id="f_home_size" name="home_size" class="form-select">
-              <option value="">Optional…</option>
-              <option>Under 1,500 sq ft</option>
-              <option>1,500–2,500 sq ft</option>
-              <option>2,500–3,500 sq ft</option>
-              <option>3,500+ sq ft</option>
-              <option>Not sure</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label class="form-label" for="f_budget">Budget range</label>
-            <select id="f_budget" name="budget" class="form-select">
-              <option value="">Optional…</option>
-              <option>Under $500K</option>
-              <option>$500K–$750K</option>
-              <option>$750K–$1M</option>
-              <option>$1M+</option>
-              <option>Not sure yet</option>
-            </select>
-          </div>
-        </div>
-
-        <!-- HIDDEN: gclid / click-id / utm capture -->
-        <input type="hidden" name="gclid"        id="f_gclid">
-        <input type="hidden" name="gbraid"       id="f_gbraid">
-        <input type="hidden" name="wbraid"       id="f_wbraid">
-        <input type="hidden" name="utm_source"   id="f_utm_source">
-        <input type="hidden" name="utm_medium"   id="f_utm_medium">
-        <input type="hidden" name="utm_campaign" id="f_utm_campaign">
-        <input type="hidden" name="utm_term"     id="f_utm_term">
-        <input type="hidden" name="utm_content"  id="f_utm_content">
-
-        <button type="submit" class="form-submit" id="lp-submit-btn">Get My Free Consultation →</button>
-        <p class="form-privacy">No spam. No pressure. One builder. Your dream home.</p>
-      </form>
+        <div class="cal-embed-wrap" id="cal-embed-wrap"></div>
+      </div>
     </div>
   </div>
 </section>
@@ -886,6 +938,7 @@
   /* ───── Conversion event helpers (GHL-safe global functions) ───── */
 
   // LEAD — fire on successful LP submit. Pass RAW email/phone for Enhanced Conversions.
+  // Value aligned to the Google Ads account conversion value (LP Lead = $300, set 2026-07-02).
   function fireLeadConversion(email, phone){
     gtag('set', 'user_data', {
       'email': (email || '').trim().toLowerCase(),
@@ -893,17 +946,18 @@
     });
     gtag('event', 'conversion', {
       'send_to': 'AW-16742219835/yisSCKuX9rscELuAqK8-',
-      'value': 30.0,
+      'value': 300.0,
       'currency': 'USD'
     });
-    gtag('event', 'generate_lead', { 'currency': 'USD', 'value': 30.0 });
+    gtag('event', 'generate_lead', { 'currency': 'USD', 'value': 300.0 });
   }
 
   // PHONE — fire on every click-to-call tap (inline onclick="return firePhoneConversion();")
+  // Value aligned to account (Phone Call = $500, Secondary).
   function firePhoneConversion(){
     gtag('event', 'conversion', {
       'send_to': 'AW-16742219835/xcCUCKrE97scELuAqK8-',
-      'value': 30.0,
+      'value': 500.0,
       'currency': 'USD'
     });
     return true; // allow the tel: navigation to proceed
@@ -953,105 +1007,184 @@
     if (err) err.classList.toggle('show', on);
   }
 
-  /* ───── SUBMIT: validate → fire Lead → POST to GHL (no-cors) → redirect ───── */
+  /* ───── SURVEY NAV: tiles auto-advance, progress bar, back ───── */
+  var svData = {};
+  var svStep = 1;
+  var SV_TOTAL = 6;
+
+  function svGo(n){
+    svStep = Math.max(1, Math.min(SV_TOTAL, n));
+    document.querySelectorAll('.sv-step').forEach(function(s){
+      s.classList.toggle('is-active', parseInt(s.getAttribute('data-step'),10) === svStep);
+    });
+    var fill = document.getElementById('sv-fill');
+    if (fill) fill.style.width = (svStep / SV_TOTAL * 100) + '%';
+    var cur = document.getElementById('sv-cur'); if (cur) cur.textContent = svStep;
+    var back = document.getElementById('sv-back'); if (back) back.style.display = svStep > 1 ? 'block' : 'none';
+    if (svStep === SV_TOTAL) {
+      var fn = document.getElementById('f_full_name');
+      if (fn) setTimeout(function(){ fn.focus(); }, 340);
+    }
+  }
+
+  document.querySelectorAll('.sv-tile').forEach(function(t){
+    t.addEventListener('click', function(){
+      var f = t.getAttribute('data-f'), v = t.getAttribute('data-v');
+      svData[f] = v;
+      var grp = t.parentElement;
+      grp.querySelectorAll('.sv-tile').forEach(function(x){ x.classList.remove('is-selected'); });
+      t.classList.add('is-selected');
+      setTimeout(function(){ svGo(svStep + 1); }, 170);
+    });
+  });
+  (function(){ var b = document.getElementById('sv-back'); if (b) b.addEventListener('click', function(){ svGo(svStep - 1); }); })();
+
+  /* ───── SUBMIT: validate contact → fire Lead → POST discrete fields to GHL → inline calendar swap ───── */
   function submitLpForm(e){
     e.preventDefault();
     var form = document.getElementById('lp-consult-form');
 
-    // --- validation gates ---
     var ok = true;
     var nameV  = (form.full_name.value || '').trim();
     var phoneE = toE164(form.phone.value);
     var emailV = (form.email.value || '').trim();
+    var nameBad = nameV.length < 2;   showErr('f_full_name','e_full_name', nameBad); if(nameBad) ok=false;
+    var phoneBad = !phoneE;           showErr('f_phone','e_phone', phoneBad);         if(phoneBad) ok=false;
+    var emailBad = !isEmail(emailV);  showErr('f_email','e_email', emailBad);         if(emailBad) ok=false;
+    if (!ok) { var fb = form.querySelector('.invalid'); if (fb) fb.focus(); return false; }
 
-    var nameBad = nameV.length < 2;             showErr('f_full_name','e_full_name', nameBad);     if(nameBad) ok=false;
-    var phoneBad = !phoneE;                       showErr('f_phone','e_phone', phoneBad);             if(phoneBad) ok=false;
-    var emailBad = !isEmail(emailV);              showErr('f_email','e_email', emailBad);             if(emailBad) ok=false;
-    var townBad = !form.town.value;               showErr('f_town','e_town', townBad);                if(townBad) ok=false;
-    var landBad = !form.land_status.value;        showErr('f_land','e_land', landBad);                if(landBad) ok=false;
-    var tlBad = !form.timeline.value;             showErr('f_timeline','e_timeline', tlBad);          if(tlBad) ok=false;
-    var ptBad = !form.project_type.value;         showErr('f_project_type','e_project_type', ptBad);  if(ptBad) ok=false;
-
-    if (!ok) {
-      var firstBad = form.querySelector('.invalid');
-      if (firstBad) firstBad.focus();
-      return false;
-    }
-
-    // --- split name → first / last ---
     var parts = nameV.split(/\s+/);
     var firstName = parts.shift();
     var lastName  = parts.join(' ') || firstName;
 
-    // --- concatenate qualifiers + utm into project description / source ---
     var utmStr = ['utm_source','utm_medium','utm_campaign','utm_term','utm_content']
       .map(function(k){ var v = form[k] && form[k].value; return v ? k+'='+v : ''; })
       .filter(Boolean).join(' | ');
 
+    // Human-readable summary (kept for the SMS/notification) — BUT every answer is ALSO
+    // sent as its own discrete key below so the GHL workflow can map to bmb_* fields.
     var desc =
-      'Land: ' + form.land_status.value +
-      ' | Timeline: ' + form.timeline.value +
-      ' | Project: ' + form.project_type.value +
-      ' | Budget: ' + (form.budget.value || 'Not specified') +
+      'Land: ' + (svData.land_status || '') +
+      ' | Timeline: ' + (svData.timeline || '') +
+      ' | Project: ' + (svData.project_type || '') +
+      ' | Budget: ' + (svData.budget || 'Not specified') +
       (utmStr ? ' || ' + utmStr : '');
 
     var gclid = form.gclid.value || '';
 
-    // FLAT payload — sent as x-www-form-urlencoded. GHL's webhook rejects
-    // text/plain bodies and no-cors forbids application/json (the old nested
-    // JSON version never reached GHL from a browser — verified 2026-06-10).
-    // Workflow mappings must reference these flat keys.
+    // FLAT payload, x-www-form-urlencoded. DISCRETE survey keys added (project_type,
+    // land_status, timeline, budget, town) → map each to its bmb_* field in the workflow.
     var payload = {
       first_name: firstName,
       last_name: lastName,
       full_name: nameV,
       email: emailV,
       phone: phoneE,
-      home_size: form.home_size.value || '',
-      town: form.town.value,
+      project_type: svData.project_type || '',
+      land_status:  svData.land_status  || '',
+      timeline:     svData.timeline     || '',
+      budget:       svData.budget       || '',
+      town:         svData.town         || '',
       project_description: desc,
       bmb_source: form.utm_source.value || 'google-ads',
       gclid: gclid,
-      source: 'BMB Free Consult LP',
+      gbraid: form.gbraid.value || '',
+      wbraid: form.wbraid.value || '',
+      utm_source: form.utm_source.value || '',
+      utm_medium: form.utm_medium.value || '',
+      utm_campaign: form.utm_campaign.value || '',
+      utm_term: form.utm_term.value || '',
+      utm_content: form.utm_content.value || '',
+      source: 'BMB Free Consult LP (Survey)',
       tags: 'bmb-website,consultation-request,google-paid,modular-lp'
     };
 
-    // --- persist identifiers for downstream Enhanced Conversions + offline import
-    //     (booking-confirmed reads these from localStorage, NOT the URL — no PII in querystring) ---
     try {
       if (gclid) localStorage.setItem('bmb_gclid', gclid);
       if (emailV) localStorage.setItem('bmb_email', emailV);
       if (phoneE) localStorage.setItem('bmb_phone', phoneE);
     } catch(e){}
 
-    // --- 1) fire Lead conversion (optimistic — no-cors response is opaque) ---
     try { fireLeadConversion(emailV, phoneE); } catch(err){}
 
-    // --- 2) POST to GHL webhook (no-cors) ---
     var btn = document.getElementById('lp-submit-btn');
-    if (btn) { btn.disabled = true; btn.textContent = 'Sending…'; }
+    if (btn) { btn.disabled = true; btn.textContent = 'One sec…'; }
 
-    var redirect = function(){
-      var url = '/thank-you/';
-      if (gclid) url += '?gclid=' + encodeURIComponent(gclid);
-      window.location.href = url;
-    };
-
+    // POST to GHL (fire-and-forget, keepalive so it survives the swap), then inline calendar.
     try {
       fetch('https://services.leadconnectorhq.com/hooks/zPo4vLlEjjXCflgDSXlI/webhook-trigger/0eba93d2-0fb2-4770-9af2-4e912dc84502', {
         method: 'POST',
         mode: 'no-cors',
+        keepalive: true,
         headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' },
         body: new URLSearchParams(payload).toString()
-      }).then(redirect).catch(redirect);
-    } catch(err) {
-      redirect();
-    }
+      });
+    } catch(err) {}
 
-    // safety: redirect even if fetch never resolves
-    setTimeout(redirect, 1500);
+    showCalendar(firstName, lastName, emailV, phoneE);
     return false;
   }
+
+  /* ───── INLINE CALENDAR SWAP — hide survey, reveal pre-filled "Modular — Free Consultation" cal ───── */
+  function showCalendar(first, last, email, phone){
+    var survey = document.getElementById('lp-form');
+    var cal    = document.getElementById('lp-cal-card');
+    if (survey) survey.style.display = 'none';
+    if (cal) cal.style.display = 'block';
+
+    // Pre-fill the GHL booking widget via URL params (name/email/phone).
+    var u = new URL('https://api.leadconnectorhq.com/widget/booking/Etmy63E6UqSrqYIvahIN');
+    if (first) u.searchParams.set('first_name', first);
+    if (last)  u.searchParams.set('last_name', last);
+    if (email) u.searchParams.set('email', email);
+    if (phone) u.searchParams.set('phone', phone);
+
+    // Scroll the calendar into view.
+    if (cal) {
+      var offset = (window.innerWidth <= 900) ? 64 : 88;
+      var top = cal.getBoundingClientRect().top + window.scrollY - offset - 12;
+      window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
+    }
+
+    // After a short "checking availability" beat, inject the iframe + GHL embed script.
+    setTimeout(function(){
+      var wrap = document.getElementById('cal-embed-wrap');
+      if (wrap) {
+        var ifr = document.createElement('iframe');
+        ifr.src = u.toString();
+        ifr.id = 'Etmy63E6UqSrqYIvahIN_survey';
+        ifr.setAttribute('scrolling', 'no');
+        ifr.title = 'Book your Modular Home Design Consultation';
+        wrap.appendChild(ifr);
+        var s = document.createElement('script');
+        s.src = 'https://link.msgsndr.com/js/form_embed.js'; s.async = true;
+        document.body.appendChild(s);
+        var load = document.getElementById('cal-loading'); if (load) load.style.display = 'none';
+        wrap.classList.add('show');
+      }
+    }, 1600);
+  }
+
+  /* ───── BOOKED safety-net: if the embedded widget posts a "booked" message, fire Booked Consult.
+     Authoritative fire = /booking-confirmed/ (calendar's post-book redirect). Value aligned to
+     account ($3000). Deduped so it can't double-count with the confirmation page. ───── */
+  window.addEventListener('message', function(ev){
+    try {
+      var d = ev.data;
+      var str = (typeof d === 'string') ? d : JSON.stringify(d || '');
+      if (/appointment|booked|booking/i.test(str) && !window.__bmbBookedFired) {
+        window.__bmbBookedFired = true;
+        var g = '';
+        try { g = localStorage.getItem('bmb_gclid') || ''; } catch(e){}
+        gtag('event', 'conversion', {
+          'send_to': 'AW-16742219835/EiYqCPbT9rscELuAqK8-',
+          'value': 3000.0, 'currency': 'USD', 'transaction_id': g
+        });
+        gtag('event', 'booked_consult', { 'value': 3000.0, 'currency': 'USD' });
+      }
+    } catch(e){}
+  });
+
 </script>
 
 <script>
