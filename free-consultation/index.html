@@ -501,6 +501,15 @@
     .sv-step-count { font-family: 'Outfit', sans-serif; font-size: 9px; font-weight: 400; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(255,255,255,0.32); margin-top: 11px; }
     .sv-step { display: none; }
     .sv-step.is-active { display: block; animation: svIn 0.34s ease; }
+
+    /* post-lead enrichment block (inside the calendar card, above the embed) */
+    .sv-enrich { padding: 20px 22px 4px; animation: svIn 0.34s ease; }
+    .sv-enrich-head { font-family: 'Outfit', sans-serif; font-size: 13px; font-weight: 500;
+                      color: rgba(255,255,255,0.62); line-height: 1.5; margin-bottom: 18px; }
+    .sv-enrich-q { margin-bottom: 18px; }
+    .sv-q-sm { font-size: 15px; margin-bottom: 9px; }
+    .sv-tile-sm { padding: 9px 13px; font-size: 13px; }
+    @media (max-width: 900px) { .sv-enrich { padding: 16px 16px 2px; } }
     @keyframes svIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
     .sv-q { font-family: 'Bebas Neue', 'Bebas Fallback', sans-serif; font-size: 27px; letter-spacing: 0.03em; line-height: 1.06; color: var(--white); }
     .sv-hint { font-family: 'Outfit', sans-serif; font-size: 12px; font-weight: 300; line-height: 1.5; color: rgba(255,255,255,0.42); margin-top: 8px; }
@@ -591,7 +600,7 @@
       <div class="lp-form-card lp-survey-card" id="lp-form">
         <div class="sv-top">
           <div class="sv-progress"><span class="sv-progress-fill" id="sv-fill"></span></div>
-          <div class="sv-step-count">Step <span id="sv-cur">1</span> of 6</div>
+          <div class="sv-step-count">Step <span id="sv-cur">1</span> of 3</div>
         </div>
 
         <form id="lp-consult-form" name="bmb-free-consult" novalidate
@@ -610,16 +619,6 @@
 
           <!-- STEP 2 -->
           <div class="sv-step" data-step="2">
-            <div class="sv-q">Do you own the lot?</div>
-            <div class="sv-tiles">
-              <button type="button" class="sv-tile" data-f="land_status" data-v="Yes, I own it">Yes, I own it</button>
-              <button type="button" class="sv-tile" data-f="land_status" data-v="Under agreement / in contract">Under agreement / in contract</button>
-              <button type="button" class="sv-tile" data-f="land_status" data-v="Still looking">Still looking for land</button>
-            </div>
-          </div>
-
-          <!-- STEP 3 -->
-          <div class="sv-step" data-step="3">
             <div class="sv-q">When do you want to break ground?</div>
             <div class="sv-tiles">
               <button type="button" class="sv-tile" data-f="timeline" data-v="Ready now (0-6 mo)">Ready now (0&ndash;6 months)</button>
@@ -629,37 +628,8 @@
             </div>
           </div>
 
-          <!-- STEP 4 -->
-          <div class="sv-step" data-step="4">
-            <div class="sv-q">Ballpark budget?</div>
-            <div class="sv-hint">Your consultation includes an exact number &mdash; this just helps Mike prep for your call.</div>
-            <div class="sv-tiles">
-              <button type="button" class="sv-tile" data-f="budget" data-v="Under $300K">Under $300K</button>
-              <button type="button" class="sv-tile" data-f="budget" data-v="$300K-$500K">$300K &ndash; $500K</button>
-              <button type="button" class="sv-tile" data-f="budget" data-v="$500K-$750K">$500K &ndash; $750K</button>
-              <button type="button" class="sv-tile" data-f="budget" data-v="$750K+">$750K+</button>
-              <button type="button" class="sv-tile" data-f="budget" data-v="Not sure yet">Not sure yet</button>
-            </div>
-          </div>
-
-          <!-- STEP 5 -->
-          <div class="sv-step" data-step="5">
-            <div class="sv-q">Which town is the project in?</div>
-            <div class="sv-tiles sv-tiles-2col">
-              <button type="button" class="sv-tile" data-f="town" data-v="Marshfield">Marshfield</button>
-              <button type="button" class="sv-tile" data-f="town" data-v="Scituate">Scituate</button>
-              <button type="button" class="sv-tile" data-f="town" data-v="Duxbury">Duxbury</button>
-              <button type="button" class="sv-tile" data-f="town" data-v="Pembroke">Pembroke</button>
-              <button type="button" class="sv-tile" data-f="town" data-v="Norwell">Norwell</button>
-              <button type="button" class="sv-tile" data-f="town" data-v="Hanover">Hanover</button>
-              <button type="button" class="sv-tile" data-f="town" data-v="Hingham">Hingham</button>
-              <button type="button" class="sv-tile" data-f="town" data-v="Humarock">Humarock</button>
-              <button type="button" class="sv-tile" data-f="town" data-v="Other Plymouth County">Other Plymouth Co.</button>
-            </div>
-          </div>
-
-          <!-- STEP 6 — contact -->
-          <div class="sv-step" data-step="6">
+          <!-- STEP 3 — contact (LEAD FIRES HERE) -->
+          <div class="sv-step" data-step="3">
             <div class="sv-q">Last step &mdash; where should Mike send your consultation details?</div>
             <div class="sv-hint">Then you&rsquo;ll pick a time on the next screen.</div>
             <div class="form-group" style="margin-top:20px;">
@@ -705,6 +675,50 @@
           <div class="cal-load-title">Perfect &mdash; you&rsquo;re all set.</div>
           <div class="cal-load-sub" id="cal-load-sub">Pulling up Mike&rsquo;s next available consultation times&hellip;</div>
         </div>
+        <!-- POST-LEAD ENRICHMENT — the 3 qualifiers that used to gate the lead.
+             Asked AFTER the lead has already fired, so an abandon here costs nothing.
+             Each answer still maps to its bmb_* field via a second webhook POST
+             (lead_stage=enrich) that GHL upserts onto the same contact. -->
+        <div class="sv-enrich" id="sv-enrich" style="display:none;">
+          <div class="sv-enrich-head">While we pull up times &mdash; 3 quick things so Mike can prep for your call.</div>
+
+          <div class="sv-enrich-q">
+            <div class="sv-q sv-q-sm">Do you own the lot?</div>
+            <div class="sv-tiles">
+              <button type="button" class="sv-tile sv-tile-sm" data-ef="land_status" data-v="Yes, I own it">Yes, I own it</button>
+              <button type="button" class="sv-tile sv-tile-sm" data-ef="land_status" data-v="Under agreement / in contract">Under agreement / in contract</button>
+              <button type="button" class="sv-tile sv-tile-sm" data-ef="land_status" data-v="Still looking">Still looking for land</button>
+            </div>
+          </div>
+
+          <div class="sv-enrich-q">
+            <div class="sv-q sv-q-sm">Ballpark budget?</div>
+            <div class="sv-hint">Your consultation includes an exact number &mdash; this just helps Mike prep.</div>
+            <div class="sv-tiles">
+              <button type="button" class="sv-tile sv-tile-sm" data-ef="budget" data-v="Under $300K">Under $300K</button>
+              <button type="button" class="sv-tile sv-tile-sm" data-ef="budget" data-v="$300K-$500K">$300K &ndash; $500K</button>
+              <button type="button" class="sv-tile sv-tile-sm" data-ef="budget" data-v="$500K-$750K">$500K &ndash; $750K</button>
+              <button type="button" class="sv-tile sv-tile-sm" data-ef="budget" data-v="$750K+">$750K+</button>
+              <button type="button" class="sv-tile sv-tile-sm" data-ef="budget" data-v="Not sure yet">Not sure yet</button>
+            </div>
+          </div>
+
+          <div class="sv-enrich-q">
+            <div class="sv-q sv-q-sm">Which town is the project in?</div>
+            <div class="sv-tiles sv-tiles-2col">
+              <button type="button" class="sv-tile sv-tile-sm" data-ef="town" data-v="Marshfield">Marshfield</button>
+              <button type="button" class="sv-tile sv-tile-sm" data-ef="town" data-v="Scituate">Scituate</button>
+              <button type="button" class="sv-tile sv-tile-sm" data-ef="town" data-v="Duxbury">Duxbury</button>
+              <button type="button" class="sv-tile sv-tile-sm" data-ef="town" data-v="Pembroke">Pembroke</button>
+              <button type="button" class="sv-tile sv-tile-sm" data-ef="town" data-v="Norwell">Norwell</button>
+              <button type="button" class="sv-tile sv-tile-sm" data-ef="town" data-v="Hanover">Hanover</button>
+              <button type="button" class="sv-tile sv-tile-sm" data-ef="town" data-v="Hingham">Hingham</button>
+              <button type="button" class="sv-tile sv-tile-sm" data-ef="town" data-v="Humarock">Humarock</button>
+              <button type="button" class="sv-tile sv-tile-sm" data-ef="town" data-v="Other Plymouth County">Other Plymouth Co.</button>
+            </div>
+          </div>
+        </div>
+
         <div class="cal-embed-wrap" id="cal-embed-wrap"></div>
       </div>
     </div>
@@ -1010,7 +1024,8 @@
   /* ───── SURVEY NAV: tiles auto-advance, progress bar, back ───── */
   var svData = {};
   var svStep = 1;
-  var SV_TOTAL = 6;
+  var SV_TOTAL = 3;   // 2026-07-30: was 6. Lead now fires at step 3 (contact);
+                      // land_status / budget / town moved to post-lead enrichment.
 
   function svGo(n){
     svStep = Math.max(1, Math.min(SV_TOTAL, n));
@@ -1027,7 +1042,9 @@
     }
   }
 
-  document.querySelectorAll('.sv-tile').forEach(function(t){
+  // Scoped to [data-f] so the post-lead enrichment tiles ([data-ef]) don't also
+  // drive the survey stepper.
+  document.querySelectorAll('.sv-tile[data-f]').forEach(function(t){
     t.addEventListener('click', function(){
       var f = t.getAttribute('data-f'), v = t.getAttribute('data-v');
       svData[f] = v;
@@ -1063,11 +1080,12 @@
 
     // Human-readable summary (kept for the SMS/notification) — BUT every answer is ALSO
     // sent as its own discrete key below so the GHL workflow can map to bmb_* fields.
+    // Only the answers captured BEFORE the lead fires. Land / budget / town arrive
+    // seconds later via the enrichment POST, which rewrites this same field.
     var desc =
-      'Land: ' + (svData.land_status || '') +
+      'Project: ' + (svData.project_type || '') +
       ' | Timeline: ' + (svData.timeline || '') +
-      ' | Project: ' + (svData.project_type || '') +
-      ' | Budget: ' + (svData.budget || 'Not specified') +
+      ' | Land: (pending) | Budget: (pending) | Town: (pending)' +
       (utmStr ? ' || ' + utmStr : '');
 
     var gclid = form.gclid.value || '';
@@ -1081,10 +1099,9 @@
       email: emailV,
       phone: phoneE,
       project_type: svData.project_type || '',
-      land_status:  svData.land_status  || '',
       timeline:     svData.timeline     || '',
-      budget:       svData.budget       || '',
-      town:         svData.town         || '',
+      // land_status / budget / town intentionally OMITTED here — they arrive on the
+      // enrichment POST. Sending '' would blank them on a returning contact.
       project_description: desc,
       bmb_source: form.utm_source.value || 'google-ads',
       gclid: gclid,
@@ -1096,8 +1113,13 @@
       utm_term: form.utm_term.value || '',
       utm_content: form.utm_content.value || '',
       source: 'BMB Free Consult LP (Survey)',
-      tags: 'bmb-website,consultation-request,google-paid,modular-lp'
+      tags: 'bmb-website,consultation-request,google-paid,modular-lp',
+      lead_stage: 'lead'          // <- WF1 should trigger ONLY on this value
     };
+
+    // Stash identity so the post-lead enrichment POST can upsert onto this contact.
+    window.__bmbIdent = { first_name: firstName, last_name: lastName, full_name: nameV,
+                          email: emailV, phone: phoneE, gclid: gclid };
 
     try {
       if (gclid) localStorage.setItem('bmb_gclid', gclid);
@@ -1125,12 +1147,90 @@
     return false;
   }
 
+  /* ───── POST-LEAD ENRICHMENT ─────────────────────────────────────────────
+     The lead already fired at step 3. These 3 answers land on the same GHL
+     contact via a second POST tagged lead_stage='enrich'. Sent when all three
+     are answered, or on pagehide if at least one is (sendBeacon, so it survives
+     the tab closing). Never fires more than once. ────────────────────────── */
+  var svEnrich = {}, svEnrichSent = false;
+
+  /* SEPARATE hook from the lead POST, on purpose.
+     The lead POST goes to c14c6cb9 -> "Google PPC — Modular New Lead", which
+     has an internal_notification step that texts Mike. Sending the enrichment
+     there too would text him twice per lead. It also must not go to 0eba93d2
+     ("BMB Website Lead") — that one creates an opportunity.
+     bPMdcQO1XHZlL2iy5p5y -> "Google PPC — Modular Lead Enrichment": a single
+     create_update_contact step that upserts on email/phone and writes
+     land_status / budget / town. No tags, no opportunity, no notification. */
+  var GHL_ENRICH_HOOK = 'https://services.leadconnectorhq.com/hooks/zPo4vLlEjjXCflgDSXlI/webhook-trigger/bPMdcQO1XHZlL2iy5p5y';
+
+  function sendEnrich(useBeacon){
+    if (svEnrichSent) return;
+    var ident = window.__bmbIdent;
+    if (!ident || !Object.keys(svEnrich).length) return;
+    svEnrichSent = true;
+
+    var body = new URLSearchParams({
+      first_name: ident.first_name, last_name: ident.last_name,
+      full_name: ident.full_name, email: ident.email, phone: ident.phone,
+      gclid: ident.gclid || '',
+      project_type: svData.project_type || '',
+      timeline:     svData.timeline     || '',
+      land_status:  svEnrich.land_status || '',
+      budget:       svEnrich.budget      || '',
+      town:         svEnrich.town        || '',
+      project_description:
+        'Project: ' + (svData.project_type || '') +
+        ' | Timeline: ' + (svData.timeline || '') +
+        ' | Land: ' + (svEnrich.land_status || 'Not answered') +
+        ' | Budget: ' + (svEnrich.budget || 'Not answered') +
+        ' | Town: ' + (svEnrich.town || 'Not answered'),
+      source: 'BMB Free Consult LP (Survey)',
+      lead_stage: 'enrich'        // <- WF1 must NOT re-notify on this value
+    }).toString();
+
+    try {
+      if (useBeacon && navigator.sendBeacon) {
+        navigator.sendBeacon(GHL_ENRICH_HOOK,
+          new Blob([body], { type: 'application/x-www-form-urlencoded;charset=UTF-8' }));
+      } else {
+        fetch(GHL_ENRICH_HOOK, { method: 'POST', mode: 'no-cors', keepalive: true,
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' },
+          body: body });
+      }
+    } catch(err) {}
+  }
+
+  document.querySelectorAll('.sv-tile[data-ef]').forEach(function(t){
+    t.addEventListener('click', function(){
+      var f = t.getAttribute('data-ef');
+      svEnrich[f] = t.getAttribute('data-v');
+      t.parentElement.querySelectorAll('.sv-tile').forEach(function(x){ x.classList.remove('is-selected'); });
+      t.classList.add('is-selected');
+      if (svEnrich.land_status && svEnrich.budget && svEnrich.town) {
+        var head = document.getElementById('sv-enrich');
+        if (head) {
+          var h = head.querySelector('.sv-enrich-head');
+          if (h) h.textContent = 'Got it — Mike will have this in front of him. Pick your time below.';
+        }
+        setTimeout(function(){ sendEnrich(false); }, 250);
+      }
+    });
+  });
+
+  window.addEventListener('pagehide', function(){ sendEnrich(true); });
+  document.addEventListener('visibilitychange', function(){
+    if (document.visibilityState === 'hidden') sendEnrich(true);
+  });
+
   /* ───── INLINE CALENDAR SWAP — hide survey, reveal pre-filled "Modular — Free Consultation" cal ───── */
   function showCalendar(first, last, email, phone){
     var survey = document.getElementById('lp-form');
     var cal    = document.getElementById('lp-cal-card');
     if (survey) survey.style.display = 'none';
     if (cal) cal.style.display = 'block';
+    var enrich = document.getElementById('sv-enrich');
+    if (enrich) enrich.style.display = 'block';
 
     // Pre-fill the GHL booking widget via URL params (name/email/phone).
     var u = new URL('https://api.leadconnectorhq.com/widget/booking/Etmy63E6UqSrqYIvahIN');
