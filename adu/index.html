@@ -131,6 +131,8 @@
     ]
   }
   </script>
+  <!-- Shared ad-attribution + lead-conversion module (see /js/bmb-attribution.js) -->
+  <script src="/js/bmb-attribution.js"></script>
 </head>
 <style id="mobile-cta-fix">
 @media (max-width: 900px) {
@@ -568,7 +570,15 @@
   hbg.addEventListener('click',()=>{const o=mm.classList.toggle('open');hbg.classList.toggle('open',o);hbg.setAttribute('aria-expanded',String(o));document.body.style.overflow=o?'hidden':'';});
   mm.querySelectorAll('a').forEach(l=>l.addEventListener('click',()=>{mm.classList.remove('open');hbg.classList.remove('open');hbg.setAttribute('aria-expanded','false');document.body.style.overflow='';}));
   document.querySelectorAll('.faq-q').forEach(btn=>{btn.addEventListener('click',()=>{const item=btn.closest('.faq-item'),isOpen=item.classList.contains('open');document.querySelectorAll('.faq-item').forEach(i=>{i.classList.remove('open');i.querySelector('.faq-q').setAttribute('aria-expanded','false');});if(!isOpen){item.classList.add('open');btn.setAttribute('aria-expanded','true');}});});
-  const form=document.getElementById('consult-form');if(form){form.addEventListener('submit',async e=>{e.preventDefault();const fd=new FormData(form);const payload={firstName:fd.get('first_name'),lastName:fd.get('last_name'),email:fd.get('email'),phone:fd.get('phone'),customField:{'contact.bmb_home_size':fd.get('sqft'),'contact.bmb_town':fd.get('town'),'contact.bmb_project_description':fd.get('message'),'contact.bmb_use_case':fd.get('use_case'),'contact.bmb_source':'ADU page'},source:'BMB Website',tags:['bmb-website','consultation-request','adu']};try{await fetch('https://services.leadconnectorhq.com/hooks/zPo4vLlEjjXCflgDSXlI/webhook-trigger/0eba93d2-0fb2-4770-9af2-4e912dc84502',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});}catch(err){console.error(err);}form.innerHTML='<div style="text-align:center;padding:40px 0"><div style="font-family:Bebas Neue,sans-serif;font-size:48px;color:#4A90C4">✓</div><div style="font-family:Bebas Neue,sans-serif;font-size:28px;color:#fff;margin:12px 0">Request Received</div><p style="font-family:Outfit,sans-serif;font-size:14px;font-weight:300;color:rgba(255,255,255,0.4)">Mike will be in touch within one business day.</p></div>';});}
+  const form=document.getElementById('consult-form');if(form){form.addEventListener('submit',async e=>{e.preventDefault();const fd=new FormData(form);
+    const email=fd.get('email'),phone=fd.get('phone');
+    // 2026-07-31: capture click ID + fire the Google Ads lead conversion. Without
+    // these, leads from this page are invisible to Ads and unattributable in GHL.
+    const attr=(typeof bmbAttr==='function')?bmbAttr():{};
+    const attrCF=(typeof bmbAttrCustomFields==='function')?bmbAttrCustomFields():{};
+    const payload=Object.assign({firstName:fd.get('first_name'),lastName:fd.get('last_name'),email:email,phone:phone,customField:Object.assign({'contact.bmb_home_size':fd.get('sqft'),'contact.bmb_town':fd.get('town'),'contact.bmb_project_description':fd.get('message'),'contact.bmb_use_case':fd.get('use_case'),'contact.bmb_source':'ADU page'},attrCF),source:'BMB Website',tags:['bmb-website','consultation-request','adu']},attr);
+    try{if(typeof bmbFireLead==='function')bmbFireLead(email,phone);}catch(err){}
+    try{await fetch('https://services.leadconnectorhq.com/hooks/zPo4vLlEjjXCflgDSXlI/webhook-trigger/0eba93d2-0fb2-4770-9af2-4e912dc84502',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});}catch(err){console.error(err);}form.innerHTML='<div style="text-align:center;padding:40px 0"><div style="font-family:Bebas Neue,sans-serif;font-size:48px;color:#4A90C4">✓</div><div style="font-family:Bebas Neue,sans-serif;font-size:28px;color:#fff;margin:12px 0">Request Received</div><p style="font-family:Outfit,sans-serif;font-size:14px;font-weight:300;color:rgba(255,255,255,0.4)">Mike will be in touch within one business day.</p></div>';});}
 </script>
 </body>
 </html>

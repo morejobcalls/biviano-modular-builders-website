@@ -1586,6 +1586,8 @@
       .tl-card-title { font-size: 22px; }
     }
   </style>
+  <!-- Shared ad-attribution + lead-conversion module (see /js/bmb-attribution.js) -->
+  <script src="/js/bmb-attribution.js"></script>
 </head>
 <body>
 
@@ -2154,20 +2156,29 @@
         btn.textContent = 'Sending...';
         btn.disabled = true;
 
-        const data = {
+        // 2026-07-31: capture click ID + fire the Google Ads lead conversion. Without
+        // these, leads from this page are invisible to Ads and unattributable in GHL.
+        const _email = form.email.value.trim();
+        const _phone = form.phone.value.trim();
+        const _attr   = (typeof bmbAttr === 'function') ? bmbAttr() : {};
+        const _attrCF = (typeof bmbAttrCustomFields === 'function') ? bmbAttrCustomFields() : {};
+
+        const data = Object.assign({
           firstName: form.firstName.value.trim(),
           lastName:  form.lastName.value.trim(),
-          email:     form.email.value.trim(),
-          phone:     form.phone.value.trim(),
-          customField: {
+          email:     _email,
+          phone:     _phone,
+          customField: Object.assign({
             'contact.bmb_home_size':          form.homeSize.value,
             'contact.bmb_town':               form.town.value,
             'contact.bmb_project_description': form.description.value.trim(),
             'contact.bmb_source':             'Consultation form'
-          },
+          }, _attrCF),
           source: 'BMB Website',
           tags:   ['bmb-website', 'consultation-request', 'process-page']
-        };
+        }, _attr);
+
+        try { if (typeof bmbFireLead === 'function') bmbFireLead(_email, _phone); } catch (err) {}
 
         try {
           await fetch(

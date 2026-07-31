@@ -1768,6 +1768,8 @@
     .calc-formula-note a { color: var(--blue); text-decoration: none; }
     .calc-formula-note a:hover { text-decoration: underline; }
   </style>
+  <!-- Shared ad-attribution + lead-conversion module (see /js/bmb-attribution.js) -->
+  <script src="/js/bmb-attribution.js"></script>
 </head>
 <style id="mobile-cta-fix">
 @media (max-width: 900px) {
@@ -2543,20 +2545,29 @@
         submitBtn.textContent = 'Sending...';
         submitBtn.disabled = true;
 
-        const payload = {
+        // 2026-07-31: capture click ID + fire the Google Ads lead conversion. Without
+        // these, leads from this page are invisible to Ads and unattributable in GHL.
+        const _email = form.email.value.trim();
+        const _phone = form.phone.value.trim();
+        const _attr   = (typeof bmbAttr === 'function') ? bmbAttr() : {};
+        const _attrCF = (typeof bmbAttrCustomFields === 'function') ? bmbAttrCustomFields() : {};
+
+        const payload = Object.assign({
           firstName: form.firstName.value.trim(),
           lastName: form.lastName.value.trim(),
-          email: form.email.value.trim(),
-          phone: form.phone.value.trim(),
-          customField: {
+          email: _email,
+          phone: _phone,
+          customField: Object.assign({
             'contact.bmb_home_size': form.homeSize.value,
             'contact.bmb_town': form.town.value,
             'contact.bmb_project_description': form.description.value.trim(),
             'contact.bmb_source': 'Consultation form'
-          },
+          }, _attrCF),
           source: 'BMB Website',
           tags: ['bmb-website', 'consultation-request']
-        };
+        }, _attr);
+
+        try { if (typeof bmbFireLead === 'function') bmbFireLead(_email, _phone); } catch (err) {}
 
         try {
           await fetch('https://services.leadconnectorhq.com/hooks/zPo4vLlEjjXCflgDSXlI/webhook-trigger/0eba93d2-0fb2-4770-9af2-4e912dc84502', {
