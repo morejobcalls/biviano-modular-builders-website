@@ -91,20 +91,24 @@
      2026-07-31 — every key below exists as a TEXT field. Do not invent keys
      here; an unknown fieldKey risks the whole payload being rejected.
 
-     ⚠️ VERIFIED 2026-07-31 — THESE DO NOT LAND YET. A live end-to-end submit
-     created the contact with name/email/phone only: source was null, tags came
-     back as ['source:manual-entry'] instead of what was sent, and ZERO custom
-     fields were populated. The inbound-webhook workflow behind hook
-     0eba93d2-0fb2-4770-9af2-4e912dc84502 maps only the four standard fields and
-     discards the rest of the payload — which is why every lead from these pages
-     has always arrived with no town, no project details and no source.
-     Someone must map these in the GHL workflow UI (Forms+Workflows API is
-     IAM-blocked in this sub-account). Sending them here is harmless and is the
-     prerequisite for that mapping — the keys must appear in a captured sample
-     before GHL's field picker will offer them.
+     ✅ VERIFIED WORKING END-TO-END 2026-07-31. A real submit through the live
+     /adu/ page with ?gclid=… stored contact_gclid, utm_source, utm_medium,
+     utm_campaign and utm_term on the GHL contact alongside the project details.
+     GHL sanitises the dot to an underscore, so "contact.bmb_town" is addressed
+     as the merge tag "customField.contact_bmb_town".
 
-     The Google Ads conversion below is NOT affected by any of this — it is
-     client-side and works the moment this ships. */
+     This required adding six field mappings to the "BMB Website Lead" workflow
+     (5eaf13d0-cf4b-4a72-9f29-682bba12410d, hook 0eba93d2) — see
+     scripts/bmb_map_attribution_fields.py. The workflow maps only what it is
+     explicitly told to; unmapped payload keys are silently dropped.
+
+     Still NOT mapped by that workflow, by design: `source` and `tags` (GHL
+     applies its own), and `bmb_use_case` — that custom field does not exist in
+     this location, so the /adu/ form's use_case answer goes nowhere. Worth
+     creating if the answer matters.
+
+     The Google Ads conversion below is independent of all of the above — it is
+     client-side and works regardless of what GHL stores. */
   w.bmbAttrCustomFields = function () {
     var cf = {};
     if (captured.gclid)        cf['contact.contact_gclid'] = captured.gclid;
