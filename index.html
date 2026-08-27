@@ -398,6 +398,21 @@
       object-fit: cover;
       filter: saturate(0.5) brightness(0.55);
     }
+    /* Ambient aerial loop layered over the static hero image (desktop only).
+       src is injected by JS below, so mobile downloads zero video bytes. */
+    .hero-bg video {
+      position: absolute;
+      inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      filter: saturate(0.5) brightness(0.55);
+      opacity: 0;
+      transition: opacity 1s ease;
+    }
+    .hero-bg video.is-playing { opacity: 1; }
+    @media (max-width: 900px), (prefers-reduced-motion: reduce) {
+      .hero-bg video { display: none; }
+    }
     .hero-bg::after {
       content: '';
       position: absolute;
@@ -2146,6 +2161,14 @@
       alt="Custom modular home built by Biviano Modular Builders in Plymouth County, MA"
       fetchpriority="high"
     >
+    <video
+      id="hero-video"
+      data-src="/photos/videos/finished-homes-aerial.mp4"
+      poster="/hero-home.jpg"
+      muted loop playsinline preload="none"
+      disablepictureinpicture
+      tabindex="-1"
+    ></video>
   </div>
 
   <div class="hero-main">
@@ -2196,6 +2219,24 @@
     </div>
   </div>
 </section>
+
+<script>
+  /* Load the hero loop only where it earns its bandwidth: desktop widths,
+     motion not reduced, and the user isn't on Data Saver. Everyone else
+     keeps the static hero-home.jpg and downloads nothing extra. */
+  (function () {
+    var v = document.getElementById('hero-video');
+    if (!v) return;
+    var conn = navigator.connection || {};
+    if (!window.matchMedia('(min-width: 901px)').matches) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    if (conn.saveData) return;
+    v.addEventListener('playing', function () { v.classList.add('is-playing'); }, { once: true });
+    v.src = v.dataset.src;
+    var p = v.play();
+    if (p && p.catch) p.catch(function () { /* autoplay blocked — static image stands */ });
+  })();
+</script>
 
 <!-- ══════════════════════════════════════════
      MARQUEE — SERVICE AREAS
@@ -2733,6 +2774,101 @@
 ══════════════════════════════════════════ -->
 <style>
   .video-section { background: var(--coal); padding: 100px 56px; }
+
+    /* ── Featured On: third-party media feature (South Shore Stuff) ── */
+    .press-section { background: var(--coal-mid); padding: 100px 56px; }
+    .press-inner { max-width: 1200px; margin: 0 auto; }
+    .press-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 1fr;
+      gap: 52px;
+      align-items: center;
+    }
+    .press-frame {
+      position: relative;
+      border-radius: 14px;
+      overflow: hidden;
+      background: #000;
+      box-shadow: 0 24px 60px rgba(0,0,0,0.5);
+    }
+    .press-frame video {
+      display: block;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      object-fit: cover;
+      background: #000;
+    }
+    .press-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-family: 'Outfit', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--blue);
+      border: 1px solid rgba(74,144,196,0.35);
+      border-radius: 999px;
+      padding: 7px 15px;
+    }
+    .press-copy h2 {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 700;
+      font-size: clamp(28px, 3.4vw, 42px);
+      line-height: 1.1;
+      color: var(--white);
+      margin: 18px 0 0;
+    }
+    .press-copy h2 .em { color: var(--blue); }
+    .press-pull {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 300;
+      font-style: italic;
+      font-size: 18px;
+      line-height: 1.55;
+      color: rgba(255,255,255,0.82);
+      border-left: 2px solid var(--blue);
+      padding-left: 18px;
+      margin: 22px 0 0;
+    }
+    .press-attrib {
+      font-family: 'Outfit', sans-serif;
+      font-size: 13px;
+      font-weight: 400;
+      color: rgba(255,255,255,0.42);
+      margin-top: 12px;
+    }
+    .press-facts {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 28px;
+      margin-top: 30px;
+      padding-top: 26px;
+      border-top: 1px solid var(--rule-dark);
+    }
+    .press-fact-num {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 700;
+      font-size: 30px;
+      color: var(--white);
+      line-height: 1;
+    }
+    .press-fact-num span { color: var(--blue); }
+    .press-fact-label {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 300;
+      font-size: 12px;
+      line-height: 1.4;
+      color: rgba(255,255,255,0.45);
+      margin-top: 7px;
+      max-width: 130px;
+    }
+    @media (max-width: 900px) {
+      .press-section { padding: 72px 24px; }
+      .press-grid { grid-template-columns: 1fr; gap: 30px; }
+      .press-facts { gap: 22px; }
+    }
   .video-inner { max-width: 1200px; margin: 0 auto; }
   .video-header { margin-bottom: 48px; max-width: 720px; }
   .video-header p { font-family: 'Outfit', sans-serif; font-weight: 300; font-size: 16px; line-height: 1.7; color: rgba(255,255,255,0.5); margin-top: 14px; }
@@ -2754,6 +2890,43 @@
     .video-grid { grid-template-columns: 1fr 1fr; gap: 18px; }
   }
 </style>
+<!-- ══════════════════════════════════════════
+     FEATURED ON — third-party media feature
+══════════════════════════════════════════ -->
+<section id="featured" class="press-section" aria-labelledby="featured-heading">
+  <div class="press-inner">
+    <div class="press-grid">
+      <div class="press-frame reveal">
+        <video controls preload="none" playsinline poster="/photos/videos/south-shore-stuff-feature.jpg">
+          <source src="/photos/videos/south-shore-stuff-feature.mp4" type="video/mp4">
+        </video>
+      </div>
+
+      <div class="press-copy reveal reveal-d1">
+        <span class="press-eyebrow">Featured On &middot; South Shore Stuff</span>
+        <h2 id="featured-heading">Don't take it from us. <span class="em">They came and checked.</span></h2>
+        <p class="press-pull">"There's no way that you can tell me that you thought this was a modular house."</p>
+        <p class="press-attrib">South Shore Stuff, standing in front of one of Mike's finished builds in Scituate.</p>
+
+        <div class="press-facts">
+          <div>
+            <div class="press-fact-num">$700<span>K</span></div>
+            <div class="press-fact-label">What their $1M South Shore house costs with Mike</div>
+          </div>
+          <div>
+            <div class="press-fact-num">8<span>wks</span></div>
+            <div class="press-fact-label">One build finished so fast it beat the electric company</div>
+          </div>
+          <div>
+            <div class="press-fact-num">15<span>min</span></div>
+            <div class="press-fact-label">John's quote. He signed the next day</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section id="see-it-built" class="video-section" aria-label="Project videos">
   <div class="video-inner">
     <div class="video-header reveal">
