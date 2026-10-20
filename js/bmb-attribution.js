@@ -144,3 +144,49 @@
   /* Expose for debugging: bmbAttrDebug() in the console shows what was captured. */
   w.bmbAttrDebug = function () { return { captured: captured, stored: readStore() }; };
 })(window, document);
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Ad-visitor mode                                              (2026-10-20)
+   A visitor who arrives from a paid click (click ID or paid utm_medium in THIS
+   page's URL) gets a landing-page view: site nav, the footer link grid, the
+   towns strip and the breadcrumb are hidden, so the form is the one action.
+   The footer's legal line (company, licences, privacy link) always stays.
+   Pages without a top-of-page form get a sticky "free consultation" bar that
+   jumps to the page's own form. Organic visitors see the normal site.
+   ═══════════════════════════════════════════════════════════════════════════ */
+(function (w, d) {
+  'use strict';
+  var qs;
+  try { qs = new URLSearchParams(w.location.search); } catch (e) { return; }
+  var paid = qs.get('gclid') || qs.get('gbraid') || qs.get('wbraid') ||
+             /^(cpc|ppc|paid|paidsearch)$/i.test(qs.get('utm_medium') || '');
+  if (!paid) return;
+  d.documentElement.classList.add('bmb-ad');
+  var css = '.bmb-ad body > nav, .bmb-ad #navbar, .bmb-ad .mobile-menu, .bmb-ad .footer-top,' +
+            '.bmb-ad .towns-strip, .bmb-ad .hero-breadcrumb { display: none !important; }' +
+            '.bmb-ad .town-hero { padding-top: 0 !important; }' +
+            '.bmb-ad-bar { position: fixed; left: 0; right: 0; bottom: 0; z-index: 120; display: flex; gap: 10px;' +
+            ' padding: 10px 14px calc(10px + env(safe-area-inset-bottom)); background: rgba(17,17,16,0.96);' +
+            ' border-top: 1px solid rgba(74,144,196,0.35); }' +
+            '.bmb-ad-bar a { flex: 1; text-align: center; text-decoration: none; font-family: "Bebas Neue", sans-serif;' +
+            ' font-size: 15px; letter-spacing: 0.16em; padding: 13px 10px; }' +
+            '.bmb-ad-bar .go { background: #4A90C4; color: #111110; }' +
+            '.bmb-ad-bar .call { flex: 0 0 auto; border: 1px solid rgba(255,255,255,0.2); color: #fff; }' +
+            '.bmb-ad body { padding-bottom: 72px; }';
+  var st = d.createElement('style'); st.id = 'bmb-ad-mode'; st.textContent = css;
+  (d.head || d.documentElement).appendChild(st);
+  function bar() {
+    if (d.querySelector('.hero-quick-form')) return;          // page already leads with a form
+    var form = d.getElementById('consult') || d.getElementById('consult-form');
+    if (!form) return;
+    var b = d.createElement('div'); b.className = 'bmb-ad-bar';
+    b.innerHTML = '<a class="go" href="#' + form.id + '">Get My Free Consultation</a>' +
+                  '<a class="call" href="tel:+16176786446">Call</a>';
+    b.querySelector('.go').addEventListener('click', function (e) {
+      e.preventDefault();
+      w.scrollTo({ top: form.getBoundingClientRect().top + w.scrollY - 16, behavior: 'smooth' });
+    });
+    d.body.appendChild(b);
+  }
+  if (d.readyState === 'loading') d.addEventListener('DOMContentLoaded', bar); else bar();
+})(window, document);

@@ -148,6 +148,28 @@
   .cta-form-side { padding: 48px 24px !important; border-left: none !important; }
 }
 </style>
+<style id="adu-quick-form">
+.hero-split { display: grid; grid-template-columns: minmax(0,1fr) 380px; gap: 48px; align-items: end; }
+.hero-quick-form { background: rgba(17,17,16,0.88); border: 1px solid rgba(74,144,196,0.35); padding: 28px 26px 22px; backdrop-filter: blur(4px); }
+.hq-tag { font-family: 'Outfit', sans-serif; font-size: 9px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--blue); margin-bottom: 8px; }
+.hq-title { font-family: 'Bebas Neue', sans-serif; font-size: 30px; letter-spacing: 0.03em; color: var(--white); line-height: 1; margin-bottom: 6px; }
+.hq-sub { font-family: 'Outfit', sans-serif; font-size: 13px; font-weight: 300; color: rgba(255,255,255,0.5); margin-bottom: 18px; }
+.hero-quick-form .form-privacy a { color: rgba(255,255,255,0.5); }
+@media (max-width: 900px) {
+  .hero-split { grid-template-columns: 1fr; gap: 28px; }
+  .town-hero { min-height: 0; }
+  .hero-split .hero-ctas { display: none; }
+  .hero-split .hero-sub { display: none; }
+  .hero-split .town-h1 { font-size: 46px; margin-bottom: 0; }
+  .hero-split .hero-eyebrow { margin-bottom: 10px; }
+  .town-hero .hero-content.hero-split { padding: 28px 18px 28px; }
+  .hero-quick-form { padding: 20px 18px 14px; }
+  .hq-title { font-size: 26px; }
+  .hq-sub { margin-bottom: 12px; }
+  .hero-quick-form .form-group { margin-bottom: 9px; }
+  .hero-quick-form .form-row { grid-template-columns: 1fr 1fr; }
+}
+</style>
 <body>
 
 <!-- NAV -->
@@ -195,7 +217,8 @@
   <div class="hero-bg">
     <img src="/hero-home.jpg" alt="Custom modular ADU built by Biviano Modular Builders in Plymouth County, MA" loading="eager">
   </div>
-  <div class="hero-content">
+  <div class="hero-content hero-split">
+   <div class="hero-copy">
     <div class="hero-breadcrumb">
       <a href="../">Biviano Modular Builders</a>
       <span class="hero-breadcrumb-sep">›</span>
@@ -205,9 +228,38 @@
     <h1 class="town-h1">Custom Modular<br><span class="em">ADUs</span><br><span class="outline">Built in 8–12 Weeks.</span></h1>
     <p class="hero-sub">In-law suites. Rental cottages. Home offices. Guest houses. Built to the same exacting standard as our full custom modular homes — at the same $250 per square foot, in the same 8–12 week timeline. Mike handles permits, design, build, and the entire town approval process.</p>
     <div class="hero-ctas">
-      <a href="#consult" class="btn-primary">Get Your Free ADU Consultation</a>
+      <a href="#adu-quick" class="btn-primary">Get Your Free ADU Consultation</a>
       <a href="#use-cases" class="btn-ghost">See ADU Options</a>
     </div>
+   </div>
+   <!-- 2026-10-20: short capture form above the fold (audit item 1). The long form at #consult stays. -->
+   <aside class="hero-quick-form" id="adu-quick" aria-label="Free ADU consultation request">
+    <div class="hq-tag">Free ADU Consultation</div>
+    <div class="hq-title">Get Your ADU Cost &amp; Timeline</div>
+    <div class="hq-sub">Mike calls you back within one business day.</div>
+    <form id="quick-form">
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label" for="q_fname">First Name</label>
+          <input class="form-input" type="text" id="q_fname" name="first_name" autocomplete="given-name" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="q_town">Your Town</label>
+          <input class="form-input" type="text" id="q_town" name="town" placeholder="e.g. Marshfield" autocomplete="address-level2">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="q_phone">Phone Number</label>
+        <input class="form-input" type="tel" id="q_phone" name="phone" autocomplete="tel" required>
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="q_email">Email Address</label>
+        <input class="form-input" type="email" id="q_email" name="email" autocomplete="email" required>
+      </div>
+      <button type="submit" class="form-submit">Get My Free ADU Consult →</button>
+      <p class="form-privacy">No obligation. <a href="/privacy/">Privacy policy</a>.</p>
+    </form>
+   </aside>
   </div>
 </section>
 
@@ -556,7 +608,7 @@
       </div>
     </div>
     <div class="footer-bottom">
-      <span class="footer-copy">© 2026 Biviano General Contracting LLC. All rights reserved. &nbsp;·&nbsp; Marketing by <a href="https://morejobcalls.com/" target="_blank" rel="nofollow noopener">MoreJobCalls.com</a></span>
+      <span class="footer-copy">© 2026 Biviano General Contracting LLC. All rights reserved. &nbsp;·&nbsp; <a href="/privacy/">Privacy</a> &nbsp;·&nbsp; Marketing by <a href="https://morejobcalls.com/" target="_blank" rel="nofollow noopener">MoreJobCalls.com</a></span>
       <span class="footer-lic">MA HIC Reg. #181337 · MA CSL #CS-108728 · HIC Registered</span>
     </div>
   </div>
@@ -580,6 +632,15 @@
     const payload=Object.assign({firstName:fd.get('first_name'),lastName:fd.get('last_name'),email:email,phone:phone,customField:Object.assign({'contact.bmb_home_size':fd.get('sqft'),'contact.bmb_town':fd.get('town'),'contact.bmb_project_description':fd.get('message'),'contact.bmb_use_case':fd.get('use_case'),'contact.bmb_source':'ADU page'},attrCF),source:'BMB Website',tags:['bmb-website','consultation-request','adu']},attr);
     try{if(typeof bmbFireLead==='function')bmbFireLead(email,phone);}catch(err){}
     try{if(!(window.__bmbIsBot&&window.__bmbIsBot(form)))await fetch('https://services.leadconnectorhq.com/hooks/zPo4vLlEjjXCflgDSXlI/webhook-trigger/0eba93d2-0fb2-4770-9af2-4e912dc84502',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});}catch(err){console.error(err);}form.innerHTML='<div style="text-align:center;padding:40px 0"><div style="font-family:Bebas Neue,sans-serif;font-size:48px;color:#4A90C4">✓</div><div style="font-family:Bebas Neue,sans-serif;font-size:28px;color:#fff;margin:12px 0">Request Received</div><p style="font-family:Outfit,sans-serif;font-size:14px;font-weight:300;color:rgba(255,255,255,0.4)">Mike will be in touch within one business day.</p></div>';});}
+
+  const qform=document.getElementById('quick-form');if(qform){qform.addEventListener('submit',async e=>{e.preventDefault();const fd=new FormData(qform);
+    const email=fd.get('email'),phone=fd.get('phone');
+    const attr=(typeof bmbAttr==='function')?bmbAttr():{};
+    const attrCF=(typeof bmbAttrCustomFields==='function')?bmbAttrCustomFields():{};
+    const payload=Object.assign({firstName:fd.get('first_name'),email:email,phone:phone,customField:Object.assign({'contact.bmb_town':fd.get('town'),'contact.bmb_project_description':'ADU consultation request (short form, top of ADU page)','contact.bmb_source':'ADU page'},attrCF),source:'BMB Website',tags:['bmb-website','consultation-request','adu','adu-quick-form']},attr);
+    try{if(typeof bmbFireLead==='function')bmbFireLead(email,phone);}catch(err){}
+    try{if(!(window.__bmbIsBot&&window.__bmbIsBot(qform)))await fetch('https://services.leadconnectorhq.com/hooks/zPo4vLlEjjXCflgDSXlI/webhook-trigger/0eba93d2-0fb2-4770-9af2-4e912dc84502',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});}catch(err){console.error(err);}
+    qform.innerHTML='<div style="text-align:center;padding:24px 0"><div style="font-family:Bebas Neue,sans-serif;font-size:44px;color:#4A90C4">✓</div><div style="font-family:Bebas Neue,sans-serif;font-size:26px;color:#fff;margin:10px 0">Request Received</div><p style="font-family:Outfit,sans-serif;font-size:14px;font-weight:300;color:rgba(255,255,255,0.5)">Mike will call you within one business day.</p></div>';});}
 </script>
 </body>
 </html>
